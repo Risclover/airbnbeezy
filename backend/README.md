@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![](https://github.com/Risclover/API-project/blob/main/backend/database.png)
 
 ## API Documentation
 
