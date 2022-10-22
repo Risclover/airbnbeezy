@@ -14,7 +14,7 @@
 
 # Database Schema Design
 
-![]("database.png")
+![database.png](https://raw.githubusercontent.com/Risclover/API-project/main/backend/database.png)
 
 # API Documentation
 
