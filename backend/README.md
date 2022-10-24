@@ -11,6 +11,7 @@
   - [Reviews](#reviews)
   - [Bookings](#bookings)
   - [Images](#images)
+- [</details>](#details)
 
 # Database Schema Design
 
@@ -1207,4 +1208,4 @@ Body:
 }
 ```
 
-</details>
+# </details>
