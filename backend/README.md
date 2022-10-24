@@ -2,8 +2,6 @@
 
 ## Table of Contents
 
-- [`AirBnBeezy`](#airbnbeezy)
-  - [Table of Contents](#table-of-contents)
 - [Database Schema Design](#database-schema-design)
 - [API Documentation](#api-documentation)
   - [currentUser](#currentuser)
@@ -11,7 +9,6 @@
   - [Reviews](#reviews)
   - [Bookings](#bookings)
   - [Images](#images)
-- [</details>](#details)
 
 # Database Schema Design
 
@@ -1208,4 +1205,4 @@ Body:
 }
 ```
 
-# </details>
+</details>
