@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       const hashedPassword = bcrypt.hashSync(password);
 
       const user = await User.create({
+        firstName,
         username,
         email,
         hashedPassword,
@@ -76,6 +77,14 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60],
         },
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {
