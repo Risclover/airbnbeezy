@@ -2,6 +2,8 @@
 
 ## Table of Contents
 
+- [`AirBnBeezy`](#airbnbeezy)
+  - [Table of Contents](#table-of-contents)
 - [Database Schema Design](#database-schema-design)
 - [API Documentation](#api-documentation)
   - [currentUser](#currentuser)
@@ -220,7 +222,7 @@ Body:
 </details>
 
 <details>
-<summary style="font-size: 18px; font-weight: 500">Get all spots owned by the current user: <code>GET /api/currentUser/spots</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Get all spots owned by the current user: <code>GET /api/spots/currentUser</code></summary><br>
 
 Response
 
@@ -421,6 +423,82 @@ Body:
 <details>
 <summary style="font-size: 18px; font-weight: 500">Edit a Spot: <code>PUT /api/spots/:spotId
 </code></summary><br>
+
+Request
+
+```javascript
+Content-Type: "application/json",
+Body:
+{
+  "address": "123 Disney Lane",
+  "city": "San Francisco",
+  "state": "California",
+  "country": "United States of America",
+  "lat": 37.7645358,
+  "lng": -122.4730327,
+  "name": "App Academy",
+  "description": "Place where web developers are created",
+  "price": 123
+}
+```
+
+Response
+
+```javascript
+Status Code: 200,
+Content-Type: "application/json",
+Body:
+{
+  "id": 1,
+  "ownerId": 1,
+  "address": "123 Disney Lane",
+  "city": "San Francisco",
+  "state": "California",
+  "country": "United States of America",
+  "lat": 37.7645358,
+  "lng": -122.4730327,
+  "name": "App Academy",
+  "description": "Place where web developers are created",
+  "price": 123,
+  "createdAt": "2021-11-19 20:39:36",
+  "updatedAt": "2021-11-20 10:06:40"
+}
+```
+
+Error: Body validation error
+
+```javascript
+Status Code: 400,
+Content-Type: "application/json",
+Body:
+{
+  "message": "Validation Error",
+  "statusCode": 400,
+  "errors": {
+    "address": "Street address is required",
+    "city": "City is required",
+    "state": "State is required",
+    "country": "Country is required",
+    "lat": "Latitude is not valid",
+    "lng": "Longitude is not valid",
+    "name": "Name must be less than 50 characters",
+    "description": "Description is required",
+    "price": "Price per day is required"
+  }
+}
+```
+
+Error: Couldn't find a Spot with the specified id
+
+```javascript
+Status Code: 404,
+Content-Type: "application/json",
+Body:
+{
+  "message": "Spot couldn't be found",
+  "statusCode": 404
+}
+```
 
 </details>
 <details>
