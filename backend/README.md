@@ -23,7 +23,7 @@
 ([Back to Top ^](#airbnbeezy))
 
 <details>
-<summary style="font-size: 18px; font-weight: 500">Get the current user: <code>GET /api/currentUser</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Get the current user: <code>GET /api/session</code></summary><br>
 
 Response:
 
@@ -42,7 +42,7 @@ Body:
 
 </details>
 <details>
-<summary style="font-size: 18px; font-weight: 500">Log in a user: <code>GET /api/login</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Log in a user: <code>POST /api/session</code></summary><br>
 
 Request:
 
@@ -101,7 +101,7 @@ Body:
 
 </details>
 <details>
-<summary style="font-size: 18px; font-weight: 500">Sign up a user: <code>GET /api/signup</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Sign up a user: <code>POST /api/users</code></summary><br>
 
 Request:
 
@@ -222,7 +222,7 @@ Body:
 </details>
 
 <details>
-<summary style="font-size: 18px; font-weight: 500">Get all spots owned by the current user: <code>GET /api/spots/currentUser</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Get all spots owned by the current user: <code>GET /api/spots/current</code></summary><br>
 
 Response
 
@@ -502,86 +502,6 @@ Body:
 
 </details>
 <details>
-<summary style="font-size: 18px; font-weight: 500">Add an Image to a Spot based on the Spot's id: <code>POST /api/spots/:spotId/images</code></summary><br>
-
-Request
-
-```javascript
-Content-Type: "application/json",
-Body:
-{
-  "address": "123 Disney Lane",
-  "city": "San Francisco",
-  "state": "California",
-  "country": "United States of America",
-  "lat": 37.7645358,
-  "lng": -122.4730327,
-  "name": "App Academy",
-  "description": "Place where web developers are created",
-  "price": 123
-}
-```
-
-Response
-
-```javascript
-Status Code: 200,
-Content-Type: "application/json",
-Body:
-{
-  "id": 1,
-  "ownerId": 1,
-  "address": "123 Disney Lane",
-  "city": "San Francisco",
-  "state": "California",
-  "country": "United States of America",
-  "lat": 37.7645358,
-  "lng": -122.4730327,
-  "name": "App Academy",
-  "description": "Place where web developers are created",
-  "price": 123,
-  "createdAt": "2021-11-19 20:39:36",
-  "updatedAt": "2021-11-20 10:06:40"
-}
-```
-
-Error: Body validation error
-
-```javascript
-Status Code: 400,
-Content-TYpe: "application/json",
-Body:
-{
-  "message": "Validation Error",
-  "statusCode": 400,
-  "errors": {
-    "address": "Street address is required",
-    "city": "City is required",
-    "state": "State is required",
-    "country": "Country is required",
-    "lat": "Latitude is not valid",
-    "lng": "Longitude is not valid",
-    "name": "Name must be less than 50 characters",
-    "description": "Description is required",
-    "price": "Price per day is required"
-  }
-}
-```
-
-Error: Couldn't find a Spot with the specified id
-
-```javascript
-Status Code: 404,
-Content-Type: "application/json",
-Body:
-{
-  "message": "Spot couldn't be found",
-  "statusCode": 404
-}
-```
-
-</details>
-<details>
 <summary style="font-size: 18px; font-weight: 500">Delete a Spot: <code>DELETE /api/spots/:spotId</code></summary><br>
 
 Response
@@ -615,7 +535,7 @@ Body:
 ([Back to Top ^](#airbnbeezy))
 
 <details>
-<summary style="font-size: 18px; font-weight: 500">Get all Reviews of the Current User: <code>GET /api/currentUser/reviews</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Get all Reviews of the Current User: <code>GET /api/reviews/current</code></summary><br>
 
 Response
 
@@ -926,7 +846,7 @@ Body:
 ([Back to Top ^](#airbnbeezy))
 
 <details>
-<summary style="font-size: 18px; font-weight: 500">Get all of the Current User's Bookings: <code>GET /api/currentUser/bookings</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Get all of the Current User's Bookings: <code>GET /api/bookings/current</code></summary><br>
 
 Response
 
@@ -1229,7 +1149,7 @@ Body:
 ([Back to Top ^](#airbnbeezy))
 
 <details>
-<summary style="font-size: 18px; font-weight: 500">Delete a Spot Image: <code>DELETE /api/spots/:spotId/images/:imageId</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Delete a Spot Image: <code>DELETE /api/spot-images/:imageId</code></summary><br>
 
 Response
 
@@ -1257,7 +1177,7 @@ Body:
 
 </details>
 <details>
-<summary style="font-size: 18px; font-weight: 500">Delete a Review Image: <code>DELETE /api/reviews/:reviewId/images/:imageId</code></summary><br>
+<summary style="font-size: 18px; font-weight: 500">Delete a Review Image: <code>DELETE /api/review-images/:imageId</code></summary><br>
 
 Response
 
