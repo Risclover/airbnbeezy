@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       spotId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        onDelete: "CASCADE",
       },
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
       },
       review: {
         type: DataTypes.STRING,
@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       stars: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          min: 1,
+          max: 5,
+        },
       },
     },
     {
