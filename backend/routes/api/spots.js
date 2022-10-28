@@ -139,6 +139,10 @@ router.get("/", requireAuth, async (req, res) => {
     }
 
     spot.avgRating = sum / count;
+
+    if (page || size) {
+      delete spot.avgRating;
+    }
   }
 
   if (page || size) {
@@ -268,6 +272,7 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
     preview: preview,
   });
 
+  createdImage = createdImage.toJSON();
   delete createdImage.createdAt;
   delete createdImage.updatedAt;
   delete createdImage.spotId;
@@ -399,7 +404,14 @@ router.post("/:spotId/reviews", validateReview, async (req, res, next) => {
 
   for (let review of allReviews) {
     if (review.userId === req.user.id) {
-      throw new Error("User already has a review for this spot");
+      const err = new Error("User already has a review for this spot");
+      err.status = 403;
+      err.title = "Review invalid";
+      err.errors = [
+        "User already has a review for this spot",
+        "statusCode: 403",
+      ];
+      return next(err);
     }
   }
 
