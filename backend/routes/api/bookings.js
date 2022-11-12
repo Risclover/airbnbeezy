@@ -1,16 +1,5 @@
 const express = require("express");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const { requireAuth } = require("../../utils/auth");
-const {
-  Spot,
-  Review,
-  SpotImage,
-  User,
-  ReviewImage,
-  Booking,
-} = require("../../db/models");
-const Sequelize = require("sequelize");
+const { Spot, SpotImage, Booking } = require("../../db/models");
 const router = express.Router();
 
 // Get all of the current user's bookings

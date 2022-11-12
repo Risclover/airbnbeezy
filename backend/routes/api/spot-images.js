@@ -1,18 +1,8 @@
 const express = require("express");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const { requireAuth } = require("../../utils/auth");
-const {
-  Spot,
-  Review,
-  SpotImage,
-  User,
-  ReviewImage,
-  Booking,
-} = require("../../db/models");
-const Sequelize = require("sequelize");
+const { SpotImage } = require("../../db/models");
 const router = express.Router();
 
+// Delete spot image
 router.delete("/:imageId", async (req, res, next) => {
   const img = await SpotImage.findByPk(req.params.imageId);
 

@@ -9,7 +9,6 @@ const {
   ReviewImage,
   Booking,
 } = require("../../db/models");
-const Sequelize = require("sequelize");
 const { handleValidationErrors } = require("../../utils/validation");
 const { check } = require("express-validator");
 
@@ -29,12 +28,14 @@ router.post("/", requireAuth, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
 
+  // Identify current user
   const currentUser = await User.findOne({
     where: {
       id: req.user.id,
     },
   });
 
+  // Create the actual spot
   const createdSpot = await Spot.create({
     ownerId: currentUser.id,
     address: address,
@@ -53,19 +54,46 @@ router.post("/", requireAuth, async (req, res) => {
 
 // Get all spots
 router.get("/", requireAuth, async (req, res) => {
-  // page: integer, minimum: 1, maximum: 10, default: 1
-  // size: integer, minimum: 1, maximum: 20, default: 20
+  // Make each spot a JSON object and push to spotsList array
+  let spotsList = [];
+  spots.forEach((spot) => {
+    spotsList.push(spot.toJSON());
+  });
 
-  /*
-    "page": "Page must be greater than or equal to 1",
-    "size": "Size must be greater than or equal to 1",
-    "maxLat": "Maximum latitude is invalid",
-    "minLat": "Minimum latitude is invalid",
-    "minLng": "Maximum longitude is invalid",
-    "maxLng": "Minimum longitude is invalid",
-    "minPrice": "Maximum price must be greater than or equal to 0",
-    "maxPrice": "Minimum price must be greater than or equal to 0"
-  */
+  // For each spot:
+  for (let spot of spotsList) {
+    // Finding previewImage
+    const previewImage = await SpotImage.findOne({
+      where: {
+        preview: true,
+        spotId: spot.id,
+      },
+      raw: true,
+    });
+
+    spot.previewImage = previewImage.url;
+
+    // Finding avgRating
+    const reviews = await Review.findAll({
+      where: {
+        spotId: spot.id,
+      },
+      raw: true,
+    });
+
+    let sum = 0;
+    let count = reviews.length;
+    for (let review of reviews) {
+      sum += review.stars;
+    }
+
+    spot.avgRating = sum / count;
+
+    // Remove avgRating if page or size exists
+    if (page || size) {
+      delete spot.avgRating;
+    }
+  }
 
   // Pagination
   let { page, size } = req.query;
@@ -109,48 +137,15 @@ router.get("/", requireAuth, async (req, res) => {
     ...pagination,
   });
 
-  let spotsList = [];
-  spots.forEach((spot) => {
-    spotsList.push(spot.toJSON());
-  });
-
-  for (let spot of spotsList) {
-    const previewImage = await SpotImage.findOne({
-      where: {
-        preview: true,
-        spotId: spot.id,
-      },
-      raw: true,
-    });
-
-    spot.previewImage = previewImage.url;
-
-    const reviews = await Review.findAll({
-      where: {
-        spotId: spot.id,
-      },
-      raw: true,
-    });
-
-    let sum = 0;
-    let count = reviews.length;
-    for (let review of reviews) {
-      sum += review.stars;
-    }
-
-    spot.avgRating = sum / count;
-
-    if (page || size) {
-      delete spot.avgRating;
-    }
-  }
-
+  // If page or size exist, include them in the final response object
   if (page || size) {
     res.json({
       Spots: spotsList,
       page,
       size,
     });
+
+    // Otherwise, don't (prevents "page: null", for example)
   } else {
     res.json({
       Spots: spotsList,
@@ -171,6 +166,7 @@ router.get("/current", async (req, res) => {
   });
 
   for (let spot of spotsList) {
+    // Finding previewImage
     const previewImage = await SpotImage.findOne({
       where: {
         preview: true,
@@ -181,6 +177,7 @@ router.get("/current", async (req, res) => {
 
     spot.previewImage = previewImage.url;
 
+    // Remove avgRating if page or size exists
     const reviews = await Review.findAll({
       where: {
         spotId: spot.id,
@@ -215,6 +212,7 @@ router.get("/:spotId", async (req, res, next) => {
     return next(err);
   }
 
+  // Remove avgRating if page or size exists
   const reviews = await Review.findAll({
     raw: true,
   });

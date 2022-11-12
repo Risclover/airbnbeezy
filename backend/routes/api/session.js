@@ -37,7 +37,9 @@ router.post("/", validateLogin, async (req, res, next) => {
   delete user.createdAt;
   delete user.updatedAt;
 
-  return res.json(user);
+  return res.json({
+    user,
+  });
 });
 
 // Log out
@@ -48,10 +50,14 @@ router.delete("/", (_req, res) => {
 
 // Restore session user
 router.get("/", restoreUser, (req, res) => {
-  const { user } = req;
+  let { user } = req;
+  user = user.toSafeObject();
   if (user) {
-    return res.json(user.toSafeObject());
-  } else return res.json({});
+    return res.json({ user });
+  } else
+    return res.json({
+      user: null,
+    });
 });
 
 module.exports = router;
