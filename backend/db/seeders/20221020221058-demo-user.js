@@ -8,7 +8,7 @@ module.exports = {
     return queryInterface.bulkInsert("Users", [
       {
         email: "demo@user.com",
-        username: "UserGuy",
+        username: "Demo-lition",
         firstName: "User",
         lastName: "Guy",
         hashedPassword: bcrypt.hashSync("password"),
