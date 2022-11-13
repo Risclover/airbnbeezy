@@ -90,7 +90,6 @@ router.get("/current", async (req, res) => {
 
 // Add an Image to a Review based on the Review's id
 router.post("/:reviewId/images", async (req, res, next) => {
-  console.log("hai");
   const { reviewId } = req.params;
   const { url } = req.body;
 
@@ -109,7 +108,6 @@ router.post("/:reviewId/images", async (req, res, next) => {
     url: url,
   });
 
-  console.log(newImage);
 
   newImage = newImage.toJSON();
   delete newImage.reviewId;
