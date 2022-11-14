@@ -19,6 +19,11 @@ function LoginForm() {
     );
   };
 
+  const handleDemo = () => {
+    setCredential("Demo-lition");
+    setPassword("password");
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ul>
@@ -45,6 +50,7 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button onClick={handleDemo}>Demo Login</button>
     </form>
   );
 }
