@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SingleSpotPage from './components/SingleSpotPage';
 import CreateSpot from './components/SpotForm/CreateSpot'
+import CurrentUserSpots from './components/CurrentUserSpots'
 import Spots from './components/Spots';
 
 function App() {
@@ -20,16 +21,19 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/spots/current">
+            <CurrentUserSpots />
+          </Route>
           <Route exact path="/spots/:spotId">
             <SingleSpotPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/">
+          <Route path="/spots">
             <Spots />
           </Route>
-          <Route path="/spots">
+          <Route path="/">
             <Spots />
           </Route>
         </Switch>

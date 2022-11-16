@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import CreateSpot from '../SpotForm/CreateSpot';
 import './Navigation.css';
+import Logo from '../../images/airbnbeezy_logo.png';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -32,7 +33,8 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
+    <ul className="nav">
+        <li><img className="site-logo" alt="Site logo" src={Logo}/></li>
       <li>
         <NavLink exact to="/spots">Home</NavLink>
         {isLoaded && sessionLinks}

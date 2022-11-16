@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSpot, getAllSpots } from '../../store/spots';
+import { getAllSpots, updateSpot} from '../../store/spots';
 
-export default function SpotForm(props) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
+export default function EditSpot(props) {
+  const [name, setName] = useState(props.spotToEdit.name || "");
+  const [description, setDescription] = useState(props.spotToEdit.description || "");
+  const [address, setAddress] = useState(props.spotToEdit.address || "");
+  const [city, setCity] = useState(props.spotToEdit.city || "");
+  const [state, setState] = useState(props.spotToEdit.state || "");
+  const [country, setCountry] = useState(props.spotToEdit.country || "");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
-  const [price, setPrice] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [price, setPrice] = useState(props.spotToEdit.price || "");
+  const [imgUrl, setImgUrl] = useState(props.spotToEdit.imgUrl || "");
   const ownerId = useSelector(state => state.session.user.id);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -34,8 +34,7 @@ export default function SpotForm(props) {
       price
     }
 
-    await dispatch(addSpot(newSpot));
-
+    await dispatch(updateSpot(newSpot));
     dispatch(getAllSpots());
   }
 

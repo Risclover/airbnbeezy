@@ -1,0 +1,23 @@
+.spot-box {
+    padding: 10px;
+    border: 1px solid black;
+    width: 200px;
+    margin: 10px;
+}
+
+.spots {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin-right: 15px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: red;
+}

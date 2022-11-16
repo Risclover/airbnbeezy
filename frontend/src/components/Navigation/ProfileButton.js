@@ -31,19 +31,29 @@ function ProfileButton({ user }) {
     history.replace('/');
   };
 
+  const mySpots = (e) => {
+    e.preventDefault();
+    history.replace('/spots/current');
+}
+
   return (
     <>
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
+        <div className="profile-dropdown">
+        <ul className="profile-dropdown-ul">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <li>
+            <button onClick={(e) => mySpots(e)}>My Spots</button>
+          </li>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
         </ul>
+        </div>
       )}
     </>
   );

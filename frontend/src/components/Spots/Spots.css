@@ -7,10 +7,9 @@
     padding: 10px;
     border: 1px solid black;
     width: 200px;
-    margin: 10px;
 }
 
-.spot-box {
+.spot-box:hover {
     cursor: pointer;
 }
 
@@ -23,4 +22,32 @@
 
 .create-spot {
     margin-bottom: 20px;
+}
+
+.spotcard-location {
+    font-weight: 500;
+}
+
+.spotcard-host {
+    font-weight: 400;
+    color: #717171;
+}
+
+.spotcard-price {
+    font-weight: 500;
+}
+
+.spotcard-priceline {
+    color: #222;
+    font-weight: 300;
+    margin-top: 3px;
+}
+
+.edit-spot {
+    margin: 0;
+    margin-right: 15px;
+}
+
+.owner-buttons {
+    width: 100%;
 }

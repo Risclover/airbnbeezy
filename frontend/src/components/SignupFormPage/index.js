@@ -17,10 +17,9 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) history.replace("/spots")
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    history.replace('/');
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
