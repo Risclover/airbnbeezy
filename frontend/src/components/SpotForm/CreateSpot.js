@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function DemoLogin() {
+export default function CreateSpot() {
+
   return (
     <button>
-      Login as demo user
+      Create spot
     </button>
   )
 }

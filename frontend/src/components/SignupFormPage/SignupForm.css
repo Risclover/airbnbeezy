@@ -12,7 +12,7 @@ label {
     margin-top: 10px;
 }
 
-input {
+input, select {
     margin-top: 5px;
     padding: 5px;
 }
