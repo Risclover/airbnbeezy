@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Redirect } from 'react-router-dom';
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -17,7 +21,16 @@ function LoginForm() {
         if (data && data.errors) setErrors(data.errors);
       }
     );
+
   };
+
+  const handleDemo = () => {
+    setCredential("Demo-lition");
+    setPassword("password");
+
+    return <Redirect to="/spots" />
+
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,6 +58,7 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button onClick={handleDemo}>Demo Login</button>
     </form>
   );
 }

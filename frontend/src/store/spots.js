@@ -1,32 +1,81 @@
+import { csrfFetch } from './csrf';
 
-const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
+const initialState = {};
 
-const getAllSpots = spots => ({
-    type: GET_ALL_SPOTS,
+const ADD = "spots/ADD";
+const POPULATE = "spots/POPULATE";
+const UPDATE = "spots/UPDATE";
+
+const add = (spots) => ({
+    type: ADD,
     spots
 });
 
-export const getSpots = () => async dispatch => {
-    const response = await fetch(`/api/spots`);
+// const update = (spotId) => {
+//     return {
+//         type: UPDATE,
+//         spotId
+//     }
+// }
 
-    if (response.ok) {
-      const spots = await response.json();
-      dispatch(getAllSpots(spots));
-      return spots;
+export const getSpots = (state) => {
+    return Object.values(state.spots);
+  };
+
+export const populateSpots = (spots) => {
+    return {
+        type: POPULATE,
+        spots
+    }
+}
+
+export const getAllSpots = () => async dispatch => {
+    const response = await csrfFetch('/api/spots');
+    if(response.ok) {
+        const spots = await response.json();
+        dispatch(populateSpots(spots));
+        return spots;
+    }
+}
+
+export const getSpotById = id => state => state.spots[id];
+
+export const addSpot = (formData) => async dispatch => {
+    const response = await csrfFetch("/api/spots/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    });
+
+    if(response.ok) {
+	const spots = await response.json();
+	dispatch(add(spots));
+	return spots;
     }
 };
 
-const spotsReducer = (state, action) => {
+
+export default function spotsReducer(state = initialState, action) {
     switch(action.type) {
-        case GET_ALL_SPOTS:
-            const allSpots = {};
-            action.spots.forEach(spot => {
-                allSpots[spot.id] = spot;
-            });
-            return {
-                ...state,
-                spots: allSpots
-            }
+        // case UPDATE:
+        //     const newerState = {};
+        //     action.spots.Spots.forEach(spot => {
+        //         if(newerState[spot.id] === action.spotId) {
+        //             console.log(newerState[spot.id]);
+        //         }
+        //     })
+        //     return newerState;
+        case POPULATE:
+            console.log(action);
+            const newState = {};
+            action.spots.Spots.forEach(spot => {
+                newState[spot.id] = spot;
+            })
+            return newState;
+        case ADD:
+            return { ...state, spots: {[action.spots.id]: action.spots }};
         default:
             return state;
     }
