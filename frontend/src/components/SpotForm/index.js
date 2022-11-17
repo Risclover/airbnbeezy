@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSpot, getAllSpots } from '../../store/spots';
+import { addSpot, getAllSpots, addImage } from '../../store/spots';
 
 export default function SpotForm(props) {
   const [name, setName] = useState("");
@@ -21,8 +21,7 @@ export default function SpotForm(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     props.setShowCreateSpotForm(false);
-    const newSpot = {
-      ...props.spotToEdit,
+    const payload = {
       name,
       description,
       address,
@@ -34,9 +33,18 @@ export default function SpotForm(props) {
       price
     }
 
-    await dispatch(addSpot(newSpot));
-
+    let newSpot = await dispatch(addSpot(payload));
     dispatch(getAllSpots());
+
+    if (newSpot && imgUrl) {
+      const imgPayload = {
+        url: imgUrl,
+        preview: true
+      }
+      await dispatch(addImage(imgPayload, newSpot));
+    }
+
+    if (newSpot) history.push('/');
   }
 
 

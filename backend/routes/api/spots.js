@@ -54,47 +54,6 @@ router.post("/", requireAuth, async (req, res) => {
 
 // Get all spots
 router.get("/", requireAuth, async (req, res) => {
-  // Make each spot a JSON object and push to spotsList array
-  let spotsList = [];
-  spots.forEach((spot) => {
-    spotsList.push(spot.toJSON());
-  });
-
-  // For each spot:
-  for (let spot of spotsList) {
-    // Finding previewImage
-    const previewImage = await SpotImage.findOne({
-      where: {
-        preview: true,
-        spotId: spot.id,
-      },
-      raw: true,
-    });
-
-    spot.previewImage = previewImage.url;
-
-    // Finding avgRating
-    const reviews = await Review.findAll({
-      where: {
-        spotId: spot.id,
-      },
-      raw: true,
-    });
-
-    let sum = 0;
-    let count = reviews.length;
-    for (let review of reviews) {
-      sum += review.stars;
-    }
-
-    spot.avgRating = sum / count;
-
-    // Remove avgRating if page or size exists
-    if (page || size) {
-      delete spot.avgRating;
-    }
-  }
-
   // Pagination
   let { page, size } = req.query;
   const pagination = {};
@@ -136,6 +95,51 @@ router.get("/", requireAuth, async (req, res) => {
   const spots = await Spot.findAll({
     ...pagination,
   });
+
+  // Make each spot a JSON object and push to spotsList array
+  let spotsList = [];
+  spots.forEach((spot) => {
+    spotsList.push(spot.toJSON());
+  });
+
+  // For each spot:
+  for (let spot of spotsList) {
+    // Finding previewImage
+    const previewImage = await SpotImage.findOne({
+      where: {
+        preview: true,
+        spotId: spot.id,
+      },
+      raw: true,
+    });
+
+    console.log(previewImage);
+
+    if(previewImage !== null) {
+      spot.previewImage = previewImage.url;
+    }
+
+    // Finding avgRating
+    const reviews = await Review.findAll({
+      where: {
+        spotId: spot.id,
+      },
+      raw: true,
+    });
+
+    let sum = 0;
+    let count = reviews.length;
+    for (let review of reviews) {
+      sum += review.stars;
+    }
+
+    spot.avgRating = sum / count;
+
+    // Remove avgRating if page or size exists
+    if (page || size) {
+      delete spot.avgRating;
+    }
+  }
 
   // If page or size exist, include them in the final response object
   if (page || size) {

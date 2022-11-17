@@ -1,12 +1,13 @@
-.edit-spot {
-    margin-bottom: 20px;
-    padding: 3px;
+.spots-div {
+    padding: 0 35px;
+}
+.spot-info {
+    padding-top: 12px;
 }
 
-.spot-box {
-    padding: 10px;
-    border: 1px solid black;
-    width: 200px;
+.spot-img {
+    width: 100%;
+    height: 100%;
 }
 
 .spot-box:hover {
@@ -14,10 +15,11 @@
 }
 
 .spots-list {
-    padding: 10px;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 15px;
+    row-gap: 40px;
 }
 
 .create-spot {
@@ -25,7 +27,7 @@
 }
 
 .spotcard-location {
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .spotcard-host {
@@ -34,13 +36,13 @@
 }
 
 .spotcard-price {
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .spotcard-priceline {
     color: #222;
-    font-weight: 300;
-    margin-top: 3px;
+    font-weight: 500;
+    margin-top: 5px;
 }
 
 .edit-spot {
@@ -50,4 +52,44 @@
 
 .owner-buttons {
     width: 100%;
+}
+
+.spot-box {
+    height: 20vw;
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+
+
+    .spots-list {
+        grid-template-columns: auto auto auto;
+    }
+
+    .spot-box {
+        height: 30vw;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+
+    .spots-list {
+        grid-template-columns: auto auto;
+    }
+
+    .spot-box {
+        height: 40vw;
+    }
+
+
+}
+
+@media screen and (min-width: 1px) and (max-width: 499px) {
+    .spots-list {
+        grid-template-columns: auto;
+    }
+
+    .spot-box {
+        height: 30vw;
+    }
 }

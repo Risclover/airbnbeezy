@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import CreateSpot from '../SpotForm/CreateSpot';
 import './Navigation.css';
-import Logo from '../../images/airbnbeezy_logo.png';
+import Logo from '../../images/airbnbeezy_logo3.png';
+import SearchBar from './SearchBar';
+
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -34,7 +36,8 @@ function Navigation({ isLoaded }){
 
   return (
     <ul className="nav">
-        <li><img className="site-logo" alt="Site logo" src={Logo}/></li>
+        <li><Link to="/spots"><img className="site-logo" alt="Site logo" src={Logo}/></Link></li>
+        <li><SearchBar /></li>
       <li>
         <NavLink exact to="/spots">Home</NavLink>
         {isLoaded && sessionLinks}

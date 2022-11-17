@@ -16,9 +16,10 @@ const add = (spots) => ({
     spots
 });
 
-const addImage = (spots) => ({
+const addSpotImg = (img, spot) => ({
     type: ADD_IMAGE,
-    spots
+    img,
+    spot
 })
 
 export const reset = () => {
@@ -133,6 +134,20 @@ export const deleteSpot = (spotId) => async dispatch => {
     }
   };
 
+  export const addImage = (payload, spot) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
+	method: 'POST',
+	headers: {
+	    'Content-Type': 'application/json'
+	},
+	body: JSON.stringify(payload)
+    });
+    if(response.ok) {
+	const img = await response.json();
+	dispatch(addSpotImg(img, spot));
+	return img;
+    };
+};
 
 export default function spotsReducer(state = initialState, action) {
     switch(action.type) {
@@ -163,6 +178,11 @@ export default function spotsReducer(state = initialState, action) {
                 }
             })
             return ownerState;
+        case ADD_IMAGE:
+            return {
+            ...state,
+            [action.spot.id]: { ...action.spot, previewImage: action.img.url }
+        };
         case REMOVE:
             let removeState = {...state};
             delete removeState[action.itemId];

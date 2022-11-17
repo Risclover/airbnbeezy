@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.nav {
+    padding: 0 30px;
+    height: 81px;
+    border-bottom: 1px solid rgb(242, 242, 242);
+}
+
 ul, li {
     list-style-type: none;
 }
@@ -33,4 +41,45 @@ a {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+.nav-searchbar {
+    font-size: 14px;
+    height: 48px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 12px;
+    padding-right: 8px;
+    border-radius: 100px;
+    border: 1px solid rgb(222, 222, 222);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 18px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 0px 20px -20px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.nav-searchbar-inner {
+    font-weight: 500;
+    border-right: 1px solid rgb(224, 224, 224);
+    text-align: center;
+    font-weight: 600;
+    padding: 3px 15px;
+}
+
+.nav-searchbar-inner-right {
+    color: #717171;
+    padding: 3px 15px;
+}
+
+.search-button {
+    border-radius: 100%;
+    background-color: #ff385c;
+    color: white;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding-top: 2px;
+    justify-content: center;
 }

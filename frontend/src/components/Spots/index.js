@@ -37,7 +37,7 @@ if(showCreateSpotForm) {
 }
 
 return (
-    <div>
+    <div className="spots-div">
         {sessionUser ? <button className="create-spot" onClick={handleClick}>Create Spot</button> : null}
         {content}
         <h2>All Spots:</h2>
@@ -45,13 +45,18 @@ return (
           {spotsList.map((spot) => (
             <Link to={`/spots/${spot.id}`}>
                 <div key={spot.id} className="spot-box" onClick={openSingleSpot}>
+                    <div className="spot-img" style={{  backgroundImage: "url(" + spot.previewImage + ")",
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat'}}>
+                    </div>
+                    <div className="spot-info">
                     <ul>
                         <li className="spotcard-location">{spot.city}, {spot.state}</li>
                         <li className="spotcard-host">Hosted by <span className="spotcard-hostname">{sessionUser.name}</span></li>
                         <li className="spotcard-priceline"><span className="spotcard-price">${spot.price}</span> night</li>
-
-                        <li><img src={spot.url}/></li>
                     </ul>
+                    </div>
                 </div>
             </Link>
         ))}
