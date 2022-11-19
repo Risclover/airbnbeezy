@@ -1,4 +1,7 @@
-button {
-    background: blue;
-    color: red;
+.create-spot-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 82px);
+    overflow-y: auto;
 }

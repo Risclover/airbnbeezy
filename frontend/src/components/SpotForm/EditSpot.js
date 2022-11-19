@@ -40,7 +40,6 @@ export default function EditSpot(props) {
 
 
   return (
-    <div className="create-spot-page">
       <form className="createspot-form">
         <h2>Create a Spot</h2>
         <label>Name of Spot
@@ -323,6 +322,5 @@ export default function EditSpot(props) {
         </label>
         <button type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
       </form>
-    </div>
   )
 }

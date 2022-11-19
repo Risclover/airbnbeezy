@@ -4,11 +4,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SingleSpotPage from './components/SingleSpotPage';
-import CreateSpot from './components/SpotForm/CreateSpot'
-import CurrentUserSpots from './components/CurrentUserSpots'
-import Spots from './components/Spots';
-
+import SingleSpotPage from "./components/SingleSpotPage";
+import CurrentUserSpots from "./components/CurrentUserSpots";
+import Spots from "./components/Spots";
+import CreateSpot from "./components/SpotForm/CreateSpot";
+import ReviewPage from "./components/ReviewPage";
+import CurrentUserReviews from "./components/CurrentUserReviews";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,8 +22,17 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Spots />
+          </Route>
+          <Route exact path="/create-spot">
+            <CreateSpot />
+          </Route>
           <Route exact path="/spots/current">
             <CurrentUserSpots />
+          </Route>
+          <Route exact path="/reviews/current">
+            <CurrentUserReviews />
           </Route>
           <Route exact path="/spots/:spotId">
             <SingleSpotPage />
@@ -30,11 +40,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/spots">
-            <Spots />
-          </Route>
-          <Route path="/">
-            <Spots />
+          <Route path="/spots/:spotId/create-review">
+            <ReviewPage />
           </Route>
         </Switch>
       )}

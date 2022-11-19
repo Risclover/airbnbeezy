@@ -1,10 +1,11 @@
 import React from 'react'
+import SpotForm from './index';
 
 export default function CreateSpot() {
 
   return (
-    <button>
-      Create spot
-    </button>
+    <div className="create-spot-page">
+      <SpotForm />
+    </div>
   )
 }

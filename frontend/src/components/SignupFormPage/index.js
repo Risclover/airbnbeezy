@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
-
-
-function SignupFormPage() {
+import "./SignupForm.css";
+function SignupFormPage({ setShowModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -19,23 +17,34 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.replace('/');
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
+      return dispatch(
+        sessionActions.signup({
+          email,
+          username,
+          password,
+          firstName,
+          lastName,
+        })
+      )
+        .then(() => setShowModal(false))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors([
+      "Confirm Password field must be the same as the Password field",
+    ]);
   };
-
   return (
     <form onSubmit={handleSubmit}>
-        <h1>Hai</h1>
+      <h1>Hai</h1>
       <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
       </ul>
       <label>
         Email
@@ -57,11 +66,21 @@ function SignupFormPage() {
       </label>
       <label>
         First Name
-        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
       </label>
       <label>
         Last Name
-        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
       </label>
       <label>
         Password
@@ -85,5 +104,4 @@ function SignupFormPage() {
     </form>
   );
 }
-
 export default SignupFormPage;

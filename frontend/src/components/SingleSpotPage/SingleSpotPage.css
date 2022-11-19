@@ -1,5 +1,68 @@
 .spot {
-    margin: 10px;
-    padding: 10px;
+  margin: 10px;
+  padding: 10px;
+}
 
+.single-spot {
+  padding: 30px 80px;
+}
+
+.spot-title h1 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.spot-info {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.spot-info-left,
+.spot-info-right {
+  display: flex;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.spot-info-location {
+  font-size: 14px;
+}
+
+.singlespot-photos-grid {
+  border-radius: 12px;
+  height: 350px;
+  width: 100%;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 8px;
+  overflow: hidden;
+}
+
+.photos-default {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  height: 100%;
+  overflow: hidden;
+}
+
+.photos-default img {
+  width: 100%;
+  height: 100%;
+}
+
+.photos-photo {
+  overflow: hidden;
+}
+
+.photos-photo img {
+  width: 100%;
+  height: 100%;
 }

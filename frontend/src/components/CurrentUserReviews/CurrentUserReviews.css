@@ -1,0 +1,53 @@
+.current-user-reviews {
+  padding: 40px 80px;
+}
+
+.reviews-breadcrumbs {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  width: min-content;
+  padding: 3px;
+  padding-left: 0;
+  justify-content: space-evenly;
+  color: #717171;
+  font-weight: 500;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.reviews-breadcrumbs svg {
+  margin-right: 10px;
+  margin-left: 8px;
+}
+
+.reviews-breadcrumbs a {
+  margin: 0;
+  color: black;
+}
+
+.reviews-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.current-user-reviews h1,
+.current-user-reviews h2 {
+  font-family: "Roboto Flex", sans-serif;
+  color: #222;
+  font-weight: 600;
+}
+
+.current-user-reviews h1 {
+  font-size: 34px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.current-user-reviews h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.reviews-content {
+  font-family: "Roboto Flex", sans-serif;
+}

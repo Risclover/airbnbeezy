@@ -1,23 +1,24 @@
-form {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    max-width: 300px;
-    padding: 10px;
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  max-width: 300px;
+  padding: 10px;
 }
 
-label {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+.signup-form label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
-input, select {
-    margin-top: 5px;
-    padding: 5px;
+.signup-form input,
+.signup-form select {
+  margin-top: 5px;
+  padding: 5px;
 }
 
-button {
-    padding: 5px;
-    margin-top: 10px;
+.signup-form button {
+  padding: 5px;
+  margin-top: 10px;
 }

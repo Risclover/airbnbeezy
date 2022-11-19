@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSpot, getAllSpots, addImage } from '../../store/spots';
+import './CreateSpot.css';
 
 export default function SpotForm(props) {
   const [name, setName] = useState("");
@@ -49,7 +50,6 @@ export default function SpotForm(props) {
 
 
   return (
-    <div className="create-spot-page">
       <form className="createspot-form">
         <h2>Create a Spot</h2>
         <label>Name of Spot
@@ -332,6 +332,6 @@ export default function SpotForm(props) {
         </label>
         <button type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
       </form>
-    </div>
+
   )
 }

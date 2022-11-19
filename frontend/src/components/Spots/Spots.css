@@ -1,95 +1,109 @@
 .spots-div {
-    padding: 0 35px;
+  padding: 0 35px;
 }
 .spot-info {
-    padding-top: 12px;
+  padding-top: 12px;
+  font-family: "Roboto Flex", sans-serif;
 }
 
 .spot-img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
 }
 
 .spot-box:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .spots-list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 15px;
-    row-gap: 40px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 15px;
+  row-gap: 80px;
 }
 
 .create-spot {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .spotcard-location {
-    font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .spotcard-host {
-    font-weight: 400;
-    color: #717171;
+  font-weight: 400;
+  color: #717171;
+  font-size: 16px;
 }
 
 .spotcard-price {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .spotcard-priceline {
-    color: #222;
-    font-weight: 500;
-    margin-top: 5px;
+  color: #222;
+  font-weight: 500;
+  margin-top: 5px;
 }
 
 .edit-spot {
-    margin: 0;
-    margin-right: 15px;
+  margin: 0;
+  margin-right: 15px;
 }
 
 .owner-buttons {
-    width: 100%;
+  width: 100%;
 }
 
 .spot-box {
-    height: 20vw;
+  height: 20vw;
 }
 
-
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .spots-div {
+    padding: 0 35px;
+  }
 
+  .spots-list {
+    grid-template-columns: auto auto auto auto;
+    row-gap: 110px;
+    column-gap: 12px;
+  }
 
-    .spots-list {
-        grid-template-columns: auto auto auto;
-    }
+  .spot-box {
+    width: 21.4vw;
+    height: 20vw;
+  }
 
-    .spot-box {
-        height: 30vw;
-    }
+  .spot-info {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .spotcard-priceline {
+    margin-top: 10px;
+  }
 }
 
 @media screen and (min-width: 500px) and (max-width: 1023px) {
+  .spots-list {
+    grid-template-columns: auto auto;
+  }
 
-    .spots-list {
-        grid-template-columns: auto auto;
-    }
-
-    .spot-box {
-        height: 40vw;
-    }
-
-
+  .spot-box {
+    height: 40vw;
+  }
 }
 
 @media screen and (min-width: 1px) and (max-width: 499px) {
-    .spots-list {
-        grid-template-columns: auto;
-    }
+  .spots-list {
+    grid-template-columns: auto;
+  }
 
-    .spot-box {
-        height: 30vw;
-    }
+  .spot-box {
+    height: 30vw;
+  }
 }
