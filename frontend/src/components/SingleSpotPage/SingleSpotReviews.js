@@ -15,31 +15,96 @@ export default function SingleSpotReviews({ spot }) {
 
   let count = 0;
   let reviewDate;
-
+  let reviewMonth;
+  let reviewMonthNum;
+  let reviewYear;
   reviews.forEach((review) => {
     if (review) {
       count++;
-      reviewDate = new Date(review.createdAt).toLocaleDateString();
+      reviewDate = new Date(review.createdAt);
+      reviewMonthNum = reviewDate.getMonth() + 1;
+      reviewYear = reviewDate.getFullYear();
+      switch (reviewMonthNum) {
+        case 1:
+          reviewMonth = "January";
+          break;
+        case 2:
+          reviewMonth = "February";
+          break;
+        case 3:
+          reviewMonth = "March";
+          break;
+        case 4:
+          reviewMonth = "April";
+          break;
+        case 5:
+          reviewMonth = "May";
+          break;
+        case 6:
+          reviewMonth = "June";
+          break;
+        case 7:
+          reviewMonth = "July";
+          break;
+        case 8:
+          reviewMonth = "August";
+          break;
+        case 9:
+          reviewMonth = "September";
+          break;
+        case 10:
+          reviewMonth = "October";
+          break;
+        case 11:
+          reviewMonth = "November";
+          break;
+        case 12:
+          reviewMonth = "December";
+          break;
+        default:
+          reviewMonth = "Null";
+          break;
+      }
     }
   });
 
   return (
-    <div className="reviews-section">
+    <div className="reviews-section" id="Reviews">
       <div className="review-stats">
-        <span className="star-value">
-          Stars: {Number(spot.avgRating).toFixed(1)}
-        </span>
-        <span className="num-reviews"> Reviews: {count}</span>
+        {count > 0 && count < 3 ? (
+          <div className="reviews-head">
+            <h2>
+              {count} {count === 1 ? "review" : "reviews"}
+            </h2>
+            <p>Average rating will appear after 3 reviews</p>
+          </div>
+        ) : count === 0 ? (
+          <div className="reviews-head">
+            <h2>No reviews (yet)</h2>
+          </div>
+        ) : (
+          <div className="reviews-head">
+            <h2>
+              <i className="fa-solid fa-star"></i>
+              {Number(spot.avgRating).toFixed(1)} <span className="dot">•</span>{" "}
+              {count} reviews
+            </h2>
+          </div>
+        )}
+
         <NavLink to={`/spots/${spot.id}/create-review`}>Add Review</NavLink>
 
         <div className="reviews">
           {reviews.map((review) => (
-            <ul>
-              <li>
-                {review.review} - {review.stars} - {review.User.firstName} -{" "}
-                {reviewDate}
-              </li>
-            </ul>
+            <div className="review-box">
+              <div className="review-name">
+                <h3>{review.User.firstName}</h3>
+                <p>
+                  {reviewMonth} {reviewYear}
+                </p>
+              </div>
+              <div className="review-body">{review.review}</div>
+            </div>
           ))}
         </div>
       </div>

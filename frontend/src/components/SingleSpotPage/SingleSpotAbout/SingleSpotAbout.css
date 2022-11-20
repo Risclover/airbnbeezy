@@ -1,0 +1,229 @@
+.single-spot-about {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  width: 100%;
+  margin: 0 auto;
+}
+.single-spot-about-boxes {
+  max-width: 1120px;
+  margin: 48px 0;
+  position: relative;
+  left: 0;
+}
+
+.single-spot-reservation {
+  position: relative;
+  height: 100%;
+}
+
+.single-spot-reservation-box {
+  width: 320px;
+  background: white;
+  border: 1px solid lightgrey;
+  padding: 27px 25px;
+  border-radius: 12px;
+  position: sticky;
+  top: 18%;
+  z-index: 3;
+  margin-top: 48px;
+  margin-bottom: 40px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.reservation-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-head-left {
+  font-size: 17px;
+}
+
+.reservation-head-left-price {
+  font-size: 22px;
+  font-weight: 600;
+}
+.reservation-head-right {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+.reservation-head-right .fa-star {
+  font-size: 10px;
+  margin-bottom: 4px;
+  margin-right: 3px;
+}
+
+.reservation-head-right .dot {
+  font-size: 5px;
+  margin: 0 5px;
+}
+
+.reservation-head-right a {
+  text-decoration: underline;
+  margin: 0;
+}
+
+.reservation-form input,
+.reservation-form select {
+  border: 1px solid #b5b5b5;
+  outline: none;
+}
+
+.reservation-form-top {
+  display: flex;
+  margin-top: 25px;
+}
+
+.input-group,
+.input-group-two {
+  position: relative;
+}
+
+.input-label {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  position: absolute;
+  top: 8px;
+  left: 12px;
+}
+
+.input-group-input-left {
+  border-top-left-radius: 8px;
+  padding: 20px 9px 15px 10px !important;
+}
+
+.input-group-input-right {
+  border-radius: 0;
+  border-top-right-radius: 8px;
+  padding: 20px 9px 15px 10px;
+  margin-left: -1px;
+}
+
+.reservation-form-guests {
+  width: calc(100% - 1px);
+  font-family: "Montserrat", sans-serif;
+  padding: 22px 20px 15px 9px !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-top: -1px;
+}
+
+.input-group-two .input-label {
+  left: 12px;
+  z-index: 3;
+}
+
+.reservation-form-submit {
+  margin-top: 80px;
+}
+
+.single-spot-about-header {
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding-bottom: 28px;
+  width: 87%;
+}
+
+.single-spot-about-header h2 {
+  font-size: 23px;
+  font-weight: 600;
+  font-family: "Roboto Flex", sans-serif;
+  margin-bottom: 13px;
+}
+
+.single-spot-about-rooms {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+}
+
+.fa-circle {
+  font-size: 2px;
+  margin: 0 5px;
+}
+
+.single-spot-about-highlights {
+  margin-top: 32px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  width: 87%;
+}
+
+.single-spot-about-highlight {
+  display: flex;
+  margin-bottom: 26px;
+}
+
+.single-spot-about-highlight-icon {
+  width: 30px;
+  display: flex;
+  align-items: flex-start;
+  margin-right: 10px;
+}
+
+.single-spot-about-highlight-icon svg {
+  font-size: 22px;
+}
+
+.single-spot-about-highlight-icon .fa-key {
+  transform: rotate(270deg);
+}
+
+.single-spot-about-highlight-title {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.single-spot-about-highlight-info {
+  color: #717171;
+  margin-top: 7px;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.single-spot-about-aircover {
+  padding-top: 32px;
+  width: 87%;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding-bottom: 33px;
+}
+
+.single-spot-about-aircover img {
+  height: 26px;
+}
+
+.single-spot-about-aircover p {
+  font-size: 17px;
+  color: #222;
+  margin-top: 20px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 18px;
+}
+
+.single-spot-about-aircover a {
+  text-decoration: underline;
+  font-weight: 500;
+  margin-left: 0;
+  font-size: 17px;
+}
+
+.single-spot-about-description {
+  padding-top: 33px;
+  font-weight: 300;
+  font-size: 18px;
+  width: 87%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}

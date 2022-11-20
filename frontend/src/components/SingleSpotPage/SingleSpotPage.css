@@ -7,17 +7,54 @@
   padding: 30px 80px;
 }
 
+.spot-head {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
 .spot-title h1 {
   font-weight: 600;
   font-size: 24px;
+  font-family: "Montserrat", sans-serif;
 }
 
-.spot-info {
-  margin-top: 5px;
+.spot-head-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.spot-head-info a {
+  margin: 0;
+  text-decoration: underline;
+}
+
+.reviews-link {
+  margin: 0;
+  margin-left: 5px !important;
+  text-decoration: underline;
+}
+
+.spot-head-info .fa-star {
+  margin-right: 3px;
+  font-size: 13px;
+  margin-top: 1px;
+}
+
+.new-spot {
+  font-weight: 400;
+  display: flex;
+}
+
+.spot-info-stars {
+  display: flex;
+}
+
+.spot-info-spot {
+  margin: 0 7px;
 }
 
 .spot-info-left,
@@ -34,35 +71,189 @@
 
 .singlespot-photos-grid {
   border-radius: 12px;
-  height: 350px;
-  width: 100%;
-  margin-top: 25px;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 8px;
+  position: relative;
+  height: 43vw;
+  max-height: 560px;
   overflow: hidden;
+  margin: 17px auto 0 auto;
+  max-width: 1120px;
 }
 
 .photos-default {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  grid-row-start: 1;
-  grid-row-end: 3;
   height: 100%;
-  overflow: hidden;
+  width: 50%;
+  left: 0px;
+  top: 0px;
+  position: absolute;
 }
 
 .photos-default img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
-.photos-photo {
+.photos-photo-bottom,
+.photos-photo-top {
   overflow: hidden;
+  height: 50%;
+  object-fit: cover;
+  display: block;
+  width: 100%;
 }
 
-.photos-photo img {
+.photos-photo-bottom {
+  padding-top: 8px;
+}
+
+.photos-photo-box-middle {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25%;
+  padding-left: 8px;
+  overflow: hidden;
+  left: 50%;
+  top: 0px;
+  position: absolute;
+}
+
+.photos-photo-box {
+  overflow: hidden;
+  display: block;
+}
+
+.photos-photo-box-middle-bottom {
+  height: 25% !important;
+  display: block;
+}
+
+.photos-photo-box-right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25%;
+  padding-left: 8px;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.photos-photo-top img,
+.photos-photo-bottom img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+.reviews-section {
+  margin-top: 52px;
+  max-width: 1120px;
+  border-top: 1px solid lightgrey;
+}
+
+.spot-info-right-btn {
+  padding: 9px;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto Flex", sans-serif;
+  border-radius: 10px;
+}
+
+.spot-info-right-btn svg {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.spot-info-right-btn:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.spot-info-share {
+  margin-right: 12px;
+}
+
+.spot-info-save {
+  margin: 0 -8px;
+}
+
+.spot-info-right-btn a {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.reviews-head h2 {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 22px;
+  margin-top: 52px;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.reviews-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.reviews-head h2 svg {
+  font-size: 14px;
+  margin-bottom: 3px;
+  margin-right: 7px;
+}
+
+h2 .dot {
+  font-size: 10px;
+  margin: 0 7px;
+}
+
+.review-name h3 {
+  font-weight: 600;
+  color: #222;
+  font-size: 17px;
+  margin-bottom: 2px;
+}
+
+.review-box {
+  margin: 20px;
+  margin-left: 0;
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1120px;
+}
+
+.review-name {
+  font-weight: 300;
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #717171;
+}
+
+.review-body {
+  font-weight: 300;
+  font-size: 18px;
+  color: #222;
+  line-height: 24px;
+}
+
+@media screen and (min-width: 500px) and (max-width: 1130px) {
+  .single-spot {
+    padding: 30px 40px;
+  }
+
+  .singlespot-photos-grid {
+    height: calc(60vh - 64px);
+    min-height: 300px;
+    max-height: 520px;
+  }
+}
+
+@media (min-height: 500px) and (max-height: 700px) {
+  .singlespot-photos-grid {
+    height: 50% !important;
+  }
 }

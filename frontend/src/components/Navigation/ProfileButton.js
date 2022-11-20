@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, Redirect, NavLink } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./Navigation.css";
 import LoginFormModal from "../LoginFormModal";
 
-export default function ProfileButton({ user, setLogin, setShowModal }) {
+export default function ProfileButton({
+  user,
+  setLogin,
+  setShowModal,
+  setShowCreateModal,
+}) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory();
@@ -41,44 +46,61 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
       {showMenu &&
         (user ? (
           <div className="profile-dropdown">
-            <ul className="profile-dropdown-ul">
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={(e) => mySpots(e)}>My Spots</button>
-              </li>
-              <li>
-                <NavLink to="/reviews/current">My Reviews</NavLink>
-              </li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </ul>
+            <div className="profile-dropdown-top">
+              <ul className="profile-dropdown-ul">
+                <li>{user.username}</li>
+                <li>{user.email}</li>
+              </ul>
+            </div>
+            <div className="profile-dropdown-top">
+              <ul className="profile-dropdown-ul">
+                <NavLink to="/spots/current">
+                  <li>Manage listings</li>
+                </NavLink>
+                <li onClick={() => setShowCreateModal(true)}>
+                  Airbnbeezy your home
+                </li>{" "}
+                <NavLink to="/spots/current">
+                  <li>Profile</li>
+                </NavLink>
+              </ul>
+            </div>
+            <div className="profile-dropdown-bottom">
+              <ul className="profile-dropdown-ul">
+                <li onClick={logout}>Logout</li>
+              </ul>
+            </div>
           </div>
         ) : (
           <div className="profile-dropdown">
-            <ul className="profile-dropdown-ul">
-              <li>
-                <button
+            <div className="profile-dropdown-top">
+              <ul className="profile-dropdown-ul">
+                <li
+                  className="profile-dropdown-li-bold"
                   onClick={() => {
                     setLogin(true);
                     setShowModal(true);
                   }}
                 >
                   Log In
-                </button>
-              </li>
-              <li>
-                <button
+                </li>
+                <li
                   onClick={() => {
                     setLogin(false);
                     setShowModal(true);
                   }}
                 >
                   Sign Up
-                </button>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+            <div className="profile-dropdown-bottom">
+              <ul className="profile-dropdown-ul">
+                <li onClick={() => setShowModal(true)}>Airbnbeezy your home</li>
+                <li>Host an experience</li>
+                <li>Help</li>
+              </ul>
+            </div>
           </div>
         ))}
     </>

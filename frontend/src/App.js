@@ -23,7 +23,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Spots />
+            <Spots isLoaded={isLoaded} />
           </Route>
           <Route exact path="/create-spot">
             <CreateSpot />

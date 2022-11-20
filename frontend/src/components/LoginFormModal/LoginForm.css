@@ -26,17 +26,127 @@
   font-size: 22px;
   font-weight: 600;
   font-family: "Roboto Flex", sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .login-form input {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   padding: 15px 10px;
-  border-radius: 12px;
-  border: 1px solid #222;
+  border: 1px solid rgb(161, 161, 161);
+  outline: none;
 }
 
-.loginform-input-under {
+.loginform-input-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.loginform-input-bottom {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-top: -1px;
+}
+
+.login-btn {
+  width: 100%;
+  border-radius: 8px;
+  outline: 0;
+  height: 48px;
+  border: 0;
+  font-size: 18px;
+  font-family: "Roboto Flex", sans-serif;
+  color: white;
+  margin-top: 30px;
+  background: linear-gradient(
+    90deg,
+    #e51d4f,
+    #e31952,
+    #e21555,
+    #e01158,
+    #de0d5b,
+    #dc0a5e,
+    #d90661,
+    #d70464
+  );
+  z-index: 1;
   position: relative;
+}
+
+.login-btn::before {
+  background: linear-gradient(
+    90deg,
+    #d70464,
+    #d90661,
+    #dc0a5e,
+    #de0d5b,
+    #e01158,
+    #e21555,
+    #e31952,
+    #e51d4f
+  );
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  border-radius: 8px;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  border: 0;
+  outline: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.login-btn:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  cursor: pointer;
+}
+
+.horizontal-or {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 20px 0;
+}
+
+.side-or {
+  height: 1px;
+  width: 100%;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.middle-or {
+  margin: 0 15px;
+  font-size: 12px;
+  color: #222;
+}
+
+.demo-btn {
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  background: white;
+  padding: 0 25px;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 16px;
+}
+
+.demo-btn svg {
+  font-size: 18px;
+  color: #d70464;
+}
+
+.demo-btn:hover {
+  cursor: pointer;
+  background-color: rgb(250, 250, 250);
 }

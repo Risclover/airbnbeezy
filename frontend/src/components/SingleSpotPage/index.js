@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { getSpotById, deleteSpot, getAllSpots } from "../../store/spots";
+
 import "./SingleSpotPage.css";
 import EditSpot from "../SpotForm/EditSpot";
 import SingleSpotHead from "./SingleSpotHead";
 import SingleSpotPhotos from "./SingleSpotPhotos";
 import SingleSpotReviews from "./SingleSpotReviews";
+import SingleSpotAbout from "./SingleSpotAbout/SingleSpotAbout";
+import SingleSpotReservation from "./SingleSpotAbout/SingleSpotReservation";
+import Navigation from "../Navigation";
+import AboutModal from "./AboutModal";
 
 export default function SingleSpotPage() {
   const [editSpotId, setEditSpotId] = useState(null);
@@ -26,6 +31,11 @@ export default function SingleSpotPage() {
     setEditSpotId(null);
     dispatch(getAllSpots());
   }, [dispatch, setEditSpotId]);
+
+  const nav = document.querySelector(".nav");
+  nav.style.position = "static";
+  nav.style.paddingLeft = "80px";
+  nav.style.paddingRight = "80px";
 
   // const handleEdit = (e, id) => {
   //   e.preventDefault();
@@ -53,22 +63,9 @@ export default function SingleSpotPage() {
     <div className="single-spot">
       <SingleSpotHead count={count} />
       <SingleSpotPhotos />
+      {/* <SingleSpotReservation /> */}
+      <SingleSpotAbout spot={spot} />
       <SingleSpotReviews count={count} spot={spot} />
-      {/* <div key={spot.id} className="spot">
-            <ul>
-                <li>{spot.name} ${spot.price}</li>
-                <li>{spot.description}</li>
-                <li>{spot.address}</li>
-                <li>{spot.city}</li>
-                <li>{spot.state}</li>
-                <li><img src={spot.previewImage}/></li>
-            </ul>
-            {sessionUser && spot.ownerId === sessionUser.id ?
-            <div className="owner-buttons">
-              <button className="edit-spot" onClick={(e) => handleEdit(e, spot.id)}>Edit</button>
-              <button className="delete-spot" onClick={(e) =>  handleDelete(e, spot.id)}>Delete</button>
-          </div> : null}
-        </div> */}
     </div>
   );
 }

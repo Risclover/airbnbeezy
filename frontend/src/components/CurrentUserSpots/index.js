@@ -11,49 +11,30 @@ import "./CurrentUserSpots.css";
 import EditSpot from "../SpotForm/EditSpot";
 
 export default function CurrentUserSpots() {
-  const [editSpotId, setEditSpotId] = useState(null);
-  const [showCreateSpotForm, setShowCreateSpotForm] = useState(false);
-  const spotToEdit = useSelector((state) => state.spots[editSpotId]);
-
   const spotsList = useSelector(getSpots);
-  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const spot = useSelector(getSpotById(editSpotId));
 
   useEffect(() => {
-    setEditSpotId(null);
     dispatch(getAllSpots());
-  }, [dispatch, setEditSpotId]);
+  }, [dispatch]);
 
-  const handleEdit = (e, id) => {
-    e.preventDefault();
-    setEditSpotId(id);
-    setShowCreateSpotForm(true);
-  };
+  const nav = document.querySelector(".nav");
+  nav.style.position = "fixed";
 
-  const handleDelete = (e, id) => {
-    e.preventDefault();
-    dispatch(deleteSpot(id));
-    history.replace("/");
-  };
+  let userDate = new Date(sessionUser.createdAt);
+  let userYear = userDate.getFullYear();
+  console.log(userDate);
 
-  let content = null;
+  let count = 0;
 
-  if (showCreateSpotForm) {
-    content = (
-      <div className="create-spot-stuff">
-        <EditSpot
-          spotToEdit={spotToEdit}
-          showCreateSpotForm={showCreateSpotForm}
-          setShowCreateSpotForm={setShowCreateSpotForm}
-        />
-      </div>
-    );
-  }
+  spotsList.forEach((spot) => {
+    if (spot.ownerId === sessionUser.id) {
+      count++;
+    }
+  });
   return (
     <div className="user-profile">
-      {content}
       <div className="user-info-side">
         <div className="user-image">
           <img src="https://a0.muscache.com/defaults/user_pic-225x225.png" />
@@ -91,28 +72,14 @@ export default function CurrentUserSpots() {
       <div className="user-main">
         <div className="user-head">
           <h1>Hi, I'm {sessionUser.firstName}.</h1>
-          <p>Joined in {sessionUser.createdAt}</p>
+          <p>Joined in 2022</p>
         </div>
         <div className="user-listings">
-          <h2>{sessionUser.firstName}'s listings</h2>
+          {count === 0 ? "" : <h2>{sessionUser.firstName}'s listings</h2>}
           <div className="spots">
             {spotsList.map((spot) =>
               spot.ownerId === sessionUser.id ? (
                 <div className="outer-spot">
-                  <div className="owner-buttons">
-                    <button
-                      className="edit-spot"
-                      onClick={(e) => handleEdit(e, spot.id)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="delete-spot"
-                      onClick={(e) => handleDelete(e, spot.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
                   <NavLink to={`/spots/${spot.id}`}>
                     <div key={spot.id} className="spot-box">
                       <div

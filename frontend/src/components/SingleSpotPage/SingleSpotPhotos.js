@@ -13,29 +13,33 @@ export default function SingleSpotPhotos() {
       <div className="photos-default">
         <img src={spot.previewImage} alt="default image" />
       </div>
-      <div className="photos-photo">
-        <img
-          src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-          alt="Bedroom"
-        />
+      <div className="photos-photo-box-middle">
+        <div className="photos-photo-top">
+          <img
+            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
+            alt="Bedroom"
+          />
+        </div>
+        <div className="photos-photo-bottom">
+          <img
+            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
+            alt="Bedroom"
+          />
+        </div>
       </div>
-      <div className="photos-photo">
-        <img
-          src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-          alt="Bedroom"
-        />
-      </div>
-      <div className="photos-photo">
-        <img
-          src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-          alt="Bedroom"
-        />
-      </div>
-      <div className="photos-photo">
-        <img
-          src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-          alt="Bedroom"
-        />
+      <div className="photos-photo-box-right">
+        <div className="photos-photo-top">
+          <img
+            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
+            alt="Bedroom"
+          />
+        </div>
+        <div className="photos-photo-bottom">
+          <img
+            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
+            alt="Bedroom"
+          />
+        </div>
       </div>
     </div>
   );

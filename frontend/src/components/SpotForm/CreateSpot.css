@@ -1,7 +1,71 @@
-.create-spot-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100% - 82px);
-    overflow-y: auto;
+.createspot-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-height: 70vh;
+}
+
+.loginform-header .fa-xmark:hover {
+  cursor: pointer;
+}
+
+.createspot-form input,
+.createspot-form select {
+  padding: 20px 10px;
+  width: 100%;
+  margin-top: -1px;
+  font-size: 16px;
+  outline: 0;
+  border: 1px solid rgb(184, 184, 184);
+}
+
+.createspot-form {
+  height: auto;
+  overflow-y: auto;
+}
+
+.close-createspot {
+  background: none;
+  border: 0;
+}
+
+#name {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#img-url {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.createspot-btn {
+  width: 100%;
+  border-radius: 8px;
+  outline: 0;
+  height: 48px;
+  border: 0;
+  font-size: 18px;
+  font-family: "Roboto Flex", sans-serif;
+  color: white;
+  margin-top: 30px;
+  background: linear-gradient(
+    90deg,
+    #e51d4f,
+    #e31952,
+    #e21555,
+    #e01158,
+    #de0d5b,
+    #dc0a5e,
+    #d90661,
+    #d70464
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.createspot-btn:hover {
+  cursor: pointer;
 }

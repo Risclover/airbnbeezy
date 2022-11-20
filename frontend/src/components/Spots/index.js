@@ -3,9 +3,10 @@ import { Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
 import SpotForm from "../SpotForm";
+import SpotCategories from "./SpotCategories";
 import "./Spots.css";
-
-export default function Spots() {
+import Navigation from "../Navigation";
+export default function Spots({ isLoaded }) {
   const [showCreateSpotForm, setShowCreateSpotForm] = useState(false);
   const spotsList = useSelector((state) => Object.values(state.spots));
   const dispatch = useDispatch();
@@ -14,6 +15,11 @@ export default function Spots() {
     dispatch(getAllSpots());
   }, [dispatch]);
   let content = null;
+
+  const nav = document.querySelector(".nav");
+  nav.style.position = "fixed";
+  nav.style.paddingLeft = "40px";
+  nav.style.paddingRight = "40px";
 
   const handleClick = () => {
     setShowCreateSpotForm(true);
@@ -31,42 +37,41 @@ export default function Spots() {
   if (!spotsList) return null;
 
   return (
-    <div className="spots-div">
-      {sessionUser ? (
-        <button className="create-spot" onClick={handleClick}>
-          Create Spot
-        </button>
-      ) : null}
-      {content}
-      <div className="spots-list">
-        {spotsList.map((spot) => (
-          <Link to={`/spots/${spot.id}`}>
-            <div key={spot.id} className="spot-box">
-              <div
-                className="spot-img"
-                style={{
-                  backgroundImage: "url(" + spot.previewImage + ")",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <div className="spot-info">
-                <ul>
-                  <li className="spotcard-location">
-                    {spot.city}, {spot.state}
-                  </li>
-                  <li className="spotcard-host">
-                    Hosted by <span className="spotcard-hostname"></span>
-                  </li>
-                  <li className="spotcard-priceline">
-                    <span className="spotcard-price">${spot.price}</span> night
-                  </li>
-                </ul>
+    <div className="spots-body">
+      <SpotCategories />
+      <div className="spots-div">
+        <div className="spots-list">
+          {spotsList.map((spot) => (
+            <Link to={`/spots/${spot.id}`} price={spot.price}>
+              <div key={spot.id} className="spot-box">
+                <div
+                  className="spot-img"
+                  style={{
+                    backgroundImage: "url(" + spot.previewImage + ")",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <div className="spot-info">
+                  <ul>
+                    <li className="spotcard-location">
+                      {spot.city}, {spot.state}
+                    </li>
+                    <li className="spotcard-subinfo">
+                      Hosted by <span className="spotcard-hostname"></span>
+                    </li>
+                    <li className="spotcard-subinfo">Added 5 weeks ago</li>
+                    <li className="spotcard-priceline">
+                      <span className="spotcard-price">${spot.price}</span>{" "}
+                      night
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

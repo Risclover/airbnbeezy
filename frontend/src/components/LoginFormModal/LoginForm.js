@@ -52,18 +52,30 @@ function LoginForm({ setShowModal }) {
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
+            className="loginform-input-top"
           />
 
           <input
-            className="loginform-input-under"
+            className="loginform-input-bottom"
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Log In</button>
-          <button onClick={handleDemo}>Demo Login</button>
+          <button className="login-btn" type="submit">
+            Continue
+          </button>
+          <div className="horizontal-or">
+            <div className="side-or"></div>
+            <div className="middle-or">or</div>
+            <div className="side-or"></div>
+          </div>
+
+          <button className="demo-btn" onClick={handleDemo}>
+            <i class="fa-regular fa-id-card"></i>Continue with Demo Login
+            <div></div>
+          </button>
         </form>
       </div>
     </div>
