@@ -38,6 +38,7 @@ export default function Spots({ isLoaded }) {
 
   return (
     <div className="spots-body">
+      <SpotCategories />
       <div className="spots-div">
         <div className="spots-list">
           {spotsList.map((spot) => (
