@@ -25,7 +25,7 @@ const validateReview = [
 router.get("/current", async (req, res) => {
   const allReviews = await Review.findAll({
     where: {
-      id: req.user.id,
+      userId: req.user.id,
     },
   });
 
@@ -107,7 +107,6 @@ router.post("/:reviewId/images", async (req, res, next) => {
     reviewId: reviewId,
     url: url,
   });
-
 
   newImage = newImage.toJSON();
   delete newImage.reviewId;

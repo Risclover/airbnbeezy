@@ -53,7 +53,7 @@ router.post("/", requireAuth, async (req, res) => {
 });
 
 // Get all spots
-router.get("/", requireAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   // Pagination
   let { page, size } = req.query;
   const pagination = {};
@@ -96,7 +96,6 @@ router.get("/", requireAuth, async (req, res) => {
     ...pagination,
   });
 
-  // Make each spot a JSON object and push to spotsList array
   let spotsList = [];
   spots.forEach((spot) => {
     spotsList.push(spot.toJSON());
@@ -115,7 +114,7 @@ router.get("/", requireAuth, async (req, res) => {
 
     console.log(previewImage);
 
-    if(previewImage !== null) {
+    if (previewImage !== null) {
       spot.previewImage = previewImage.url;
     }
 
