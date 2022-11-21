@@ -34,16 +34,20 @@ function LoginForm({ setShowModal }) {
   return (
     <div className="loginform-container">
       <div className="loginform-header">
-        <i className="fa-solid fa-xmark"></i>
+        <button onClick={() => setShowModal(false)} className="loginform-close">
+          <i className="fa-solid fa-xmark"></i>
+        </button>
         <p>Log in</p>
         <div></div>
       </div>
       <div className="loginform-content">
         <h1 className="loginform-title">Welcome to Airbnbeezy</h1>
         <form className="login-form" onSubmit={handleSubmit}>
-          <ul>
+          <ul className="error-list">
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li className="error-item" key={idx}>
+                {error}
+              </li>
             ))}
           </ul>
           <input

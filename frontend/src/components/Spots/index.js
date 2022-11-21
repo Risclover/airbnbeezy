@@ -38,7 +38,6 @@ export default function Spots({ isLoaded }) {
 
   return (
     <div className="spots-body">
-      <SpotCategories />
       <div className="spots-div">
         <div className="spots-list">
           {spotsList.map((spot) => (
@@ -58,9 +57,7 @@ export default function Spots({ isLoaded }) {
                     <li className="spotcard-location">
                       {spot.city}, {spot.state}
                     </li>
-                    <li className="spotcard-subinfo">
-                      Hosted by <span className="spotcard-hostname"></span>
-                    </li>
+
                     <li className="spotcard-subinfo">Added 5 weeks ago</li>
                     <li className="spotcard-priceline">
                       <span className="spotcard-price">${spot.price}</span>{" "}

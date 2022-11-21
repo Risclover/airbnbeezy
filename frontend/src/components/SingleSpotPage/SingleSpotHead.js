@@ -42,9 +42,7 @@ export default function SingleSpotHead() {
 
           <div className="spot-info-spot">•</div>
           <div className="spot-info-location">
-            <a href="">
-              {spot.city}, {spot.state}, {spot.country}
-            </a>
+            {spot.city}, {spot.state}, {spot.country}
           </div>
         </div>
         <div className="spot-info-right">
@@ -65,10 +63,10 @@ export default function SingleSpotHead() {
               />
             </Modal>
           )}
-          <div className="spot-info-right-btn spot-info-save">
+          {/* <div className="spot-info-right-btn spot-info-save">
             <i class="fa-regular fa-heart"></i>
             <a href="">Save</a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

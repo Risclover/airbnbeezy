@@ -147,8 +147,9 @@
 }
 
 .reviews-section {
-  margin-top: 52px;
   max-width: 1120px;
+  margin: 52px auto;
+
   border-top: 1px solid lightgrey;
 }
 
@@ -170,9 +171,9 @@
 }
 
 .spot-info-share {
-  margin-right: 12px;
   background: none;
   border: 0;
+  text-decoration: underline;
 }
 
 .spot-info-share:hover {
@@ -211,14 +212,14 @@
   margin-right: 7px;
 }
 
-.add-review-btn {
+/* .add-review-btn {
   background: none;
   border: 1px solid rgb(205, 205, 205);
   padding: 15px;
   border-radius: 12px;
   font-family: "Roboto Flex", sans-serif;
   font-size: 16px;
-}
+} */
 
 .add-review-btn:hover {
   cursor: pointer;
@@ -247,6 +248,16 @@
   );
   z-index: 1;
   position: relative;
+}
+
+.close-about-modal {
+  background: none;
+  border: 0;
+  font-size: 18px;
+}
+
+.close-about-modal:hover {
+  cursor: pointer;
 }
 
 .add-review-btn::before {
@@ -411,7 +422,6 @@ h2 .dot {
 }
 
 .share-modal {
-  padding: 20px;
   overflow: auto;
 }
 
@@ -437,7 +447,12 @@ h2 .dot {
 
 .share-modal h1 {
   font-weight: 500;
+  font-size: 20px;
   margin-bottom: 30px;
+}
+
+.sharemodal-body {
+  padding: 20px;
 }
 
 .sharemodal-info {

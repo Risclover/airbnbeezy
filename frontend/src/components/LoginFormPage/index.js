@@ -26,9 +26,11 @@ function LoginFormPage({ setShowModal }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
+      <ul className="error-list">
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li className="error-item" key={idx}>
+            {error}
+          </li>
         ))}
       </ul>
       <label>

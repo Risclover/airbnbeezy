@@ -45,9 +45,7 @@ function Navigation({ isLoaded, scroll }) {
           <img className="site-logo" alt="Site logo" src={Logo} />
         </Link>
       </div>
-      <div className="nav-center">
-        <SearchBar />
-      </div>
+      <div className="nav-center">{/* <SearchBar /> */}</div>
       <div className="nav-right">
         {sessionUser ? (
           <button
@@ -66,7 +64,7 @@ function Navigation({ isLoaded, scroll }) {
             <SpotForm setShowCreateModal={setShowCreateModal} />
           </Modal>
         )}
-        <i className="fa-solid fa-globe"></i>
+        <i className="fa-solid fa-globe no-hover"></i>
         {isLoaded && (
           <ProfileButton
             user={sessionUser}

@@ -90,7 +90,7 @@ export default function SingleSpotReservation() {
             </select>
           </div>
           <button className="reservation-form-submit">Reserve</button>
-          <p className="no-charge">You won't be charged yet.</p>
+          <p className="no-charge">Feature coming soon.</p>
           <div className="reservation-fees">
             <div className="fee">
               <div className="fees-left">

@@ -29,6 +29,15 @@
   text-decoration: underline;
 }
 
+.remove-review {
+  background: none;
+  border: 0;
+  text-decoration: underline;
+}
+
+.remove-review:hover {
+  cursor: pointer;
+}
 .current-user-reviews h1,
 .current-user-reviews h2 {
   font-family: "Roboto Flex", sans-serif;

@@ -28,8 +28,6 @@ export default function SpotForm({ setShowCreateModal }) {
     if (city?.length === 0) errors.push("Please provide a city");
     if (state?.length === 0) errors.push("Please provide a state");
     if (country?.length === 0) errors.push("Please provide a country");
-    // if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
-    // if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
     if (price <= 0) errors.push("Price must be $1 or more.");
     if (description?.length === 0) errors.push("Please provide a description");
 
@@ -80,9 +78,13 @@ export default function SpotForm({ setShowCreateModal }) {
         <p>Create a Spot</p>
         <div></div>
       </div>
-      <ul>
+      <ul className="error-list">
         {showErrors
-          ? errorValidators.map((error) => <li key={error}>{error}</li>)
+          ? errorValidators.map((error) => (
+              <li className="error-item" key={error}>
+                {error}
+              </li>
+            ))
           : null}
       </ul>
       <form className="createspot-form">

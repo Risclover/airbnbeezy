@@ -14,11 +14,64 @@ export default function CurrentUserReviews() {
     dispatch(getUserReviews());
   }, [dispatch]);
 
+  let reviewDate;
+  let reviewMonth;
+  let reviewMonthNum;
+  let reviewYear;
+  reviews.forEach((review) => {
+    if (review) {
+      reviewDate = new Date(review.createdAt);
+      reviewMonthNum = reviewDate.getMonth() + 1;
+      reviewYear = reviewDate.getFullYear();
+      switch (reviewMonthNum) {
+        case 1:
+          reviewMonth = "January";
+          break;
+        case 2:
+          reviewMonth = "February";
+          break;
+        case 3:
+          reviewMonth = "March";
+          break;
+        case 4:
+          reviewMonth = "April";
+          break;
+        case 5:
+          reviewMonth = "May";
+          break;
+        case 6:
+          reviewMonth = "June";
+          break;
+        case 7:
+          reviewMonth = "July";
+          break;
+        case 8:
+          reviewMonth = "August";
+          break;
+        case 9:
+          reviewMonth = "September";
+          break;
+        case 10:
+          reviewMonth = "October";
+          break;
+        case 11:
+          reviewMonth = "November";
+          break;
+        case 12:
+          reviewMonth = "December";
+          break;
+        default:
+          reviewMonth = "Null";
+          break;
+      }
+    }
+  });
+
   if (!reviews) return null;
   return (
     <div className="current-user-reviews">
       <div className="reviews-breadcrumbs">
-        <NavLink to="/spots/current">Profile</NavLink>{" "}
+        <NavLink to="/spots/profile">Profile</NavLink>{" "}
         <svg
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +97,15 @@ export default function CurrentUserReviews() {
 
       <h1>Reviews by you</h1>
       <h2>Past reviews you've written</h2>
-      <p className="reviews-content">You have not written any reviews yet.</p>
       {reviews.map((review) => (
-        <div>
-          <p>{review.review}</p>
+        <div className="review-box">
+          <div className="review-name">
+            <h3>{review.User.firstName}</h3>
+            <p>
+              {reviewMonth} {reviewYear}
+            </p>
+          </div>
+          <div className="review-body">{review.review}</div>
           <button
             className="remove-review"
             onClick={(e) => {

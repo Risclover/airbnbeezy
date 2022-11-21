@@ -15,7 +15,7 @@ export default function SingleSpotAbout({ spot }) {
   return (
     <div className="single-spot-about">
       <div className="single-spot-about-boxes">
-        <SingleSpotAboutHeader />
+        <SingleSpotAboutHeader spot={spot} />
         <SingleSpotAboutHighlights />
         <SingleSpotAboutAircover setShowAboutModal={setShowAboutModal} />
         <SingleSpotAboutDescription spot={spot} />

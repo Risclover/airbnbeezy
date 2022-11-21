@@ -7,6 +7,10 @@
   font-family: "Roboto Flex", sans-serif;
 }
 
+.spots-body {
+  margin-top: 80px;
+}
+
 .spot-img {
   width: 100%;
   height: 100%;
@@ -114,7 +118,20 @@
   border-bottom: 3px solid #434343;
 }
 
-@media (min-width: 1131px) {
+@media (min-width: 1630px) {
+  .spots-list {
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 18px;
+    row-gap: 120px;
+  }
+
+  .spot-box {
+    width: 17vw;
+    height: 16vw;
+  }
+}
+
+@media (min-width: 1131px) and (max-width: 1629px) {
   .spots-list {
     grid-template-columns: repeat(4, 1fr);
     column-gap: 18px;

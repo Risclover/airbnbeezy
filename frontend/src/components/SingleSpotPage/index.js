@@ -34,8 +34,8 @@ export default function SingleSpotPage() {
 
   const nav = document.querySelector(".nav");
   nav.style.position = "static";
-  nav.style.paddingLeft = "80px";
-  nav.style.paddingRight = "80px";
+  nav.style.paddingLeft = "40px";
+  nav.style.paddingRight = "40px";
 
   // const handleEdit = (e, id) => {
   //   e.preventDefault();

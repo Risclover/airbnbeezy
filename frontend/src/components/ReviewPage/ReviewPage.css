@@ -1,11 +1,9 @@
 .review-page {
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
   height: calc(100% - 151px);
   width: 100%;
-  padding: 20px;
 }
 
 .review-form {
@@ -14,6 +12,11 @@
   align-items: center;
   margin-top: 20px;
   flex-direction: column;
+}
+
+.reviewform-body {
+  margin: 0 auto;
+  padding-bottom: 20px;
 }
 
 .review-page ul {
@@ -35,6 +38,7 @@
   float: left;
   height: 46px;
   padding: 0 10px;
+  margin-top: 20px;
 }
 .rate:not(:checked) > input {
   position: absolute;
@@ -67,7 +71,20 @@
   color: #c59b08;
 }
 
-.submit-review btn {
+.loginform-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid rgb(227, 227, 227);
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+}
+
+.loginform-header svg {
+  font-size: 18px;
+}
+.submit-review {
   width: 100%;
   border-radius: 8px;
   outline: 0;
@@ -76,7 +93,6 @@
   font-size: 18px;
   font-family: "Roboto Flex", sans-serif;
   color: white;
-  margin-top: 30px;
   background: linear-gradient(
     90deg,
     #e51d4f,

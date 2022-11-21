@@ -13,30 +13,38 @@ export default function ShareModal({
 
   return (
     <div className="share-modal">
-      <button className="close-share" onClick={() => setShowShareModal(false)}>
-        <i className="fa-solid fa-xmark"></i>
-      </button>
-      <h1>Share this place with friends and family</h1>
-      <div className="sharemodal-info">
-        <img className="share-modal-img" src={image} />
-        <div className="share-modal-title">{title}</div>
-      </div>
-      <div className="sharemodal-form">
+      <div className="loginform-header">
         <button
-          className="copy-url"
-          onClick={() => {
-            navigator.clipboard.writeText(copyText);
-            setShowResults(true);
-          }}
+          onClick={() => setShowShareModal(false)}
+          className="loginform-close"
         >
-          {" "}
-          <i className="fa-regular fa-copy"></i>
-          Copy URL
+          <i className="fa-solid fa-xmark"></i>
         </button>
+        <p>Share this place with friends and family</p>
+        <div></div>
       </div>
-      {showResults ? (
-        <div className="sharemodal-results">Link copied!</div>
-      ) : null}
+      <div className="sharemodal-body">
+        <div className="sharemodal-info">
+          <img className="share-modal-img" src={image} />
+          <div className="share-modal-title">{title}</div>
+        </div>
+        <div className="sharemodal-form">
+          <button
+            className="copy-url"
+            onClick={() => {
+              navigator.clipboard.writeText(copyText);
+              setShowResults(true);
+            }}
+          >
+            {" "}
+            <i className="fa-regular fa-copy"></i>
+            Copy URL
+          </button>
+        </div>
+        {showResults ? (
+          <div className="sharemodal-results">Link copied!</div>
+        ) : null}
+      </div>
     </div>
   );
 }

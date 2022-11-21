@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 
 import { Modal } from "../../context/Modal";
 
-export default function AboutModal() {
+export default function AboutModal({ setShowAboutModal }) {
   return (
     <div className="about-modal">
       <div className="about-modal-content">
+        <div className="about-modal-header">
+          <button
+            onClick={() => setShowAboutModal(false)}
+            className="close-about-modal"
+          >
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+          <div></div>
+          <div></div>
+        </div>
         <div className="about-modal-head">
           <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
           <p>

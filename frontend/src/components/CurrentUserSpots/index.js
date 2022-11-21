@@ -7,16 +7,23 @@ import {
   getSpotById,
   deleteSpot,
 } from "../../store/spots";
+import { getUserReviews } from "../../store/reviews";
+import { Modal } from "../../context/Modal";
+
 import "./CurrentUserSpots.css";
 import EditSpot from "../SpotForm/EditSpot";
-
+import IdentityModal from "./IdentityModal";
 export default function CurrentUserSpots() {
+  const [showIdentityModal, setShowIdentityModal] = useState(false);
   const spotsList = useSelector(getSpots);
+  let reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
+  reviews = reviews.filter((review) => review.userId === sessionUser.id);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllSpots());
+    dispatch(getUserReviews());
   }, [dispatch]);
 
   const nav = document.querySelector(".nav");
@@ -25,6 +32,12 @@ export default function CurrentUserSpots() {
   let userDate = new Date(sessionUser.createdAt);
   let userYear = userDate.getFullYear();
   console.log(userDate);
+
+  let reviewCount = 0;
+  reviews.forEach((review) => {
+    reviewCount++;
+  });
+  if (!reviews) return null;
 
   let count = 0;
 
@@ -44,7 +57,7 @@ export default function CurrentUserSpots() {
             <div className="bullet-icon">
               <i className="fa-regular fa-star"></i>
             </div>
-            <div className="bullet-text">112 reviews</div>
+            <div className="bullet-text">{reviewCount} reviews</div>
           </li>
           <li className="user-verified">
             <div className="bullet-icon">
@@ -64,8 +77,14 @@ export default function CurrentUserSpots() {
             </li>
           </ul>
           <p className="learn-more">
-            Learn more about how confirming account info helps keep the Airbnb
-            community secure.
+            <button onClick={() => setShowIdentityModal(true)}>
+              Learn more
+            </button>
+            {showIdentityModal && (
+              <Modal onClose={() => setShowIdentityModal(false)}>
+                <IdentityModal setShowIdentityModal={setShowIdentityModal} />
+              </Modal>
+            )}
           </p>
         </div>
       </div>
@@ -95,7 +114,6 @@ export default function CurrentUserSpots() {
                         <li className="spotcard-rating">
                           <i className="fa-solid fa-star"></i>
                           {Number(spot.avgRating).toFixed(1)}{" "}
-                          <span className="spotcard-reviewcount">(10)</span>
                         </li>
                         <li className="spotcard-title">Entire home/apt</li>
                         <li className="spotcard-title">{spot.name}</li>

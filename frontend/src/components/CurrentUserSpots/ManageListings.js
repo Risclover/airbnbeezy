@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { getSpotById, deleteSpot, getSpots } from "../../store/spots";
 import EditSpot from "../SpotForm/EditSpot";
+import "./CurrentUserSpots.css";
 
 export default function ManageListings() {
   const [editSpotId, setEditSpotId] = useState(null);
@@ -45,43 +46,54 @@ export default function ManageListings() {
   }
 
   return (
-    <div className="single-spot-page">
+    <div className="user-listings manage">
       {content}
-      {spotsList.map((spot) =>
-        spot.ownerId === sessionUser.id ? (
-          <div key={spot.id} className="spot">
-            <ul>
-              <li>
-                {spot.name} ${spot.price}
-              </li>
-              <li>{spot.description}</li>
-              <li>{spot.address}</li>
-              <li>{spot.city}</li>
-              <li>{spot.state}</li>
-              <li>
-                <img src={spot.previewImage} />
-              </li>
-            </ul>
-
-            <div className="owner-buttons">
-              <button
-                className="edit-spot"
-                onClick={(e) => handleEdit(e, spot.id)}
-              >
-                Edit
-              </button>
-              <button
-                className="delete-spot"
-                onClick={(e) => handleDelete(e, spot.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ) : (
-          ""
-        )
-      )}
+      <div className="spots">
+        {spotsList.map((spot) =>
+          spot.ownerId === sessionUser.id ? (
+            <NavLink to={`/spots/${spot.id}`}>
+              <div className="outer-spot">
+                <div key={spot.id} className="spot-box">
+                  <div
+                    className="spot-img"
+                    style={{
+                      backgroundImage: "url(" + spot.previewImage + ")",
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <div className="spotcard-info-box">
+                    <ul className="spotcard-info">
+                      <li className="spotcard-rating">
+                        <i className="fa-solid fa-star"></i>
+                        {Number(spot.avgRating).toFixed(1)}{" "}
+                      </li>
+                      <li className="spotcard-title">{spot.name}</li>
+                    </ul>
+                    <div className="owner-buttons">
+                      <button
+                        className="edit-spot"
+                        onClick={(e) => handleEdit(e, spot.id)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="delete-spot"
+                        onClick={(e) => handleDelete(e, spot.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </NavLink>
+          ) : (
+            ""
+          )
+        )}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 .user-profile {
   font-family: "Roboto Flex", sans-serif;
-  padding: 47px 51px;
+  padding: 47px 30px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -12,7 +12,7 @@
   border: 2px solid rgb(220, 220, 220);
   min-width: 308px;
   width: 308px;
-  padding: 24px 25px;
+  padding: 24px 20px;
   border-radius: 12px;
   height: min-content;
 }
@@ -99,8 +99,9 @@
   display: flex;
   flex-direction: column;
   margin-top: 10px;
-  margin-left: 73px;
-  width: 100%;
+  margin-left: 33px;
+  max-width: 700px;
+  width: 60vw;
 }
 
 .user-profile h1 {
@@ -109,6 +110,22 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.identity-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+.identity-form-header h1 {
+  margin-bottom: 0 !important;
+}
+
+.identity-form-header p {
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
 .user-head {
   margin-left: 2px;
 }
@@ -181,7 +198,13 @@
   max-width: 300px;
 }
 .single-spot-page {
+  font-family: "Roboto Flex", sans-serif;
   margin-top: 100px;
+}
+
+.single-spot-page button {
+  background: none;
+  border: 0;
 }
 .spotcard-rating {
   font-size: 13px;
@@ -203,4 +226,145 @@
 .user-main .user-reviews {
   margin-top: 30px;
   text-decoration: underline;
+}
+
+.learn-more button {
+  background: none;
+  border: 0;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 18px;
+}
+
+.learn-more button:hover {
+  cursor: pointer;
+}
+
+.identity-modal-body {
+  max-width: 568px;
+  overflow-y: auto;
+  padding: 24px;
+  height: 75vh;
+  max-height: 500px;
+}
+
+.identity-modal-icon {
+  font-size: 20px;
+  min-width: 40px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.identity-modal-info h2 {
+  font-size: 18px;
+}
+
+.identity-modal-point {
+  display: flex;
+  justify-content: space-between;
+}
+
+.identity-modal h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.identity-modal h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.identity-modal p {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.manage {
+  margin-top: 100px;
+}
+
+.manage .spots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.manage .outer-spot {
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 20px;
+}
+
+.spotcard-info-box {
+  display: flex;
+  margin: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.user-listings .spot-box {
+  width: auto;
+}
+
+.manage .spotcard-info {
+  width: 100%;
+}
+
+.user-listings .manage {
+  padding: 10px;
+}
+
+.manage .owner-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-right: 20px;
+}
+
+.manage .owner-buttons button {
+  background: none;
+  border: 0;
+  padding: 3px;
+  border-radius: 8px;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.manage .owner-buttons button:hover {
+  cursor: pointer;
+  background-color: #ebebeb;
+}
+@media (max-width: 1020px) {
+  .user-main {
+    margin-left: 40px;
+  }
+
+  .manage-listings .spot-box {
+    width: 500px;
+    height: min-content;
+  }
+
+  .manage-listings .spot-img {
+    width: 100%;
+    height: 400px;
+  }
+  .user-listings .spot-img {
+    width: 100%;
+    min-width: 400px;
+    height: 300px;
+  }
+
+  .user-profile .spots {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    width: 100%;
+  }
+
+  .manage-listings .spots {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    width: 100%;
+  }
 }

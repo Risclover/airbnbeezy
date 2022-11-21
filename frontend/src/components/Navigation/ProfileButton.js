@@ -49,8 +49,8 @@ export default function ProfileButton({
           <div className="profile-dropdown">
             <div className="profile-dropdown-top">
               <ul className="profile-dropdown-ul">
-                <li>{user.username}</li>
-                <li>{user.email}</li>
+                <li className="no-hover">{user.username}</li>
+                <li className="no-hover">{user.email}</li>
               </ul>
             </div>
             <div className="profile-dropdown-top">

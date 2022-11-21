@@ -6,7 +6,7 @@ export default function SingleSpotAboutHeader({ spot }) {
 
   return (
     <div className="single-spot-about-header">
-      <h2>Private room in condo hosted by (name)</h2>
+      <h2>Private room in condo hosted by</h2>
       <div className="single-spot-about-rooms">
         1 guest <i class="fa-solid fa-circle"></i>1 bedroom{" "}
         <i class="fa-solid fa-circle"></i> 1 bed{" "}

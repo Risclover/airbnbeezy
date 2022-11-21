@@ -3,6 +3,7 @@
   grid-template-columns: 2fr 1fr;
   width: 100%;
   margin: 0 auto;
+  max-width: 1120px;
 }
 .single-spot-about-boxes {
   max-width: 1120px;
@@ -92,13 +93,13 @@
 
 .input-group-input-left {
   border-top-left-radius: 8px;
-  padding: 20px 9px 15px 10px !important;
+  padding: 20px 10px 15px 10px !important;
 }
 
 .input-group-input-right {
   border-radius: 0;
   border-top-right-radius: 8px;
-  padding: 20px 9px 15px 10px;
+  padding: 20px 10px 15px 10px;
   margin-left: -1px;
 }
 
@@ -123,17 +124,7 @@
   height: 48px;
   font-size: 18px;
   font-family: "Roboto Flex", sans-serif;
-  background: linear-gradient(
-    90deg,
-    #e51d4f,
-    #e31952,
-    #e21555,
-    #e01158,
-    #de0d5b,
-    #dc0a5e,
-    #d90661,
-    #d70464
-  );
+  background: rgba(149, 157, 165, 0.2);
   color: white;
   border: 0;
   font-family: "Roboto Flex", sans-serif;

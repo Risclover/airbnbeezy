@@ -12,6 +12,10 @@
   z-index: 3;
 }
 
+.no-hover {
+  cursor: default !important;
+}
+
 ul,
 li {
   list-style-type: none;
@@ -237,8 +241,12 @@ a {
   padding: 12px;
   border-radius: 1000px;
 }
-.switch-btn:hover,
-.nav-right .fa-globe:hover {
+.switch-btn:hover {
+  cursor: pointer;
+
   background-color: rgb(249, 249, 249);
+}
+
+.switch-btn:hover {
   cursor: pointer;
 }

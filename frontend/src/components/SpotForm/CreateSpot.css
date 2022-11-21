@@ -11,6 +11,49 @@
 
 .create-spot-page {
   margin-top: 100px;
+  position: absolute;
+  background: white;
+  border: 1px solid black;
+  border-radius: 12px;
+  left: 25%;
+  top: 0;
+}
+
+.create-spot-page label {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.submit-edit {
+  width: 100%;
+  border-radius: 8px;
+  outline: 0;
+  height: 48px;
+  border: 0;
+  font-size: 18px;
+  font-family: "Roboto Flex", sans-serif;
+  color: white;
+  margin-top: 30px;
+  padding: 15px;
+  background: linear-gradient(
+    90deg,
+    #e51d4f,
+    #e31952,
+    #e21555,
+    #e01158,
+    #de0d5b,
+    #dc0a5e,
+    #d90661,
+    #d70464
+  );
+  position: relative;
+}
+
+.submit-edit:hover {
+  cursor: pointer;
+}
+.createspot-modal {
+  max-height: 95vh;
 }
 
 .createspot-form input,
@@ -24,7 +67,8 @@
 }
 
 .createspot-form {
-  height: auto;
+  height: 90vh;
+  max-height: 400px;
   overflow-y: auto;
 }
 
