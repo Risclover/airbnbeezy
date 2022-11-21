@@ -22,3 +22,22 @@
   padding: 5px;
   margin-top: 10px;
 }
+
+#signup-email {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#signup-password {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.loginform-content input {
+  margin-top: -1px;
+}
+
+.signup-close {
+  background: none;
+  border: 0;
+}

@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
 import { getSpotById } from "../../store/spots";
+import { Modal } from "../../context/Modal";
+import ReviewPage from "../ReviewPage";
 
 export default function SingleSpotReviews({ spot }) {
+  const [showReviewModal, setShowReviewModal] = useState(false);
   const dispatch = useDispatch();
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
@@ -68,32 +71,45 @@ export default function SingleSpotReviews({ spot }) {
     }
   });
 
+  if (!reviews) return null;
   return (
     <div className="reviews-section" id="Reviews">
       <div className="review-stats">
-        {count > 0 && count < 3 ? (
-          <div className="reviews-head">
-            <h2>
-              {count} {count === 1 ? "review" : "reviews"}
-            </h2>
-            <p>Average rating will appear after 3 reviews</p>
-          </div>
-        ) : count === 0 ? (
-          <div className="reviews-head">
-            <h2>No reviews (yet)</h2>
-          </div>
-        ) : (
-          <div className="reviews-head">
-            <h2>
-              <i className="fa-solid fa-star"></i>
-              {Number(spot.avgRating).toFixed(1)} <span className="dot">•</span>{" "}
-              {count} reviews
-            </h2>
-          </div>
-        )}
+        <div className="reviews-top-head">
+          {count > 0 && count < 3 ? (
+            <div className="reviews-head">
+              <h2>
+                {count} {count === 1 ? "review" : "reviews"}
+              </h2>
+              <p>Average rating will appear after 3 reviews</p>
+            </div>
+          ) : count === 0 ? (
+            <div className="reviews-head">
+              <h2>No reviews (yet)</h2>
+            </div>
+          ) : (
+            <div className="reviews-head">
+              <h2>
+                <i className="fa-solid fa-star"></i>
+                {Number(spot.avgRating).toFixed(1)}{" "}
+                <span className="dot">•</span> {count} reviews
+              </h2>
+            </div>
+          )}
 
-        <NavLink to={`/spots/${spot.id}/create-review`}>Add Review</NavLink>
+          <button
+            className="add-review-btn"
+            onClick={() => setShowReviewModal(true)}
+          >
+            Add Review
+          </button>
 
+          {showReviewModal && (
+            <Modal onClose={() => setShowReviewModal(false)}>
+              <ReviewPage spot={spot} setShowReviewModal={setShowReviewModal} />
+            </Modal>
+          )}
+        </div>
         <div className="reviews">
           {reviews.map((review) => (
             <div className="review-box">

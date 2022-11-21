@@ -5,16 +5,20 @@
   flex-direction: column;
   height: calc(100% - 151px);
   width: 100%;
+  padding: 20px;
 }
 
 .review-form {
   display: flex;
   width: 300px;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
   flex-direction: column;
 }
 
+.review-page ul {
+  margin-top: 20px;
+}
 .review-form textarea {
   width: 100%;
   height: 100px;
@@ -61,4 +65,64 @@
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
+}
+
+.submit-review btn {
+  width: 100%;
+  border-radius: 8px;
+  outline: 0;
+  height: 48px;
+  border: 0;
+  font-size: 18px;
+  font-family: "Roboto Flex", sans-serif;
+  color: white;
+  margin-top: 30px;
+  background: linear-gradient(
+    90deg,
+    #e51d4f,
+    #e31952,
+    #e21555,
+    #e01158,
+    #de0d5b,
+    #dc0a5e,
+    #d90661,
+    #d70464
+  ) !important;
+  z-index: 1;
+  position: relative;
+}
+
+.submit-review::before {
+  background: linear-gradient(
+    90deg,
+    #d70464,
+    #d90661,
+    #dc0a5e,
+    #de0d5b,
+    #e01158,
+    #e21555,
+    #e31952,
+    #e51d4f
+  );
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  border-radius: 8px;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  border: 0;
+  outline: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.submit-review:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.submit-review:hover {
+  cursor: pointer;
 }

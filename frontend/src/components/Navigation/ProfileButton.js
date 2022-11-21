@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./Navigation.css";
+import ManageListings from "../CurrentUserSpots/ManageListings";
 import LoginFormModal from "../LoginFormModal";
 
 export default function ProfileButton({
@@ -60,7 +61,7 @@ export default function ProfileButton({
                 <li onClick={() => setShowCreateModal(true)}>
                   Airbnbeezy your home
                 </li>{" "}
-                <NavLink to="/spots/current">
+                <NavLink to="/spots/profile">
                   <li>Profile</li>
                 </NavLink>
               </ul>

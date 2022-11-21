@@ -8,8 +8,8 @@ export default function SpotCategories() {
 
   function navbarScroll() {
     if (
-      document.body.scrollTop > 10 ||
-      document.documentElement.scrollTop > 10
+      document.querySelector(".spot-categories") &&
+      (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10)
     ) {
       document.querySelector(".spot-categories").classList.add("bottom-border");
     } else if (

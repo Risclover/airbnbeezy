@@ -5,6 +5,8 @@ import { addSpot, getAllSpots, addImage } from "../../store/spots";
 import "./CreateSpot.css";
 
 export default function SpotForm({ setShowCreateModal }) {
+  const [errorValidators, setErrorValidators] = useState([]);
+  const [showErrors, setShowErrors] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
@@ -19,33 +21,51 @@ export default function SpotForm({ setShowCreateModal }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const errors = [];
+    if (name?.length === 0) errors.push("Please provide a name");
+    if (address?.length === 0) errors.push("Please provide an address");
+    if (city?.length === 0) errors.push("Please provide a city");
+    if (state?.length === 0) errors.push("Please provide a state");
+    if (country?.length === 0) errors.push("Please provide a country");
+    // if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
+    // if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
+    if (price <= 0) errors.push("Price must be $1 or more.");
+    if (description?.length === 0) errors.push("Please provide a description");
+
+    setErrorValidators(errors);
+  }, [name, address, city, state, country, price, description]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowCreateModal(false);
-    const payload = {
-      name,
-      description,
-      address,
-      city,
-      state,
-      country,
-      lat,
-      lng,
-      price,
-    };
-
-    let newSpot = await dispatch(addSpot(payload));
-    dispatch(getAllSpots());
-
-    if (newSpot && imgUrl) {
-      const imgPayload = {
-        url: imgUrl,
-        preview: true,
+    setShowErrors(true);
+    if (errorValidators.length === 0) {
+      setShowCreateModal(false);
+      const payload = {
+        name,
+        description,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        price,
       };
-      await dispatch(addImage(imgPayload, newSpot));
-    }
 
-    if (newSpot) history.push("/");
+      let newSpot = await dispatch(addSpot(payload));
+      dispatch(getAllSpots());
+
+      if (newSpot && imgUrl) {
+        const imgPayload = {
+          url: imgUrl,
+          preview: true,
+        };
+        await dispatch(addImage(imgPayload, newSpot));
+      }
+
+      if (newSpot) history.push("/");
+    }
   };
 
   return (
@@ -60,6 +80,11 @@ export default function SpotForm({ setShowCreateModal }) {
         <p>Create a Spot</p>
         <div></div>
       </div>
+      <ul>
+        {showErrors
+          ? errorValidators.map((error) => <li key={error}>{error}</li>)
+          : null}
+      </ul>
       <form className="createspot-form">
         <input
           type="text"

@@ -3,32 +3,58 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./ReviewPage.css";
 
-import { addReview } from "../../store/reviews";
+import { addReview, getSpotReviews } from "../../store/reviews";
 import { getSpotById, getAllSpots } from "../../store/spots";
 
-export default function ReviewPage() {
+export default function ReviewPage({ spot, setShowReviewModal }) {
   const { spotId } = useParams();
-
+  const [errorValidators, setErrorValidators] = useState([]);
   const [stars, setStars] = useState(1);
   const [review, setReview] = useState("");
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
-  const spot = useSelector(getSpotById(spotId));
   const user = useSelector((state) => state.session.user);
+  let reviews = useSelector((state) => Object.values(state.reviews));
+  reviews = reviews.filter((review) => review.spotId === spot.id);
+  let count = 0;
+  reviews.forEach((review) => {
+    if (review.User.id === user.id) {
+      count++;
+    }
+  });
 
   useEffect(() => {
+    const errors = [];
+    if (count > 0) {
+      errors.push("Sorry, you're only allowed to review a place once.");
+    } else {
+      if (stars > 5 || stars < 1) {
+        errors.push("Star rating must be between 1 and 5");
+      }
+      if (review === "") {
+        errors.push("Please share your thoughts to leave a review");
+      }
+    }
+
+    setErrorValidators(errors);
     dispatch(getAllSpots());
-  }, [dispatch]);
+    dispatch(getSpotReviews(spotId));
+  }, [dispatch, stars]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setErrors([]);
     const payload = {
       review,
       stars,
     };
-    let newReview = await dispatch(addReview(payload, user, spot));
+    await dispatch(addReview(payload, user, spot));
 
-    if (newReview) history.push(`/spots/${spotId}`);
+    await dispatch(getSpotReviews(spot.id));
+
+    setShowReviewModal(false);
   };
 
   const handleChange = (e) => {
@@ -42,6 +68,11 @@ export default function ReviewPage() {
   return (
     <div className="review-page">
       <h1>Add a Review</h1>
+      <ul>
+        {errorValidators.map((error) => (
+          <li key={spot.id}>{error}</li>
+        ))}
+      </ul>
       <form onSubmit={handleSubmit} className="review-form">
         <textarea
           value={review}
@@ -96,7 +127,7 @@ export default function ReviewPage() {
           />
           <label htmlFor="star1" title="text"></label>
         </div>
-        <button>Submit</button>
+        <button className="submit-review">Submit</button>
       </form>
     </div>
   );

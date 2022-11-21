@@ -171,6 +171,12 @@
 
 .spot-info-share {
   margin-right: 12px;
+  background: none;
+  border: 0;
+}
+
+.spot-info-share:hover {
+  cursor: pointer;
 }
 
 .spot-info-save {
@@ -187,20 +193,105 @@
   align-items: center;
   font-weight: 600;
   font-size: 22px;
+  margin-bottom: 10px;
   margin-top: 52px;
   font-family: "Roboto Flex", sans-serif;
 }
 
 .reviews-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 30px;
+  flex-direction: column;
 }
 
 .reviews-head h2 svg {
   font-size: 14px;
   margin-bottom: 3px;
   margin-right: 7px;
+}
+
+.add-review-btn {
+  background: none;
+  border: 1px solid rgb(205, 205, 205);
+  padding: 15px;
+  border-radius: 12px;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 16px;
+}
+
+.add-review-btn:hover {
+  cursor: pointer;
+}
+
+.add-review-btn {
+  width: 150px;
+  border-radius: 8px;
+  outline: 0;
+  height: 48px;
+  border: 0;
+  margin-left: 30px;
+  font-size: 16px;
+  font-family: "Roboto Flex", sans-serif;
+  color: white;
+  background: linear-gradient(
+    90deg,
+    #e51d4f,
+    #e31952,
+    #e21555,
+    #e01158,
+    #de0d5b,
+    #dc0a5e,
+    #d90661,
+    #d70464
+  );
+  z-index: 1;
+  position: relative;
+}
+
+.add-review-btn::before {
+  background: linear-gradient(
+    90deg,
+    #d70464,
+    #d90661,
+    #dc0a5e,
+    #de0d5b,
+    #e01158,
+    #e21555,
+    #e31952,
+    #e51d4f
+  );
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  border-radius: 8px;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  border: 0;
+  outline: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.reviews-top-head {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(207, 207, 207);
+}
+
+.reviews {
+  border-bottom: 1px solid rgb(207, 207, 207);
+}
+
+.add-review-btn:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.add-review-btn:hover {
+  cursor: pointer;
 }
 
 h2 .dot {
@@ -256,4 +347,141 @@ h2 .dot {
   .singlespot-photos-grid {
     height: 50% !important;
   }
+}
+
+.about-modal {
+  padding: 30px;
+  width: 90vw !important;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 24px;
+  max-width: 1030px;
+  overflow-y: auto;
+  max-height: 600px;
+  height: 80vh;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.about-modal-head {
+  border-bottom: 1px solid grey;
+  padding-bottom: 30px;
+  margin-top: 30px;
+}
+.about-modal-head img {
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.about-modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 60px;
+  margin-top: 30px;
+}
+
+.about-box-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.about-box-text {
+  margin: 0;
+}
+
+.about-modal-close {
+  background: none;
+  border: 0;
+}
+
+.about-modal-close:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 1120px) {
+  .about-modal-body {
+    display: flex;
+    flex-direction: column;
+    height: 90vh !important;
+  }
+
+  .about-modal-box {
+    padding-bottom: 30px;
+  }
+}
+
+.share-modal {
+  padding: 20px;
+  overflow: auto;
+}
+
+.sharemodal-header {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.close-share {
+  background: none;
+  border: 0;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.close-share:hover {
+  cursor: pointer;
+}
+
+.close-share svg:hover {
+  cursor: pointer;
+}
+
+.share-modal h1 {
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.sharemodal-info {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.share-modal-img {
+  width: 64px;
+  height: 64px;
+  margin-right: 15px;
+  border-radius: 8px;
+}
+
+.share-modal-title {
+  font-size: 17px;
+  font-weight: 400;
+  margin-right: 30px;
+}
+
+.sharemodal-form .fa-copy {
+  font-size: 30px;
+}
+
+.copy-url {
+  background: none;
+  border: 0;
+  display: flex;
+  align-items: center;
+  width: 130px;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 16px;
+}
+
+.copy-url:hover {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+
+.sharemodal-results {
+  color: red;
+  text-align: center;
 }

@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllSpots, updateSpot} from '../../store/spots';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllSpots, updateSpot } from "../../store/spots";
 
 export default function EditSpot(props) {
+  const [errorValidators, setErrorValidators] = useState([]);
   const [name, setName] = useState(props.spotToEdit.name || "");
-  const [description, setDescription] = useState(props.spotToEdit.description || "");
+  const [description, setDescription] = useState(
+    props.spotToEdit.description || ""
+  );
   const [address, setAddress] = useState(props.spotToEdit.address || "");
   const [city, setCity] = useState(props.spotToEdit.city || "");
   const [state, setState] = useState(props.spotToEdit.state || "");
@@ -14,14 +17,27 @@ export default function EditSpot(props) {
   const [lng, setLng] = useState(0);
   const [price, setPrice] = useState(props.spotToEdit.price || "");
   const [imgUrl, setImgUrl] = useState(props.spotToEdit.imgUrl || "");
-  const ownerId = useSelector(state => state.session.user.id);
+  const ownerId = useSelector((state) => state.session.user.id);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = async(e) => {
+  useEffect(() => {
+    const errors = [];
+    if (name?.length === 0) errors.push("Please provide a name");
+    if (address?.length === 0) errors.push("Please provide an address");
+    if (city?.length === 0) errors.push("Please provide a city");
+    if (state?.length === 0) errors.push("Please provide a state");
+    if (country?.length === 0) errors.push("Please provide a country");
+    if (price <= 0) errors.push("Price must be $1 or more.");
+    if (description?.length === 0) errors.push("Please provide a description");
+
+    setErrorValidators(errors);
+  }, [name, address, city, state, country, price, description]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    props.setShowCreateSpotForm(false);
-    const newSpot = {
+    props.setShowEditModal(false);
+    const updates = {
       ...props.spotToEdit,
       name,
       description,
@@ -31,35 +47,83 @@ export default function EditSpot(props) {
       country,
       lat,
       lng,
-      price
-    }
+      price,
+    };
 
-    await dispatch(updateSpot(newSpot));
+    await dispatch(updateSpot(updates));
     dispatch(getAllSpots());
-  }
-
+  };
 
   return (
+    <div className="create-spot-page">
       <form className="createspot-form">
         <h2>Create a Spot</h2>
-        <label>Name of Spot
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder="Ex: The AirBnbeezy Palace" />
+        <ul>
+          {errorValidators.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+        <label>
+          Name of Spot
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            id="name"
+            placeholder="Ex: The AirBnbeezy Palace"
+          />
         </label>
-        <label>Description of Spot
-          <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" id="description" placeholder="Ex: A beautiful castle near Tahoe Lake in..." />
+        <label>
+          Description of Spot
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            type="text"
+            id="description"
+            placeholder="Ex: A beautiful castle near Tahoe Lake in..."
+          />
         </label>
-        <label>Address
-        <input value={address} onChange={(e) => setAddress(e.target.value)} type="text" id="address" placeholder="Ex: 300 AirBnbeezy Drive" />
+        <label>
+          Address
+          <input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            type="text"
+            id="address"
+            placeholder="Ex: 300 AirBnbeezy Drive"
+          />
         </label>
-        <label>City
-          <input value={city} onChange={(e) => setCity(e.target.value)} type="text" id="city" placeholder="Ex: New York City" />
+        <label>
+          City
+          <input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            type="text"
+            id="city"
+            placeholder="Ex: New York City"
+          />
         </label>
-        <label>State
-          <input value={state} onChange={(e) => setState(e.target.value)} type="text" id="state" placeholder="Ex: New York" />
+        <label>
+          State
+          <input
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            type="text"
+            id="state"
+            placeholder="Ex: New York"
+          />
         </label>
-        <label>Country
-        <select value={country} onChange={(e)=> setCountry(e.target.value)} id="country" name="country">
-            <option select="true" disabled>Select country</option>
+        <label>
+          Country
+          <select
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            id="country"
+            name="country"
+          >
+            <option select="true" disabled>
+              Select country
+            </option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Aland Islands</option>
             <option value="AL">Albania</option>
@@ -192,7 +256,9 @@ export default function EditSpot(props) {
             <option value="LT">Lithuania</option>
             <option value="LU">Luxembourg</option>
             <option value="MO">Macao</option>
-            <option value="MK">Macedonia, the Former Yugoslav Republic of</option>
+            <option value="MK">
+              Macedonia, the Former Yugoslav Republic of
+            </option>
             <option value="MG">Madagascar</option>
             <option value="MW">Malawi</option>
             <option value="MY">Malaysia</option>
@@ -269,7 +335,9 @@ export default function EditSpot(props) {
             <option value="SB">Solomon Islands</option>
             <option value="SO">Somalia</option>
             <option value="ZA">South Africa</option>
-            <option value="GS">South Georgia and the South Sandwich Islands</option>
+            <option value="GS">
+              South Georgia and the South Sandwich Islands
+            </option>
             <option value="SS">South Sudan</option>
             <option value="ES">Spain</option>
             <option value="LK">Sri Lanka</option>
@@ -312,15 +380,34 @@ export default function EditSpot(props) {
             <option value="YE">Yemen</option>
             <option value="ZM">Zambia</option>
             <option value="ZW">Zimbabwe</option>
-        </select>
+          </select>
         </label>
-        <label>Price per night
-          <input value={price} onChange={(e)=> setPrice(e.target.value)} type="number" id="price" min="1" max="99999" placeholder="Ex: $1"/>
+        <label>
+          Price per night
+          <input
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            type="number"
+            id="price"
+            min="1"
+            max="99999"
+            placeholder="Ex: $1"
+          />
         </label>
-        <label>Spot Image
-          <input value={imgUrl} onChange={(e)=> setImgUrl(e.target.value)} type="text" id="img-url" placeholder="Ex: https://source.com/img.png" />
+        <label>
+          Spot Image
+          <input
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
+            type="text"
+            id="img-url"
+            placeholder="Ex: https://source.com/img.png"
+          />
         </label>
-        <button type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
+        <button type="submit" onClick={(e) => handleSubmit(e)}>
+          Submit
+        </button>
       </form>
-  )
+    </div>
+  );
 }

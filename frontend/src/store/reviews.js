@@ -72,7 +72,7 @@ export const removeReview = (reviewId) => async (dispatch) => {
 export default function reviewsReducer(state = initialState, action) {
   switch (action.type) {
     case POPULATE:
-      const newState = {};
+      const newState = { ...state };
       action.reviews.Reviews.forEach((review) => {
         newState[review.id] = review;
       });

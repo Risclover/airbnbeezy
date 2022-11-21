@@ -90,7 +90,7 @@ export default function SingleSpotReservation() {
             </select>
           </div>
           <button className="reservation-form-submit">Reserve</button>
-          <p>You won't be charged yet.</p>
+          <p className="no-charge">You won't be charged yet.</p>
           <div className="reservation-fees">
             <div className="fee">
               <div className="fees-left">
@@ -104,6 +104,8 @@ export default function SingleSpotReservation() {
             <div className="fee">
               <div className="fees-left">Cleaning fee</div>
               <div className="fees-right">$17</div>
+            </div>
+            <div className="fee">
               <div className="fees-left">Service fee</div>
               <div className="fees-right">$399</div>
             </div>

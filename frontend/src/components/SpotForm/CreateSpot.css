@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.create-spot-page {
+  margin-top: 100px;
+}
+
 .createspot-form input,
 .createspot-form select {
   padding: 20px 10px;

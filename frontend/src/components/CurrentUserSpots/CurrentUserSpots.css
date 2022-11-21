@@ -123,12 +123,36 @@
   border-bottom: 1px solid rgb(230, 230, 230);
 }
 
+.manage-listings {
+  margin-top: 50px;
+  display: grid;
+  padding: 0 80px;
+  margin: 50px auto;
+}
+
+.manage-listings .spot-box {
+  width: 305px;
+  height: min-content;
+}
+
+.manage-listings .spot-img {
+  width: 100%;
+  height: 200px;
+}
+
 .user-listings h2 {
   margin-bottom: 30px;
   margin-left: 5px;
 }
 
 .user-profile .spots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+}
+
+.manage-listings .spots {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 10px;
@@ -153,6 +177,12 @@
   margin-right: 5px;
 }
 
+.single-spot-page img {
+  max-width: 300px;
+}
+.single-spot-page {
+  margin-top: 100px;
+}
 .spotcard-rating {
   font-size: 13px;
   font-family: "Montserrat", sans-serif;

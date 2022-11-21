@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
-
+import { Modal } from "../../context/Modal";
 import { getSpotById, deleteSpot } from "../../store/spots";
 import { getSpotReviews } from "../../store/reviews";
+import ShareModal from "./ShareModal";
 
 export default function SingleSpotHead() {
   const { spotId } = useParams();
+  const [showShareModal, setShowShareModal] = useState(false);
   const spot = useSelector(getSpotById(spotId));
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
@@ -46,10 +48,23 @@ export default function SingleSpotHead() {
           </div>
         </div>
         <div className="spot-info-right">
-          <div className="spot-info-right-btn spot-info-share">
+          <button
+            className="spot-info-right-btn spot-info-share"
+            onClick={() => setShowShareModal(true)}
+          >
             <i class="fa-solid fa-arrow-up-from-bracket"></i>
-            <a href="">Share</a>
-          </div>
+            Share
+          </button>
+          {showShareModal && (
+            <Modal onClose={() => setShowShareModal(false)}>
+              <ShareModal
+                setShowShareModal={setShowShareModal}
+                image={spot.previewImage}
+                title={spot.name}
+                spotId={spotId}
+              />
+            </Modal>
+          )}
           <div className="spot-info-right-btn spot-info-save">
             <i class="fa-regular fa-heart"></i>
             <a href="">Save</a>
