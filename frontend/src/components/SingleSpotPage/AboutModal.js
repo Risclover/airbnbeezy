@@ -19,8 +19,8 @@ export default function AboutModal({ setShowAboutModal }) {
         <div className="about-modal-head">
           <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
           <p>
-            AirCover is comprehensive protection included for free with every
-            booking.
+            AirCover is a comprehensive protection service included for free
+            with every booking.
           </p>
         </div>
         <div className="about-modal-body">
@@ -35,7 +35,7 @@ export default function AboutModal({ setShowAboutModal }) {
           <div className="about-modal-box">
             <div className="about-box-title">Check-In Guarantee</div>
             <div className="about-box-text">
-              If you can’t check into your home and the Host cannot resolve the
+              If you can't check into your home and the Host cannot resolve the
               issue, we’ll find you a similar or better home for the length of
               your original stay, or we’ll refund you.
             </div>
