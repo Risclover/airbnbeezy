@@ -116,8 +116,8 @@ export default function SingleSpotReviews({ spot }) {
           {reviews.map((review) => (
             <div className="review-box">
               <div className="review-author">
-                <NavLink to={`/users/${usersList[review.userId].id}/profile`}>
-                  <img src={usersList[review.userId].userImage} />
+                <NavLink to={`/users/${usersList[review.userId]?.id}/profile`}>
+                  <img src={usersList[review.userId]?.userImage} />
                 </NavLink>
                 <div className="review-name">
                   <h3>{review.User.firstName}</h3>
