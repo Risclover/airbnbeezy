@@ -10,7 +10,7 @@
   padding: 20px;
   border-bottom: 1px solid rgb(227, 227, 227);
   font-weight: 700;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 16px;
 }
 
@@ -25,12 +25,12 @@
 .loginform-title {
   font-size: 22px;
   font-weight: 600;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   margin-bottom: 25px;
 }
 
 .login-form input {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 16px;
   padding: 15px 10px;
   border: 1px solid rgb(161, 161, 161);
@@ -55,7 +55,7 @@
   height: 48px;
   border: 0;
   font-size: 18px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   color: white;
   margin-top: 30px;
   background: linear-gradient(
@@ -143,7 +143,7 @@
   height: 48px;
   background: white;
   padding: 0 25px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 16px;
   outline: 0;
   border: 1px solid black;

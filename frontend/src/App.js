@@ -11,6 +11,8 @@ import CreateSpot from "./components/SpotForm/CreateSpot";
 import ReviewPage from "./components/ReviewPage";
 import ManageListings from "./components/CurrentUserSpots/ManageListings";
 import CurrentUserReviews from "./components/CurrentUserReviews";
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,6 +23,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <ScrollToTop />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -32,7 +35,7 @@ function App() {
           <Route exact path="/spots/current">
             <ManageListings />
           </Route>
-          <Route exact path="/spots/profile">
+          <Route exact path="/users/:userId/profile">
             <CurrentUserSpots />
           </Route>
           <Route exact path="/reviews/current">

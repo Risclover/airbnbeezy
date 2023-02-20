@@ -54,22 +54,16 @@ export default function ManageListings() {
             <NavLink to={`/spots/${spot.id}`}>
               <div className="outer-spot">
                 <div key={spot.id} className="spot-box">
-                  <div
-                    className="spot-img"
-                    style={{
-                      backgroundImage: "url(" + spot.previewImage + ")",
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  ></div>
+                  <div className="spot-img">
+                    <img src={spot.previewImage} />
+                  </div>
                   <div className="spotcard-info-box">
                     <ul className="spotcard-info">
                       <li className="spotcard-rating">
                         <i className="fa-solid fa-star"></i>
                         {Number(spot.avgRating).toFixed(1)}{" "}
                       </li>
-                      <li className="spotcard-title">{spot.name}</li>
+                      {/* <li className="spotcard-title">{spot.name}</li> */}
                     </ul>
                     <div className="owner-buttons">
                       <button

@@ -12,7 +12,7 @@
   justify-content: space-evenly;
   color: #717171;
   font-weight: 500;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .reviews-breadcrumbs svg {
@@ -40,7 +40,7 @@
 }
 .current-user-reviews h1,
 .current-user-reviews h2 {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   color: #222;
   font-weight: 600;
 }
@@ -58,5 +58,5 @@
 }
 
 .reviews-content {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }

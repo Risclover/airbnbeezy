@@ -1,10 +1,12 @@
 .user-profile {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   padding: 47px 30px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
   margin-top: 80px;
 }
 
@@ -28,6 +30,8 @@
 
 .user-image img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .user-bullets {
@@ -38,7 +42,7 @@
 }
 
 .user-bullets li {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   display: flex;
   align-items: center;
 }
@@ -88,7 +92,7 @@
 
 .learn-more {
   font-size: 15px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   color: #222;
   font-weight: 300;
   margin-top: 35px;
@@ -100,14 +104,13 @@
   flex-direction: column;
   margin-top: 10px;
   margin-left: 33px;
-  max-width: 700px;
-  width: 60vw;
+  width: 66.666% !important;
 }
 
 .user-profile h1 {
   font-size: 30px;
   font-weight: 600;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .identity-form-header {
@@ -124,7 +127,7 @@
 
 .identity-form-header p {
   font-weight: 600;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 .user-head {
   margin-left: 2px;
@@ -136,25 +139,41 @@
 
 .user-listings {
   margin-top: 50px;
-  padding-bottom: 30px;
+  padding: 30px;
+  padding-left: 0;
   border-bottom: 1px solid rgb(230, 230, 230);
 }
-
-.manage-listings {
+/*
+.user-listings {
   margin-top: 50px;
   display: grid;
   padding: 0 80px;
   margin: 50px auto;
+} */
+
+.user-listings .spot-box {
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgb(36, 36, 36);
 }
 
-.manage-listings .spot-box {
-  width: 305px;
-  height: min-content;
-}
-
-.manage-listings .spot-img {
+/* .user-listings .spot-img {
   width: 100%;
   height: 200px;
+} */
+
+.user-listings .spotcard-info {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.user-listings .spot-img img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 !important;
 }
 
 .user-listings h2 {
@@ -169,7 +188,7 @@
   grid-row-gap: 20px;
 }
 
-.manage-listings .spots {
+.user-listings .spots {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 10px;
@@ -183,7 +202,8 @@
 
 .user-listings .spot-img {
   width: 100%;
-  height: 200px;
+  max-height: 70%;
+  /* height: 200px; */
 }
 
 .spotcard-info {
@@ -198,7 +218,7 @@
   max-width: 300px;
 }
 .single-spot-page {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   margin-top: 100px;
 }
 
@@ -208,7 +228,7 @@
 }
 .spotcard-rating {
   font-size: 13px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
   margin-bottom: 10px;
 }
 
@@ -217,7 +237,7 @@
 }
 
 .spotcard-title {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   margin-top: 5px;
   font-size: 17px;
   font-weight: 300;
@@ -231,7 +251,7 @@
 .learn-more button {
   background: none;
   border: 0;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 18px;
 }
 
@@ -290,7 +310,7 @@
 
 .manage .outer-spot {
   border: 1px solid black;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   margin: 20px;
 }
 
@@ -303,6 +323,7 @@
 
 .user-listings .spot-box {
   width: auto;
+  font-size: 15px;
 }
 
 .manage .spotcard-info {
@@ -325,7 +346,7 @@
   border: 0;
   padding: 3px;
   border-radius: 8px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .manage .owner-buttons button:hover {
@@ -337,12 +358,12 @@
     margin-left: 40px;
   }
 
-  .manage-listings .spot-box {
+  .user-listings .spot-box {
     width: 500px;
     height: min-content;
   }
 
-  .manage-listings .spot-img {
+  .user-listings .spot-img {
     width: 100%;
     height: 400px;
   }
@@ -360,7 +381,7 @@
     width: 100%;
   }
 
-  .manage-listings .spots {
+  .user-listings .spots {
     display: grid;
     grid-template-columns: 1fr;
     grid-column-gap: 10px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./Navigation.css";
@@ -33,6 +33,8 @@ export default function ProfileButton({
     history.replace("/");
   };
 
+  const currentUser = useSelector((state) => state.session.user);
+
   const mySpots = (e) => {
     e.preventDefault();
     history.replace("/spots/current");
@@ -61,7 +63,7 @@ export default function ProfileButton({
                 <li onClick={() => setShowCreateModal(true)}>
                   Airbnbeezy your home
                 </li>{" "}
-                <NavLink to="/spots/profile">
+                <NavLink to={`/users/${currentUser.id}/profile`}>
                   <li>Profile</li>
                 </NavLink>
               </ul>

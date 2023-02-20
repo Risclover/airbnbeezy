@@ -17,6 +17,36 @@
   height: 100%;
 }
 
+.single-spot-about-header-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-spot-about-header img {
+  border-radius: 100%;
+  height: 56px;
+  object-fit: cover;
+  width: 56px;
+}
+
+.single-spot-about-header {
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding-bottom: 24px;
+  width: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.single-spot-about-header h2 {
+  font-size: 23px;
+  font-weight: 600;
+  font-family: "Figtree", sans-serif;
+  margin-bottom: 10px;
+  line-height: 24px;
+  word-break: break-word;
+}
+
 .single-spot-reservation-box {
   width: 320px;
   background: white;
@@ -84,7 +114,7 @@
 .input-label {
   text-transform: uppercase;
   font-size: 10px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-weight: 700;
   position: absolute;
   top: 8px;
@@ -105,7 +135,7 @@
 
 .reservation-form-guests {
   width: calc(100% - 1px);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
   padding: 22px 20px 15px 9px !important;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -123,11 +153,10 @@
   border-radius: 8px;
   height: 48px;
   font-size: 18px;
-  font-family: "Roboto Flex", sans-serif;
   background: rgba(149, 157, 165, 0.2);
   color: white;
   border: 0;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .no-charge {
@@ -171,18 +200,6 @@
 
 .total-fees .fees-left {
   text-decoration: none;
-}
-.single-spot-about-header {
-  border-bottom: 1px solid rgb(221, 221, 221);
-  padding-bottom: 28px;
-  width: 87%;
-}
-
-.single-spot-about-header h2 {
-  font-size: 23px;
-  font-weight: 600;
-  font-family: "Roboto Flex", sans-serif;
-  margin-bottom: 13px;
 }
 
 .single-spot-about-rooms {
@@ -266,7 +283,7 @@
 .learn-more {
   background: none;
   border: 0;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 18px;
   font-weight: 600 !important;
   text-decoration: underline;

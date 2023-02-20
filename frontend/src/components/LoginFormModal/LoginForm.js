@@ -27,7 +27,7 @@ function LoginForm({ setShowModal }) {
   const handleDemo = (e) => {
     e.preventDefault();
     return dispatch(
-      sessionActions.login({ credential: "Demo-lition", password: "password" })
+      sessionActions.login({ credential: "Demolition", password: "password" })
     ).then(() => setShowModal(false));
   };
 

@@ -39,53 +39,55 @@ function Navigation({ isLoaded, scroll }) {
   }
 
   return (
-    <nav className="nav">
-      <div className="nav-left">
-        <Link to="/">
-          <img className="site-logo" alt="Site logo" src={Logo} />
-        </Link>
-      </div>
-      <div className="nav-center">
-        <SearchBar />
-      </div>
-      <div className="nav-right">
-        {sessionUser ? (
-          <button
-            className="switch-btn"
-            onClick={() => setShowCreateModal(true)}
-          >
-            Airbnbeezy your home
-          </button>
-        ) : (
-          <button className="switch-btn" onClick={() => setShowModal(true)}>
-            Airbnbeezy your home
-          </button>
-        )}
-        {showCreateModal && (
-          <Modal onClose={() => setShowCreateModal(false)}>
-            <SpotForm setShowCreateModal={setShowCreateModal} />
+    <nav>
+      <div className="nav">
+        <div className="nav-left">
+          <Link to="/">
+            <img className="site-logo" alt="Site logo" src={Logo} />
+          </Link>
+        </div>
+        <div className="nav-center">
+          <SearchBar />
+        </div>
+        <div className="nav-right">
+          {sessionUser ? (
+            <button
+              className="switch-btn"
+              onClick={() => setShowCreateModal(true)}
+            >
+              Airbnbeezy your home
+            </button>
+          ) : (
+            <button className="switch-btn" onClick={() => setShowModal(true)}>
+              Airbnbeezy your home
+            </button>
+          )}
+          {showCreateModal && (
+            <Modal onClose={() => setShowCreateModal(false)}>
+              <SpotForm setShowCreateModal={setShowCreateModal} />
+            </Modal>
+          )}
+          <i className="fa-solid fa-globe no-hover"></i>
+          {isLoaded && (
+            <ProfileButton
+              user={sessionUser}
+              setLogin={setLogin}
+              setShowModal={setShowModal}
+              setShowCreateModal={setShowCreateModal}
+            />
+          )}
+        </div>
+
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            {login ? (
+              <LoginForm setShowModal={setShowModal} />
+            ) : (
+              <SignupFormPage setShowModal={setShowModal} />
+            )}
           </Modal>
         )}
-        <i className="fa-solid fa-globe no-hover"></i>
-        {isLoaded && (
-          <ProfileButton
-            user={sessionUser}
-            setLogin={setLogin}
-            setShowModal={setShowModal}
-            setShowCreateModal={setShowCreateModal}
-          />
-        )}
       </div>
-
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          {login ? (
-            <LoginForm setShowModal={setShowModal} />
-          ) : (
-            <SignupFormPage setShowModal={setShowModal} />
-          )}
-        </Modal>
-      )}
     </nav>
   );
 }

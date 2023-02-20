@@ -2,26 +2,6 @@ import React from "react";
 import "./Spots.css";
 
 export default function SpotCategories() {
-  window.onscroll = function () {
-    navbarScroll();
-  };
-
-  function navbarScroll() {
-    if (
-      document.querySelector(".spot-categories") &&
-      (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10)
-    ) {
-      document.querySelector(".spot-categories").classList.add("bottom-border");
-    } else if (
-      document.body.scrollTop < 11 ||
-      document.documentElement.scrollTop < 11
-    ) {
-      document
-        .querySelector(".spot-categories")
-        .classList.remove("bottom-border");
-    }
-  }
-
   return (
     <div className="spot-categories">
       <div className="category">

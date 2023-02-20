@@ -3,18 +3,33 @@
 }
 .spot-info {
   padding-top: 7px;
-  font-size: 17px;
-  font-family: "Roboto Flex", sans-serif;
+  font-size: 15px;
+  font-weight: 700 !important;
+  font-family: "Figtree", sans-serif;
 }
 
 .spots-body {
   margin-top: 80px;
 }
 
+.spot-box {
+  /* max-width: 350px; */
+  /* max-height: 450px; */
+  /* width: 100%;
+  height: 100%; */
+  aspect-ratio: 20/19;
+}
+
 .spot-img {
+  /* max-height: 370px; */
+  height: 100%;
+}
+
+.spot-img img {
   width: 100%;
   height: 100%;
   border-radius: 12px;
+  object-fit: cover;
 }
 
 .spot-box:hover {
@@ -23,7 +38,18 @@
 
 .spots-list {
   width: 100%;
+  max-width: 2500px;
   display: grid;
+  grid-auto-flow: row dense;
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-gap: 40px 24px;
+  /* grid-template-columns: repeat(6, minmax(0, 1fr)); */
+  padding-left: 40px;
+  padding-right: 40px;
+  /* margin-left: 12px;
+  margin-right: 12px; */
+  margin: 0 auto;
+  height: 100%;
 }
 
 .create-spot {
@@ -31,7 +57,7 @@
 }
 
 .spotcard-location {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 2px;
 }
 
@@ -43,10 +69,11 @@
 
 .spotcard-price {
   font-weight: 600;
+  color: #222;
 }
 
 .spotcard-priceline {
-  color: #222;
+  color: rgb(34, 34, 34) !important;
   font-weight: 400;
   margin-top: 10px;
 }
@@ -60,24 +87,35 @@
   width: 100%;
 }
 
+.spots-categories-bar {
+  width: 100%;
+  position: sticky;
+  top: 60px;
+  height: 98px;
+  background: white;
+  z-index: 1;
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-between;
+  transition: box-shadow 0.2s ease;
+}
+
 .spot-categories {
   display: flex;
-
   justify-content: space-between;
   width: 100%;
-  z-index: 1;
-  top: 55px;
-  position: sticky;
+  max-width: 2500px;
   background: white;
-  padding: 0 40px;
-  margin-top: 75px;
+  padding: 0 75px;
+  margin: 0 auto;
   padding-bottom: 0;
 }
 
 .bottom-border {
-  box-shadow: rgba(0, 0, 0, 0.044) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  border-bottom: 1px solid rgb(236, 236, 236);
+  box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+  /* transition: box-shadow 1s ease; */
+  /* border-bottom: 1px solid rgb(236, 236, 236); */
+  width: 100%;
 }
 .category {
   text-align: center;
@@ -101,7 +139,7 @@
 
 .category-name {
   font-size: 12px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   margin-top: 6px;
   font-weight: 600;
   color: #434343;
@@ -118,77 +156,48 @@
   border-bottom: 3px solid #434343;
 }
 
-@media (min-width: 1630px) {
+@media (min-width: 1880px) {
   .spots-list {
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 18px;
-    row-gap: 120px;
-  }
-
-  .spot-box {
-    width: 17vw;
-    height: 16vw;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 1131px) and (max-width: 1629px) {
+@media (min-width: 1640px) and (max-width: 1879px) {
   .spots-list {
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 18px;
-    row-gap: 120px;
-  }
-
-  .spot-box {
-    height: 20vw;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 
-@media (min-width: 950px) and (max-width: 1130px) {
-  .spots-div {
-    padding: 0 35px;
-  }
-
+@media (min-width: 1128px) and (max-width: 1639px) {
   .spots-list {
-    grid-template-columns: repeat(3, 1fr);
-
-    row-gap: 130px;
-    column-gap: 12px;
-  }
-
-  .spot-box {
-    width: 29.2vw;
-    height: 28vw;
-  }
-
-  .spot-info {
-    font-size: 15px;
-    line-height: 20px;
-  }
-
-  .spotcard-priceline {
-    margin-top: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
-@media (min-width: 500px) and (max-width: 949px) {
+@media (min-width: 950px) and (max-width: 1127px) {
   .spots-list {
-    grid-template-columns: repeat(2, 1fr) !important;
-    row-gap: 10000px;
-    column-gap: 12px;
-  }
-
-  .spot-box {
-    height: 40vw;
-    width: 41vw !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
-@media (min-width: 1px) and (max-width: 499px) {
+@media (min-width: 550px) and (max-width: 949px) {
+  .spots-list {
+    grid-template-columns: auto auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1px) and (max-width: 549px) {
   .spots-list {
     grid-template-columns: auto;
-  }
-
-  .spot-box {
-    height: 70vw;
+    padding-left: 0;
+    padding-right: 0;
   }
 }

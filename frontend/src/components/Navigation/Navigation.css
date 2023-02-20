@@ -1,6 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.nav {
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgb(242, 242, 242);
+  position: fixed;
+  background: white;
+  top: 0;
+  height: 81px;
+  z-index: 9;
+}
+/* .nav {
   padding: 0 30px;
   height: 81px;
   border-bottom: 1px solid rgb(242, 242, 242);
@@ -10,7 +22,8 @@
   background: white;
   top: 0;
   z-index: 3;
-}
+  max-width: 2500px;
+} */
 
 .no-hover {
   cursor: default !important;
@@ -20,7 +33,7 @@ ul,
 li {
   list-style-type: none;
 }
-a {
+nav a {
   margin: 5px;
 }
 #testing {
@@ -41,7 +54,7 @@ a {
   z-index: 3;
   width: 242px;
   position: absolute;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 14px;
   top: 70px;
   right: 39px;
@@ -82,6 +95,7 @@ a {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 2500px;
 }
 
 .nav-left {
@@ -98,7 +112,7 @@ a {
   padding-right: 8px;
   border-radius: 100px;
   border: 1px solid rgb(222, 222, 222);
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   line-height: 18px;
   box-shadow: rgba(50, 50, 105, 0.15) 0px 3px 8px -2px,
     rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
@@ -142,7 +156,7 @@ a {
 }
 
 .nav-rightnav button {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   border: none;
   background: white;
   border-radius: 24px;
@@ -229,7 +243,7 @@ a {
   background: white;
   border: 0;
   margin-right: -10px;
-  font-family: "Roboto-Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .nav-center {
@@ -249,4 +263,25 @@ a {
 
 .switch-btn:hover {
   cursor: pointer;
+}
+
+@media (min-width: 1440px) {
+  .nav {
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+  }
+}
+
+@media (min-width: 740px) and (max-width: 1439px) {
+  .nav {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
+@media (max-width: 739px) {
+  .nav {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
 }

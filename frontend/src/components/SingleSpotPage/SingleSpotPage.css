@@ -5,6 +5,7 @@
 
 .single-spot {
   padding: 30px 80px;
+  margin-top: 80px;
 }
 
 .spot-head {
@@ -15,7 +16,7 @@
 .spot-title h1 {
   font-weight: 600;
   font-size: 24px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .spot-head-info {
@@ -61,7 +62,7 @@
 .spot-info-right {
   display: flex;
   align-items: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 14px;
 }
 
@@ -157,7 +158,7 @@
   padding: 9px;
   display: flex;
   align-items: center;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   border-radius: 10px;
 }
 
@@ -196,7 +197,7 @@
   font-size: 22px;
   margin-bottom: 10px;
   margin-top: 52px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .reviews-head {
@@ -217,7 +218,7 @@
   border: 1px solid rgb(205, 205, 205);
   padding: 15px;
   border-radius: 12px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 16px;
 } */
 
@@ -233,7 +234,7 @@
   border: 0;
   margin-left: 30px;
   font-size: 16px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   color: white;
   background: linear-gradient(
     90deg,
@@ -313,7 +314,7 @@ h2 .dot {
 .review-name h3 {
   font-weight: 600;
   color: #222;
-  font-size: 17px;
+  font-size: 16px;
   margin-bottom: 2px;
 }
 
@@ -331,13 +332,27 @@ h2 .dot {
 .review-name {
   font-weight: 300;
   font-size: 14px;
-  margin-bottom: 20px;
+  /* margin-bottom: 16px; */
   color: #717171;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.review-author img {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 12px;
 }
 
 .review-body {
   font-weight: 300;
-  font-size: 18px;
+  font-size: 17px;
   color: #222;
   line-height: 24px;
 }
@@ -370,7 +385,7 @@ h2 .dot {
   overflow-y: auto;
   max-height: 600px;
   height: 80vh;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 
 .about-modal-head {
@@ -487,7 +502,7 @@ h2 .dot {
   justify-content: space-between;
   padding: 10px;
   border-radius: 8px;
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Figtree", sans-serif;
   font-size: 16px;
 }
 

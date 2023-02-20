@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
 import { getSpotById } from "../../store/spots";
+import { getUsers } from "../../store/users";
 import { Modal } from "../../context/Modal";
 import ReviewPage from "../ReviewPage";
 
@@ -11,6 +12,7 @@ export default function SingleSpotReviews({ spot }) {
   const dispatch = useDispatch();
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
+  const usersList = useSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(getSpotReviews(spot.id));
@@ -113,11 +115,16 @@ export default function SingleSpotReviews({ spot }) {
         <div className="reviews">
           {reviews.map((review) => (
             <div className="review-box">
-              <div className="review-name">
-                <h3>{review.User.firstName}</h3>
-                <p>
-                  {reviewMonth} {reviewYear}
-                </p>
+              <div className="review-author">
+                <NavLink to={`/users/${usersList[review.userId].id}/profile`}>
+                  <img src={usersList[review.userId].userImage} />
+                </NavLink>
+                <div className="review-name">
+                  <h3>{review.User.firstName}</h3>
+                  <p>
+                    {reviewMonth} {reviewYear}
+                  </p>
+                </div>
               </div>
               <div className="review-body">{review.review}</div>
             </div>
