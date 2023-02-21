@@ -14,6 +14,7 @@ import "./CurrentUserSpots.css";
 import EditSpot from "../SpotForm/EditSpot";
 import IdentityModal from "./IdentityModal";
 import { getUsers } from "../../store/users";
+
 export default function CurrentUserSpots() {
   const [showIdentityModal, setShowIdentityModal] = useState(false);
   const spotsList = useSelector(getSpots);
@@ -80,15 +81,13 @@ export default function CurrentUserSpots() {
       break;
   }
 
-  console.log("USER DATE:", userMonth, userYear);
-
   let userImg = user?.userImage;
-  console.log("USER IMG:", userImg);
 
   let reviewCount = 0;
   reviews.forEach((review) => {
     reviewCount++;
   });
+
   if (!reviews) return null;
 
   let count = 0;
@@ -99,7 +98,8 @@ export default function CurrentUserSpots() {
     }
   });
 
-  if (!user) return null;
+  // if (!user) return null;
+
   return (
     <div className="user-profile">
       <div className="user-info-side">
