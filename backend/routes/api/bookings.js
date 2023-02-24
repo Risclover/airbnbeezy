@@ -61,7 +61,7 @@ router.put("/:bookingId", async (req, res, next) => {
     });
   }
 
-  const { startDate, endDate } = req.body;
+  const { startDate, endDate, guests } = req.body;
 
   const startDateObj = new Date(startDate);
   const endDateObj = new Date(endDate);
@@ -106,12 +106,11 @@ router.put("/:bookingId", async (req, res, next) => {
     });
   }
 
-  booking.set({
+  booking.update({
     startDate,
     endDate,
+    guests,
   });
-
-  await booking.save();
 
   res.json(booking);
 });

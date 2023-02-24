@@ -8,7 +8,7 @@ module.exports = {
     return queryInterface.bulkInsert("Users", [
       {
         email: "demo@user.com",
-        username: "Demo-lition",
+        username: "Demolition",
         firstName: "User",
         lastName: "Guy",
         hashedPassword: bcrypt.hashSync("password"),
@@ -32,7 +32,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     return queryInterface.bulkDelete("Users", {
-      username: { [Op.in]: ["UserGuy", "Risclover", "sarabara916"] },
+      username: { [Op.in]: ["Demolition", "Risclover", "sarabara916"] },
     });
   },
 };

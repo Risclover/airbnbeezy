@@ -31,6 +31,18 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false,
       },
+      about: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      work: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

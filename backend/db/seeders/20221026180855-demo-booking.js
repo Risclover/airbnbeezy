@@ -10,18 +10,21 @@ module.exports = {
         userId: 1,
         startDate: "2022-10-25",
         endDate: "2022-10-30",
+        guests: 1,
       },
       {
         spotId: 2,
         userId: 2,
         startDate: "2022-11-03",
         endDate: "2022-11-05",
+        guests: 2,
       },
       {
         spotId: 3,
         userId: 3,
         startDate: "2022-10-27",
         endDate: "2022-10-29",
+        guests: 1,
       },
     ]);
   },

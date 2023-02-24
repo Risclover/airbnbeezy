@@ -49,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Booking, { foreignKey: "userId" });
       User.hasMany(models.Review, { foreignKey: "userId" });
       User.hasMany(models.Spot, { foreignKey: "ownerId" });
+      User.hasMany(models.UserImage, { foreignKey: "userId" });
     }
   }
 
@@ -89,13 +90,25 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      about: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      work: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,
       modelName: "User",
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
+          exclude: ["hashedPassword", "email", "updatedAt"],
         },
       },
       scopes: {

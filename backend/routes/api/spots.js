@@ -25,8 +25,23 @@ const validateReview = [
 
 // Create a spot
 router.post("/", requireAuth, async (req, res) => {
-  const { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
+  const {
+    address,
+    zipcode,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    category,
+    guests,
+    beds,
+    bedrooms,
+    bathrooms,
+  } = req.body;
 
   // Identify current user
   const currentUser = await User.findOne({
@@ -39,6 +54,7 @@ router.post("/", requireAuth, async (req, res) => {
   const createdSpot = await Spot.create({
     ownerId: currentUser.id,
     address: address,
+    zipcode: zipcode,
     city: city,
     state: state,
     country: country,
@@ -47,6 +63,11 @@ router.post("/", requireAuth, async (req, res) => {
     name: name,
     description: description,
     price: price,
+    category: category,
+    guests: guests,
+    beds: beds,
+    bedrooms: bedrooms,
+    bathrooms: bathrooms,
   });
 
   res.json(createdSpot);
@@ -284,8 +305,23 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
 // Edit a spot
 router.put("/:spotId", async (req, res, next) => {
   const { spotId } = req.params;
-  const { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
+  const {
+    address,
+    zipcode,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    category,
+    guests,
+    beds,
+    bedrooms,
+    bathrooms,
+  } = req.body;
 
   const correctSpot = await Spot.findByPk(spotId);
 
@@ -299,6 +335,7 @@ router.put("/:spotId", async (req, res, next) => {
 
   correctSpot.update({
     address: address,
+    zipcode: zipcode,
     city: city,
     state: state,
     country: country,
@@ -307,6 +344,11 @@ router.put("/:spotId", async (req, res, next) => {
     name: name,
     description: description,
     price: price,
+    category: category,
+    guests: guests,
+    beds: beds,
+    bedrooms: bedrooms,
+    bathrooms: bathrooms,
   });
 
   res.json(correctSpot);
@@ -480,6 +522,7 @@ router.post("/:spotId/bookings", async (req, res) => {
     userId: req.user.id,
     startDate: startDate,
     endDate: endDate,
+    guests: guests,
   });
 
   res.json(newBooking);

@@ -2,19 +2,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Bookings", {
+    await queryInterface.createTable("UserImages", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      spotId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Spots",
-        },
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -22,17 +15,10 @@ module.exports = {
         references: {
           model: "Users",
         },
+        onDelete: "CASCADE",
       },
-      startDate: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-      },
-      endDate: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-      },
-      guests: {
-        type: Sequelize.INTEGER,
+      url: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
@@ -48,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Bookings");
+    await queryInterface.dropTable("UserImages");
   },
 };

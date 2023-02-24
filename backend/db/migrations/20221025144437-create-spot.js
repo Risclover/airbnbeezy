@@ -20,13 +20,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      zipcode: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       city: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       state: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       country: {
         type: Sequelize.STRING,
@@ -50,6 +54,26 @@ module.exports = {
       },
       price: {
         type: Sequelize.DECIMAL,
+        allowNull: false,
+      },
+      category: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      guests: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      beds: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      bedrooms: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      bathrooms: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       createdAt: {

@@ -19,13 +19,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      zipcode: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       city: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       state: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       country: {
         type: DataTypes.STRING,
@@ -49,6 +53,26 @@ module.exports = (sequelize, DataTypes) => {
       },
       price: {
         type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
+      guests: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      beds: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      bedrooms: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      bathrooms: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
