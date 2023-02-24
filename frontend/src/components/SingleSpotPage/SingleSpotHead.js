@@ -42,7 +42,7 @@ export default function SingleSpotHead() {
 
           <div className="spot-info-spot">•</div>
           <div className="spot-info-location">
-            {spot.city}, {spot.state}, {spot.country}
+            {spot.city}, {spot.state ? spot.state + "," : ""} {spot.country}
           </div>
         </div>
         <div className="spot-info-right">

@@ -37,8 +37,8 @@ export const getBookingById = (id) => (state) => state.bookings[id];
 export const getBookingsByOwnerId = (ownerId) => (state) =>
   state.bookings[ownerId];
 
-export const addBooking = (formData) => async (dispatch) => {
-  const response = await csrfFetch("/api/bookings/", {
+export const addBooking = (formData, spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}/bookings/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const addBooking = (formData) => async (dispatch) => {
   }
 };
 
-export default function BookingsReducer(state = initialState, action) {
+export default function bookingsReducer(state = initialState, action) {
   switch (action.type) {
     case POPULATE:
       return action.bookings.Bookings.reduce((bookings, booking) => {

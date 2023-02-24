@@ -153,8 +153,20 @@
   border-radius: 8px;
   height: 48px;
   font-size: 18px;
-  background: rgba(149, 157, 165, 0.2);
+  /* background: rgba(149, 157, 165, 0.2); */
+  background: linear-gradient(
+    90deg,
+    #d70464,
+    #d90661,
+    #dc0a5e,
+    #de0d5b,
+    #e01158,
+    #e21555,
+    #e31952,
+    #e51d4f
+  );
   color: white;
+  cursor: pointer;
   border: 0;
   font-family: "Figtree", sans-serif;
 }

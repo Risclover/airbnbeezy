@@ -4,23 +4,20 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { getSpotById, deleteSpot, getAllSpots } from "../../store/spots";
 
 import "./SingleSpotPage.css";
-import EditSpot from "../SpotForm/EditSpot";
+import EditSpot from "../SpotForm/EditSpot/EditSpot";
 import SingleSpotHead from "./SingleSpotHead";
 import SingleSpotPhotos from "./SingleSpotPhotos";
 import SingleSpotReviews from "./SingleSpotReviews";
 import SingleSpotAbout from "./SingleSpotAbout/SingleSpotAbout";
-import SingleSpotReservation from "./SingleSpotAbout/SingleSpotReservation";
-import Navigation from "../Navigation";
-import AboutModal from "./AboutModal";
+import { Helmet } from "react-helmet";
 
 export default function SingleSpotPage() {
   const [editSpotId, setEditSpotId] = useState(null);
-  const [showCreateSpotForm, setShowCreateSpotForm] = useState(false);
-  const spotToEdit = useSelector((state) => state.spots[editSpotId]);
 
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+
   const spot = useSelector(getSpotById(spotId));
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -61,6 +58,11 @@ export default function SingleSpotPage() {
 
   return (
     <div className="single-spot">
+      <Helmet>
+        <title>{`${spot.name} - ${spot.category}s for rent in ${spot.city}, ${
+          spot.state ? spot.state + "," : ""
+        } ${spot.country} - Airbnbeezy`}</title>
+      </Helmet>
       <SingleSpotHead count={count} />
       <SingleSpotPhotos />
       {/* <SingleSpotReservation /> */}

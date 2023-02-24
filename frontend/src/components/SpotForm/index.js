@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addSpot, getAllSpots, addImage } from "../../store/spots";
-import "./CreateSpot.css";
+// import "./CreateSpot.css";
 
 export default function SpotForm({ setShowCreateModal }) {
   const [errorValidators, setErrorValidators] = useState([]);
@@ -17,6 +17,11 @@ export default function SpotForm({ setShowCreateModal }) {
   const [lng, setLng] = useState(0);
   const [price, setPrice] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [guests, setGuests] = useState(0);
+  const [category, setCategory] = useState("Castle");
+  const [beds, setBeds] = useState(0);
+  const [bedrooms, setBedrooms] = useState(0);
+  const [bathrooms, setBathrooms] = useState(0);
   const ownerId = useSelector((state) => state.session.user.id);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -26,7 +31,6 @@ export default function SpotForm({ setShowCreateModal }) {
     if (name?.length === 0) errors.push("Please provide a name");
     if (address?.length === 0) errors.push("Please provide an address");
     if (city?.length === 0) errors.push("Please provide a city");
-    if (state?.length === 0) errors.push("Please provide a state");
     if (country?.length === 0) errors.push("Please provide a country");
     if (price <= 0) errors.push("Price must be $1 or more.");
     if (description?.length === 0) errors.push("Please provide a description");
@@ -49,6 +53,11 @@ export default function SpotForm({ setShowCreateModal }) {
         lat,
         lng,
         price,
+        category,
+        guests,
+        beds,
+        bedrooms,
+        bathrooms,
       };
 
       let newSpot = await dispatch(addSpot(payload));

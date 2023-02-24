@@ -1,17 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import "./CurrentUserReviews.css";
 import { getUserReviews, removeReview } from "../../store/reviews";
+import { getUsers } from "../../store/users";
 
 export default function CurrentUserReviews() {
+  const dispatch = useDispatch();
+  const { userId } = useParams();
+
   let reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
   reviews = reviews.filter((review) => review.userId === sessionUser.id);
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users[+userId]);
 
   useEffect(() => {
-    dispatch(getUserReviews());
+    dispatch(getUserReviews(+userId));
+    dispatch(getUsers());
   }, [dispatch]);
 
   let reviewDate;
@@ -68,6 +73,7 @@ export default function CurrentUserReviews() {
   });
 
   if (!reviews) return null;
+
   return (
     <div className="current-user-reviews">
       <div className="reviews-breadcrumbs">
@@ -97,26 +103,30 @@ export default function CurrentUserReviews() {
 
       <h1>Reviews by you</h1>
       <h2>Past reviews you have written</h2>
-      {reviews.map((review) => (
-        <div className="review-box">
-          <div className="review-name">
-            <h3>{review.User.firstName}</h3>
-            <p>
-              {reviewMonth} {reviewYear}
-            </p>
+      {reviews.map((review) =>
+        review.id === user.id ? (
+          <div className="review-box">
+            <div className="review-name">
+              <h3>{user.firstName}</h3>
+              <p>
+                {reviewMonth} {reviewYear}
+              </p>
+            </div>
+            <div className="review-body">{review.review}</div>
+            <button
+              className="remove-review"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(removeReview(review.id));
+              }}
+            >
+              Remove
+            </button>
           </div>
-          <div className="review-body">{review.review}</div>
-          <button
-            className="remove-review"
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(removeReview(review.id));
-            }}
-          >
-            Remove
-          </button>
-        </div>
-      ))}
+        ) : (
+          ""
+        )
+      )}
     </div>
   );
 }

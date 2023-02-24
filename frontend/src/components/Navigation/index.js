@@ -3,7 +3,7 @@ import { NavLink, Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
-import CreateSpot from "../SpotForm/CreateSpot";
+import CreateSpot from "../SpotForm/CreateSpotPages/CreateSpot";
 import "./Navigation.css";
 import Logo from "../../images/airbnbeezy_logo3.png";
 import SearchBar from "./SearchBar";
@@ -50,23 +50,19 @@ function Navigation({ isLoaded, scroll }) {
           <SearchBar />
         </div>
         <div className="nav-right">
-          {sessionUser ? (
+          {sessionUser !== null ? (
             <button
               className="switch-btn"
-              onClick={() => setShowCreateModal(true)}
+              onClick={() => history.push("/create-spot")}
             >
               Airbnbeezy your home
             </button>
           ) : (
-            <button className="switch-btn" onClick={() => setShowModal(true)}>
+            <button className="switch-btn" onClick={() => showModal(true)}>
               Airbnbeezy your home
             </button>
           )}
-          {showCreateModal && (
-            <Modal onClose={() => setShowCreateModal(false)}>
-              <SpotForm setShowCreateModal={setShowCreateModal} />
-            </Modal>
-          )}
+
           <i className="fa-solid fa-globe no-hover"></i>
           {isLoaded && (
             <ProfileButton

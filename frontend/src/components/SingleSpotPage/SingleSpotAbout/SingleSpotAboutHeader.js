@@ -20,9 +20,17 @@ export default function SingleSpotAboutHeader({ spot }) {
           Private room in condo hosted by {usersList[spot.ownerId]?.username}
         </h2>
         <div className="single-spot-about-rooms">
-          1 guest <i class="fa-solid fa-circle"></i>1 bedroom{" "}
-          <i class="fa-solid fa-circle"></i> 1 bed{" "}
-          <i class="fa-solid fa-circle"></i> 1 private bath
+          {spot.guests === 1 ? spot.guests + " guest" : spot.guests + " guests"}{" "}
+          <i class="fa-solid fa-circle"></i>
+          {spot.bedrooms > 1 || spot.bedrooms === 0
+            ? spot.bedrooms + " bedrooms"
+            : spot.bedrooms + " bedroom"}{" "}
+          <i class="fa-solid fa-circle"></i>{" "}
+          {spot.beds === 1 ? spot.beds + " bed" : spot.beds + " beds"}{" "}
+          <i class="fa-solid fa-circle"></i>{" "}
+          {spot.bathrooms === 1
+            ? spot.bathrooms + " bath"
+            : spot.bathrooms + " baths"}
         </div>
       </div>
       <NavLink to={`/users/${usersList[spot.ownerId]?.id}/profile`}>

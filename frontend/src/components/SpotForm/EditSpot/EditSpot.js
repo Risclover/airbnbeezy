@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllSpots, updateSpot } from "../../store/spots";
+import { getAllSpots, updateSpot } from "../../../store/spots";
 
 export default function EditSpot(props) {
   const [errorValidators, setErrorValidators] = useState([]);
@@ -57,9 +57,18 @@ export default function EditSpot(props) {
   };
 
   return (
-    <div className="create-spot-page">
+    <div className="createspot-modal">
+      <div className="loginform-header">
+        <button
+          className="close-createspot"
+          onClick={() => props.setShowEditModal(false)}
+        >
+          <i className="fa-solid fa-xmark"></i>
+        </button>
+        <p>Edit a Spot</p>
+        <div></div>
+      </div>
       <form className="createspot-form">
-        <h2>Edit a Spot</h2>
         <ul>
           {errorValidators.map((error) => (
             <li key={error}>{error}</li>

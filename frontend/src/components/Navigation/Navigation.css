@@ -40,6 +40,23 @@ nav a {
   color: blue;
 }
 
+.profile-menu-user-img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.user-image {
+  width: 128px;
+  height: 128px;
+}
+
+.user-img img {
+  height: 100%;
+  width: 100%;
+}
+
 .create-spot {
   border: 1px solid black;
   padding: 5px;
@@ -95,6 +112,8 @@ nav a {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin: 0 auto;
+  height: inherit;
   max-width: 2500px;
 }
 
@@ -194,7 +213,7 @@ nav a {
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  border-radius: 100px;
+  border-radius: 21px;
   color: grey;
   background: white;
   border: 1px solid rgb(225, 225, 225);
@@ -208,13 +227,10 @@ nav a {
 }
 
 .open-menu svg {
-  font-size: 30px;
-}
-
-.open-menu .fa-bars {
-  font-size: 16px;
-  margin-left: 8px;
-  margin-right: 12px;
+  font-size: 20px;
+  margin-left: 5px;
+  margin-right: 10px;
+  color: #222;
 }
 
 .open-menu:hover {
@@ -263,6 +279,12 @@ nav a {
 
 .switch-btn:hover {
   cursor: pointer;
+}
+
+.open-menu-circle {
+  width: 30px;
+  height: 30px;
+  margin: 0;
 }
 
 @media (min-width: 1440px) {

@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSpotById } from "../../../store/spots";
+import { addBooking } from "../../../store/bookings";
 
 import "./SingleSpotAbout.css";
 
 export default function SingleSpotReservation() {
+  const dispatch = useDispatch();
+
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
+  const [guests, setGuests] = useState(0);
   const [days, setDays] = useState(0);
+  const [guestList, setGuestlist] = useState([]);
   const { spotId } = useParams();
   const spot = useSelector(getSpotById(spotId));
   moment().format();
@@ -30,6 +35,32 @@ export default function SingleSpotReservation() {
       count++;
     }
   });
+
+  useEffect(() => {
+    const gustlist = [];
+    if (spot?.guests > 0) {
+      for (let i = 0; i < spot?.guests; i++) {
+        if (i === 0) {
+          gustlist.push("1 guest");
+        } else if (i > 0) {
+          gustlist.push(`${i + 1} guests`);
+        }
+      }
+    }
+    setGuestlist(gustlist);
+  }, [spot?.guests]);
+
+  const handleBooking = async (e) => {
+    e.preventDefault();
+    const payload = {
+      startDate: checkinDate,
+      endDate: checkoutDate,
+      guests: guests,
+    };
+    await dispatch(addBooking(payload, spot.id));
+  };
+
+  console.log(guests);
 
   return (
     <div className="single-spot-reservation">
@@ -62,6 +93,7 @@ export default function SingleSpotReservation() {
                   setCheckinDate(e.target.value);
                   console.log(checkinDate);
                 }}
+                value={checkinDate}
                 className="input-group-input-left"
               />
             </div>
@@ -72,25 +104,27 @@ export default function SingleSpotReservation() {
                 onChange={(e) => {
                   setCheckoutDate(e.target.value);
                 }}
+                value={checkoutDate}
                 className="input-group-input-right"
               />
             </div>
           </div>
           <div className="input-group-two">
             <label className="input-label">Guests</label>
-            <select className="reservation-form-guests">
-              <option>1 guest</option>
-              <option>2 guests</option>
-              <option>3 guests</option>
-              <option>4 guests</option>
-              <option>5 guests</option>
-              <option>6 guests</option>
-              <option>7 guests</option>
-              <option>8 guests</option>
+            <select
+              className="reservation-form-guests"
+              onChange={(e) => setGuests(e.target.value)}
+              value={guests}
+            >
+              {guestList.map((item, idx) => (
+                <option value={idx + 1}>{item}</option>
+              ))}
             </select>
           </div>
-          <button className="reservation-form-submit">Reserve</button>
-          <p className="no-charge">Feature coming soon.</p>
+          <button className="reservation-form-submit" onClick={handleBooking}>
+            Reserve
+          </button>
+          {/* <p className="no-charge">Feature coming soon.</p> */}
           <div className="reservation-fees">
             <div className="fee">
               <div className="fees-left">
