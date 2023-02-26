@@ -92,62 +92,133 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
               ))
             : null}
         </ul>
-        <form onSubmit={handleSubmit} className="review-form">
-          <textarea
-            value={review}
-            onChange={(e) => setReview(e.target.value)}
-            col="30"
-            placeholder="Write a review about this place."
-          ></textarea>
-          <div className="rate">
-            <input
-              type="radio"
-              id="star5"
-              name="rate"
-              value={5}
-              onChange={handleChange}
-              checked={stars == 5}
-            />
-            <label htmlFor="star5" title="text"></label>
-            <input
-              type="radio"
-              id="star4"
-              name="rate"
-              value={4}
-              onChange={handleChange}
-              checked={stars == 4}
-            />
-            <label htmlFor="star4" title="text"></label>
-            <input
-              type="radio"
-              id="star3"
-              name="rate"
-              value={3}
-              onChange={handleChange}
-              checked={stars == 3}
-            />
-            <label htmlFor="star3" title="text"></label>
-            <input
-              type="radio"
-              id="star2"
-              name="rate"
-              value={2}
-              onChange={handleChange}
-              checked={stars == 2}
-            />
-            <label htmlFor="star2" title="text"></label>
-            <input
-              type="radio"
-              id="star1"
-              name="rate"
-              value={1}
-              onChange={handleChange}
-              checked={stars == 1}
-            />
-            <label htmlFor="star1" title="text"></label>
-          </div>
-          <button className="submit-review">Submit</button>
-        </form>
+        {count > 0 ||
+          (spot.ownerId === user.id && (
+            <form onSubmit={handleSubmit} className="review-form">
+              <textarea
+                disabled
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+                col="30"
+                placeholder="Write a review about this place."
+              ></textarea>
+              <div className="rate">
+                <input
+                  disabled
+                  type="radio"
+                  id="star5"
+                  name="rate"
+                  value={5}
+                  onChange={handleChange}
+                  checked={stars == 5}
+                />
+                <label htmlFor="star5" title="text"></label>
+                <input
+                  disabled
+                  type="radio"
+                  id="star4"
+                  name="rate"
+                  value={4}
+                  onChange={handleChange}
+                  checked={stars == 4}
+                />
+                <label htmlFor="star4" title="text"></label>
+                <input
+                  disabled
+                  type="radio"
+                  id="star3"
+                  name="rate"
+                  value={3}
+                  onChange={handleChange}
+                  checked={stars == 3}
+                />
+                <label htmlFor="star3" title="text"></label>
+                <input
+                  disabled
+                  type="radio"
+                  id="star2"
+                  name="rate"
+                  value={2}
+                  onChange={handleChange}
+                  checked={stars == 2}
+                />
+                <label htmlFor="star2" title="text"></label>
+                <input
+                  disabled
+                  type="radio"
+                  id="star1"
+                  name="rate"
+                  value={1}
+                  onChange={handleChange}
+                  checked={stars == 1}
+                />
+                <label htmlFor="star1" title="text"></label>
+              </div>
+
+              <button className="submit-review-disabled" disabled>
+                Submit
+              </button>
+            </form>
+          ))}
+        {(count === 0 || spot.ownerId !== user.id) && (
+          <form onSubmit={handleSubmit} className="review-form">
+            <textarea
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              col="30"
+              placeholder="Write a review about this place."
+            ></textarea>
+            <div className="rate">
+              <input
+                type="radio"
+                id="star5"
+                name="rate"
+                value={5}
+                onChange={handleChange}
+                checked={stars == 5}
+              />
+              <label htmlFor="star5" title="text"></label>
+              <input
+                type="radio"
+                id="star4"
+                name="rate"
+                value={4}
+                onChange={handleChange}
+                checked={stars == 4}
+              />
+              <label htmlFor="star4" title="text"></label>
+              <input
+                type="radio"
+                id="star3"
+                name="rate"
+                value={3}
+                onChange={handleChange}
+                checked={stars == 3}
+              />
+              <label htmlFor="star3" title="text"></label>
+              <input
+                type="radio"
+                id="star2"
+                name="rate"
+                value={2}
+                onChange={handleChange}
+                checked={stars == 2}
+              />
+              <label htmlFor="star2" title="text"></label>
+              <input
+                type="radio"
+                id="star1"
+                name="rate"
+                value={1}
+                onChange={handleChange}
+                checked={stars == 1}
+              />
+              <label htmlFor="star1" title="text"></label>
+            </div>
+
+            <button className="submit-review">Submit</button>
+          </form>
+        )}
       </div>
     </div>
   );

@@ -41,12 +41,13 @@
 
 .spot-head-info .fa-star {
   margin-right: 3px;
-  font-size: 13px;
+  font-size: 15px;
   margin-top: 1px;
 }
 
 .new-spot {
   font-weight: 400;
+  font-size: 15px;
   display: flex;
 }
 
@@ -67,7 +68,7 @@
 }
 
 .spot-info-location {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .singlespot-photos-grid {
@@ -108,15 +109,22 @@
 }
 
 .photos-photo-box-middle {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 25%;
-  padding-left: 8px;
-  overflow: hidden;
-  left: 50%;
-  top: 0px;
-  position: absolute;
+  -webkit-box-direction: normal !important;
+  -webkit-box-orient: vertical !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: column !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  width: 25% !important;
+  padding-left: 8px !important;
+  left: 50% !important;
+  top: 0px !important;
+  position: absolute !important;
 }
 
 .photos-photo-box {
@@ -160,6 +168,7 @@
   align-items: center;
   font-family: "Figtree", sans-serif;
   border-radius: 10px;
+  font-size: 15px;
 }
 
 .spot-info-right-btn svg {

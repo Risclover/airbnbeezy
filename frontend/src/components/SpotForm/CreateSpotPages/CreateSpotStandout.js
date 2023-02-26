@@ -60,7 +60,10 @@ export default function CreateSpotStandout() {
           <div className="button-bar-step"></div>
         </div>
         <div className="button-bar-buttons-box">
-          <button className="button-bar-back" onClick={() => history.goBack()}>
+          <button
+            className="button-bar-back"
+            onClick={() => history.push("/create-spot/floorplan")}
+          >
             Back
           </button>
           {step1 === "part4" && (

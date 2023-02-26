@@ -33,6 +33,8 @@ export default function CreateSpotLocation({
   useEffect(() => {
     if (address && city && country) {
       setDone(true);
+    } else {
+      setDone(false);
     }
   }, [address, city, country]);
 
@@ -173,7 +175,7 @@ export default function CreateSpotLocation({
           <div className="button-bar-buttons-box">
             <button
               className="button-bar-back"
-              onClick={() => history.goBack()}
+              onClick={() => history.push("/create-spot/access")}
             >
               Back
             </button>

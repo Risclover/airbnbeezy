@@ -943,6 +943,10 @@ input:-webkit-autofill {
   padding: 68px 24px 8px 24px;
 }
 
+.create-spot-right h1 {
+  line-height: 30px;
+}
+
 .create-spot-header-details {
   -webkit-box-pack: justify !important;
   -webkit-box-align: center !important;
@@ -1000,7 +1004,140 @@ input:-webkit-autofill {
   font-weight: 400 !important;
 }
 
+.create-spot-access-page {
+  width: 100%;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.create-spot-access {
+  max-width: 630px;
+  width: 100%;
+}
+
+.create-spot-access-header {
+  margin-bottom: 24px;
+}
+
+.create-spot-access-header h1 {
+  margin-bottom: 0;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 30px;
+  overflow-wrap: break-word;
+}
+
+.create-spot-access-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-spot-access-listitem {
+  margin-bottom: 12px;
+}
+
+.create-spot-access-listitem-btn {
+  -webkit-box-align: start !important;
+  -webkit-box-pack: justify !important;
+  background-color: rgb(255, 255, 255) !important;
+  border: 1px solid rgb(221, 221, 221) !important;
+  box-sizing: border-box !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-height: 68px !important;
+  cursor: pointer !important;
+  padding: 0px !important;
+  outline: none !important;
+  align-items: center !important;
+  padding: 24px 16px !important;
+  text-align: left;
+  font-family: "Figtree", sans-serif;
+  display: flex;
+}
+
+.create-spot-access-listitem button:hover {
+  border-color: transparent !important;
+  box-shadow: rgb(34 34 34) 0px 0px 0px 2px !important;
+}
+
+.create-spot-access-listitem-left h2 {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.create-spot-access-listitem-left p {
+  font-size: 15px;
+  line-height: 18px;
+  color: rgb(113, 113, 113);
+  margin-top: 4px;
+}
+
+.create-spot-access-listitem-btn.access-active {
+  border-color: transparent !important;
+  box-shadow: rgb(34 34 34) 0px 0px 0px 2px !important;
+  background: #f7f7f7 !important;
+}
+
+.create-spot-access-listitem-right {
+  -webkit-box-pack: center !important;
+  -webkit-box-align: center !important;
+
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* margin-top: 24px !important; */
+}
+
+.create-spot-access-listitem-right img {
+  height: 36px;
+  width: 36px;
+}
+
 @media (min-width: 744px) {
+  .create-spot-access-listitem-left p {
+    max-width: 400px;
+  }
+
+  .create-spot-access-listitem-left h2 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .create-spot-access-listitem-right {
+    margin-right: 24px;
+  }
+
+  .create-spot-access-list {
+    margin-top: 48px;
+  }
+
+  .create-spot-access-listitem button {
+    min-height: 88px;
+    padding: 24px !important;
+  }
+
+  .create-spot-access-header h1 {
+    margin-bottom: 16px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .create-spot-access-header {
+    margin-bottom: 32px;
+  }
+
+  .create-spot-access-page {
+    padding: 0 80px;
+  }
+
   .create-spot-receipt-header {
     margin-bottom: 48px;
   }

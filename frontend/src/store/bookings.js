@@ -61,7 +61,7 @@ export default function bookingsReducer(state = initialState, action) {
         return bookings;
       }, {});
     case ADD:
-      return { ...state, bookings: { [action.bookings.id]: action.bookings } };
+      return { ...state, [action.bookings.id]: action.bookings };
     case UPDATE:
       return { ...state, bookings: { [action.bookings.id]: action.bookings } };
     case REMOVE:

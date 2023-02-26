@@ -9,8 +9,10 @@ export default function CreateSpotTitle({ title, setTitle, category }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (title) {
+    if (title.trim().length > 0) {
       setDone(true);
+    } else {
+      setDone(false);
     }
   }, [title]);
 
@@ -35,11 +37,11 @@ export default function CreateSpotTitle({ title, setTitle, category }) {
           <div className="create-spot-title-input">
             <textarea
               className="input-create-spot-title"
-              maxLength={32}
+              maxLength={50}
               onChange={(e) => setTitle(e.target.value)}
               value={title}
             ></textarea>
-            <span className="create-spot-title-chars">{title.length}/32</span>
+            <span className="create-spot-title-chars">{title.length}/50</span>
           </div>
         </div>
       </div>
@@ -67,7 +69,10 @@ export default function CreateSpotTitle({ title, setTitle, category }) {
           <div className="button-bar-step"></div>
         </div>
         <div className="button-bar-buttons-box">
-          <button className="button-bar-back" onClick={() => history.goBack()}>
+          <button
+            className="button-bar-back"
+            onClick={() => history.push("/create-spot/photos")}
+          >
             Back
           </button>
           {done && (

@@ -1,75 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import Home from "../../images/places/home.png";
+import Apartment from "../../images/places/apartment.png";
+import Barn from "../../images/places/barn.png";
+import BnB from "../../images/places/bnb.png";
+import Boat from "../../images/places/boat.png";
+import Cabin from "../../images/places/cabin.png";
+import Camper from "../../images/places/camper.png";
+import Casa from "../../images/places/casa.png";
+import Castle from "../../images/places/castle.png";
+import Cave from "../../images/places/cave.png";
+import Container from "../../images/places/container.jpg";
+import Cycladic from "../../images/places/cycladic.jpg";
+import Dome from "../../images/places/dome.jpg";
+import Dammuso from "../../images/places/dammuso.jpg";
+import EarthHome from "../../images/places/earth-home.jpg";
+import Farm from "../../images/places/farm.jpg";
+import Guesthouse from "../../images/places/guesthouse.png";
+import Hotel from "../../images/places/hotel.png";
+import Houseboat from "../../images/places/houseboat.png";
+import Mansion from "../../images/places/mansion.png";
+import Minsu from "../../images/places/minsu.jpg";
+import Riad from "../../images/places/riad.jpg";
+import Ryokan from "../../images/places/ryokan.jpg";
+import ShepherdsHut from "../../images/places/shepherds-hut.jpg";
+import Tent from "../../images/places/tent.png";
+import TinyHome from "../../images/places/tiny-home.jpg";
+import Tower from "../../images/places/tower.png";
+import Treehouse from "../../images/places/treehouse.png";
+import Trullo from "../../images/places/trullo.jpg";
+import Windmill from "../../images/places/windmill.png";
+import Yurt from "../../images/places/yurt.png";
 import "./Spots.css";
+import CategoryBtn from "./CategoryBtn";
 
-export default function SpotCategories() {
+const categories = [
+  {
+    category: "New",
+    img: "https://a0.muscache.com/pictures/c0fa9598-4e37-40f3-b734-4bd0e2377add.jpg",
+  },
+  { category: "Houses", img: Home },
+  { category: "Apartments", img: Apartment },
+  { category: "Barns", img: Barn },
+  { category: "Bed & breakfasts", img: BnB },
+  { category: "Boats", img: Boat },
+  { category: "Cabins", img: Cabin },
+  { category: "Campers", img: Camper },
+  { category: "Casa particulares", img: Casa },
+  { category: "Castles", img: Castle },
+  { category: "Caves", img: Cave },
+  { category: "Containers", img: Container },
+  { category: "Cycladic homes", img: Cycladic },
+  { category: "Dammusos", img: Dammuso },
+  { category: "Domes", img: Dome },
+  { category: "Earth homes", img: EarthHome },
+  { category: "Farms", img: Farm },
+  { category: "Guesthouses", img: Guesthouse },
+  { category: "Hotels", img: Hotel },
+  { category: "Houseboats", img: Houseboat },
+  { category: "Mansions", img: Mansion },
+  { category: "Minsus", img: Minsu },
+  { category: "Riads", img: Riad },
+  { category: "Ryokans", img: Ryokan },
+  { category: "Shepherd's huts", img: ShepherdsHut },
+  { category: "Tents", img: Tent },
+  { category: "Tiny homes", img: TinyHome },
+  { category: "Towers", img: Tower },
+  { category: "Treehouses", img: Treehouse },
+  { category: "Trullos", img: Trullo },
+  { category: "Windmills", img: Windmill },
+  { category: "Yurts", img: Yurt },
+];
+
+export default function SpotCategories({ activeCategory, setActiveCategory }) {
+  const [activeBtn, setActiveBtn] = useState();
+
+  console.log(activeCategory);
   return (
     <div className="spot-categories">
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/c0fa9598-4e37-40f3-b734-4bd0e2377add.jpg" />
-        </div>
-        <div className="category-name">New</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/248f85bf-e35e-4dc3-a9a1-e1dbff9a3db4.jpg" />
-        </div>
-        <div className="category-name">Top of the world</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/3726d94b-534a-42b8-bca0-a0304d912260.jpg" />
-        </div>
-        <div className="category-name">Trending</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/e22b0816-f0f3-42a0-a5db-e0f1fa93292b.jpg" />
-        </div>
-        <div className="category-name">Adapted</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/f0c5ca0f-5aa0-4fe5-b38d-654264bacddf.jpg" />
-        </div>
-        <div className="category-name">Play</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/51f5cf64-5821-400c-8033-8a10c7787d69.jpg" />
-        </div>
-        <div className="category-name">Hanocks</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/eb7ba4c0-ea38-4cbb-9db6-bdcc8baad585.jpg" />
-        </div>
-        <div className="category-name">Private rooms</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/78ba8486-6ba6-4a43-a56d-f556189193da.jpg" />
-        </div>
-        <div className="category-name">Mansions</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg" />
-        </div>
-        <div className="category-name">Beachfront</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/732edad8-3ae0-49a8-a451-29a8010dcc0c.jpg" />
-        </div>
-        <div className="category-name">Cabins</div>
-      </div>
-      <div className="category">
-        <div className="category-icon">
-          <img src="https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg" />
-        </div>
-        <div className="category-name">Amazing views</div>
-      </div>
+      {categories.map((category) => (
+        <CategoryBtn
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          activeBtn={activeBtn}
+          setActiveBtn={setActiveBtn}
+          category={category.category}
+          img={category.img}
+        />
+      ))}
     </div>
   );
 }

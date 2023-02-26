@@ -8,15 +8,16 @@
 
 .review-form {
   display: flex;
-  width: 300px;
+  width: 100%;
   align-items: center;
   margin-top: 20px;
   flex-direction: column;
 }
 
 .reviewform-body {
-  margin: 0 auto;
-  padding-bottom: 20px;
+  padding: 50px;
+  padding-top: 0;
+  padding-bottom: 25px;
 }
 
 .review-page ul {
@@ -25,8 +26,12 @@
 .review-form textarea {
   width: 100%;
   height: 100px;
-  padding: 5px;
+  font-family: "Figtree", sans-serif;
+  padding: 10px;
   margin-bottom: 10px;
+  max-height: 60vh;
+  border-radius: 8px;
+  resize: vertical;
 }
 
 .review-form button {
@@ -84,7 +89,8 @@
 .loginform-header svg {
   font-size: 18px;
 }
-.submit-review {
+.submit-review,
+.submit-review-disabled {
   width: 100%;
   border-radius: 8px;
   outline: 0;
@@ -106,6 +112,12 @@
   ) !important;
   z-index: 1;
   position: relative;
+}
+
+.submit-review-disabled {
+  filter: grayscale(1) opacity(0.4);
+  cursor: not-allowed;
+  /* filter: brightness(0.1); */
 }
 
 .submit-review::before {

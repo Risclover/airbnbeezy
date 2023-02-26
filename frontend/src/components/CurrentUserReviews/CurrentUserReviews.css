@@ -3,16 +3,14 @@
 }
 
 .reviews-breadcrumbs {
-  font-size: 12px;
   display: flex;
   align-items: center;
-  width: min-content;
   padding: 3px;
   padding-left: 0;
-  justify-content: space-evenly;
   color: #717171;
   font-weight: 500;
   font-family: "Figtree", sans-serif;
+  margin-top: 80px;
 }
 
 .reviews-breadcrumbs svg {

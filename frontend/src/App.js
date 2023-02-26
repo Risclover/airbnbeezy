@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
@@ -13,7 +14,6 @@ import ManageListings from "./components/CurrentUserSpots/ManageListings";
 import CurrentUserReviews from "./components/CurrentUserReviews";
 import ScrollToTop from "./components/ScrollToTop";
 import CreateSpotOverview from "./components/SpotForm/CreateSpotPages/CreateSpotOverview";
-import CreateSpotCategory from "./components/SpotForm/CreateSpotPages/CreateSpotCategory";
 import CreateSpotLocation from "./components/SpotForm/CreateSpotPages/CreateSpotLocation";
 import CreateSpotFloorplan from "./components/SpotForm/CreateSpotPages/CreateSpotFloorplan";
 import CreateSpotStandout from "./components/SpotForm/CreateSpotPages/CreateSpotStandout";
@@ -23,16 +23,19 @@ import CreateSpotDescription from "./components/SpotForm/CreateSpotPages/CreateS
 import CreateSpotFinish from "./components/SpotForm/CreateSpotPages/CreateSpotFinish";
 import CreateSpotPrice from "./components/SpotForm/CreateSpotPages/CreateSpotPrice";
 import CreateSpotReceipt from "./components/SpotForm/CreateSpotPages/CreateSpotReceipt";
-import CreateSpotPublish from "./components/SpotForm/CreateSpotPages/CreateSpotPublish";
+import CreateSpotAccess from "./components/SpotForm/CreateSpotPages/CreateSpotAccess";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 function App() {
   const dispatch = useDispatch();
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [access, setAccess] = useState("");
   const [category, setCategory] = useState("");
   const [guests, setGuests] = useState(1);
   const [beds, setBeds] = useState(1);
-  const [bedrooms, setBedrooms] = useState(0);
+  const [bedrooms, setBedrooms] = useState(1);
   const [bathrooms, setBathrooms] = useState(1);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState(
@@ -54,7 +57,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterMoment}>
       <Navigation isLoaded={isLoaded} />
       <ScrollToTop />
       {isLoaded && (
@@ -91,6 +94,9 @@ function App() {
           </Route>
           <Route exact path="/create-spot/category">
             <CreateSpot category={category} setCategory={setCategory} />
+          </Route>
+          <Route exact path="/create-spot/access">
+            <CreateSpotAccess access={access} setAccess={setAccess} />
           </Route>
           <Route exact path="/create-spot/location">
             <CreateSpotLocation
@@ -171,10 +177,8 @@ function App() {
               category={category}
               bedrooms={bedrooms}
               bathrooms={bathrooms}
+              access={access}
             />
-          </Route>
-          <Route exact path="/create-spot/publish-celebration">
-            <CreateSpotPublish />
           </Route>
           <Route exact path="/spots/current">
             <ManageListings />
@@ -196,7 +200,7 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+    </LocalizationProvider>
   );
 }
 

@@ -11,6 +11,8 @@ export default function CreateSpotPrice({ price, setPrice, category }) {
   useEffect(() => {
     if (price) {
       setDone(true);
+    } else {
+      setDone(false);
     }
   });
 
@@ -106,7 +108,10 @@ export default function CreateSpotPrice({ price, setPrice, category }) {
           </div>
         </div>
         <div className="button-bar-buttons-box">
-          <button className="button-bar-back" onClick={() => history.goBack()}>
+          <button
+            className="button-bar-back"
+            onClick={() => history.push("/create-spot/finish")}
+          >
             Back
           </button>
           {done && (

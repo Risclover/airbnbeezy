@@ -8,8 +8,6 @@ export default function CategoryBtn({
   activeBtn,
   setActiveBtn,
 }) {
-  const [mouseDown, setMouseDown] = useState(false);
-  //   console.log("category:", category);
   return (
     <button
       className={

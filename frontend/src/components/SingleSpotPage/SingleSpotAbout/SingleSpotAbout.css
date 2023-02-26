@@ -308,13 +308,10 @@
 .single-spot-about-description {
   padding-top: 33px;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 24px;
   max-width: 700px;
+  color: #222;
   width: 87%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: initial;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
+  white-space: pre-wrap;
 }

@@ -82,7 +82,7 @@ export default function CreateSpot({ category, setCategory }) {
       setStep1("part2");
     }
     if (step1 === "part2") {
-      history.push("/create-spot/location");
+      history.push("/create-spot/access");
     }
   };
 

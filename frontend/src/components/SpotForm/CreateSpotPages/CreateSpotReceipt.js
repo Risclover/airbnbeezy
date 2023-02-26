@@ -16,6 +16,7 @@ export default function CreateSpotReceipt({
   city,
   state,
   price,
+  access,
   country,
   zipcode,
 }) {
@@ -23,7 +24,6 @@ export default function CreateSpotReceipt({
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.session.user);
-  const [done, setDone] = useState(false);
 
   const handleNext = async (e) => {
     e.preventDefault();
@@ -41,9 +41,9 @@ export default function CreateSpotReceipt({
       bedrooms,
       bathrooms,
       category: category,
-      lng: 1,
-      lat: 1,
       previewImage: imgUrl,
+      listed: true,
+      access: access,
     };
 
     const img = { url: imgUrl, preview: true };
@@ -79,7 +79,12 @@ export default function CreateSpotReceipt({
                 {bathrooms} baths
               </div>
             </div>
-            <div className="create-spot-receipt-description">{description}</div>
+            <div
+              className="create-spot-receipt-description"
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {description}
+            </div>
             <div className="create-spot-receipt-location">
               <h2>Location</h2>
               <h3 className="create-spot-receipt-address">

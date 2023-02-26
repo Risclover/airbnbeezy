@@ -23,9 +23,8 @@ export default function CreateSpotStandout() {
               <div className="step">Step 3</div>
               <h1>Finish up and publish</h1>
               <p>
-                Finally, you’ll choose if you'd like to start with an
-                experienced guest, then you'll set your nightly price. Answer a
-                few quick questions and publish when you're ready.
+                Finally, you'll set your nightly price. Answer a few quick
+                questions and publish when you're ready.
               </p>
             </div>
             <div className="step-page-video-box">

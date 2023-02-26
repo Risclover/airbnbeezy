@@ -138,7 +138,10 @@ export default function CreateSpotFloorplan({
           <div className="button-bar-step"></div>
         </div>
         <div className="button-bar-buttons-box">
-          <button className="button-bar-back" onClick={() => history.goBack()}>
+          <button
+            className="button-bar-back"
+            onClick={() => history.push("/create-spot/location")}
+          >
             Back
           </button>
           <button className={"button-bar-next"} onClick={handleNext}>

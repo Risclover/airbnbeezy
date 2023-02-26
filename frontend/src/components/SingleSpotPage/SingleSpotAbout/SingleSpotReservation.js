@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSpotById } from "../../../store/spots";
 import { addBooking } from "../../../store/bookings";
-
+import { isWithinInterval } from "date-fns";
+import Calendar from "./Calendar.js";
 import "./SingleSpotAbout.css";
+import "react-calendar/dist/Calendar.css";
+import CurrentUserReviews from "../../CurrentUserReviews";
 
 export default function SingleSpotReservation() {
   const dispatch = useDispatch();
+  let now = new Date();
+  const [date, onChange] = useState(now);
 
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
@@ -18,6 +22,8 @@ export default function SingleSpotReservation() {
   const [guestList, setGuestlist] = useState([]);
   const { spotId } = useParams();
   const spot = useSelector(getSpotById(spotId));
+  const currentUser = useSelector((state) => state.session.user);
+  const bookings = useSelector((state) => state.bookings);
   moment().format();
 
   const startDate = moment(checkinDate);
@@ -25,16 +31,20 @@ export default function SingleSpotReservation() {
   const diff = timeEnd.diff(startDate);
   const diffDuration = moment.duration(diff);
 
+  const disableDates = new Date("March 7, 2023 23:15:30");
+  const date1 = disableDates.getDate();
+  console.log("date1", disableDates);
+
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
 
   let count = 0;
 
-  reviews.forEach((review) => {
-    if (review) {
-      count++;
-    }
-  });
+  // reviews.forEach((review) => {
+  //   if (review) {
+  //     count++;
+  //   }
+  // });
 
   useEffect(() => {
     const gustlist = [];
@@ -57,14 +67,13 @@ export default function SingleSpotReservation() {
       endDate: checkoutDate,
       guests: guests,
     };
-    await dispatch(addBooking(payload, spot.id));
+    await dispatch(addBooking(payload, spot?.id));
   };
-
-  console.log(guests);
 
   return (
     <div className="single-spot-reservation">
       <div className="single-spot-reservation-box">
+        <Calendar />
         <div className="reservation-head">
           <div className="reservation-head-left">
             <span className="reservation-head-left-price">${spot.price}</span>{" "}

@@ -12,6 +12,8 @@ export default function CreateSpotPhotos({ category, imgUrl, setImgUrl }) {
   useEffect(() => {
     if (imgUrl) {
       setDone(true);
+    } else {
+      setDone(false);
     }
   }, [imgUrl]);
 
@@ -72,7 +74,10 @@ export default function CreateSpotPhotos({ category, imgUrl, setImgUrl }) {
           <div className="button-bar-step"></div>
         </div>
         <div className="button-bar-buttons-box">
-          <button className="button-bar-back" onClick={() => history.goBack()}>
+          <button
+            className="button-bar-back"
+            onClick={() => history.push("/create-spot/standout")}
+          >
             Back
           </button>
           {done && (

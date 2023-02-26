@@ -15,6 +15,8 @@ export default function CreateSpotDescription({
   useEffect(() => {
     if (description) {
       setDone(true);
+    } else {
+      setDone(false);
     }
   }, [description]);
 
@@ -72,7 +74,10 @@ export default function CreateSpotDescription({
           <div className="button-bar-step"></div>
         </div>
         <div className="button-bar-buttons-box">
-          <button className="button-bar-back" onClick={() => history.goBack()}>
+          <button
+            className="button-bar-back"
+            onClick={() => history.push("/create-spot/title")}
+          >
             Back
           </button>
           {done && (

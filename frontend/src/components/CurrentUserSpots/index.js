@@ -18,6 +18,7 @@ import { RiSuitcaseFill } from "react-icons/ri";
 import { ImHome } from "react-icons/im";
 import LoggedIn from "../../images/logged-in-user2.png";
 import { Helmet } from "react-helmet";
+import ListingCarousel from "./ListingCarousel";
 
 export default function CurrentUserSpots() {
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ export default function CurrentUserSpots() {
   let count = 0;
 
   spotsList.forEach((spot) => {
-    if (spot.ownerId === sessionUser?.id) {
+    if (spot.ownerId === user?.id) {
       count++;
     }
   });
@@ -250,7 +251,8 @@ export default function CurrentUserSpots() {
           )}
           <div className="user-listings">
             {count === 0 ? "" : <h2>{user?.firstName}'s listings</h2>}
-            <div className="spots">
+            <ListingCarousel spotsList={spotsList} user={user} />
+            {/* <div className="spots">
               {spotsList.map((spot) =>
                 spot.ownerId === user?.id ? (
                   <div className="outer-spot">
@@ -270,8 +272,8 @@ export default function CurrentUserSpots() {
                             </div>
                             {spot.name}
                           </li>
-                          {/* <li className="spotcard-title">{spot.name}</li> */}
-                          {/* <li className="spotcard-title">{spot.name}</li> */}
+                          <li className="spotcard-title">{spot.name}</li>
+                          <li className="spotcard-title">{spot.name}</li>
                         </ul>
                       </div>
                     </NavLink>
@@ -280,10 +282,10 @@ export default function CurrentUserSpots() {
                   ""
                 )
               )}
-            </div>
+            </div> */}
           </div>
           <div className="user-reviews">
-            <NavLink to="/reviews/current">Reviews by you</NavLink>
+            <NavLink to={`/users/${userId}/reviews`}>Reviews by you</NavLink>
           </div>
         </div>
       </div>

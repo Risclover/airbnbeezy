@@ -7,6 +7,9 @@ import { getSpotById } from "../../store/spots";
 export default function SingleSpotPhotos() {
   const { spotId } = useParams();
   const spot = useSelector(getSpotById(spotId));
+  const images = Object.values(spot.otherImages);
+
+  console.log("images:", images);
 
   return (
     <div className="singlespot-photos-grid">
@@ -15,30 +18,18 @@ export default function SingleSpotPhotos() {
       </div>
       <div className="photos-photo-box-middle">
         <div className="photos-photo-top">
-          <img
-            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-            alt="Bedroom"
-          />
+          <img src={images[2]?.url} alt="Bedroom" />
         </div>
         <div className="photos-photo-bottom">
-          <img
-            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-            alt="Bedroom"
-          />
+          <img src={images[3]?.url} alt="Bedroom" />
         </div>
       </div>
       <div className="photos-photo-box-right">
         <div className="photos-photo-top">
-          <img
-            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-            alt="Bedroom"
-          />
+          <img src={images[2]?.url} alt="Bedroom" />
         </div>
         <div className="photos-photo-bottom">
-          <img
-            src="http://cdn.home-designing.com/wp-content/uploads/2018/09/cool-chairs-for-teen-bedrooms.jpg"
-            alt="Bedroom"
-          />
+          <img src={images[3]?.url} alt="Bedroom" />
         </div>
       </div>
     </div>

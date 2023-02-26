@@ -77,7 +77,7 @@ export default function CurrentUserReviews() {
   return (
     <div className="current-user-reviews">
       <div className="reviews-breadcrumbs">
-        <NavLink to="/spots/profile">Profile</NavLink>{" "}
+        <NavLink to={`/users/${user.id}/profile`}>Profile</NavLink>{" "}
         <svg
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"
