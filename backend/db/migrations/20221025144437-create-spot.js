@@ -36,14 +36,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lat: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-      },
-      lng: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -74,6 +66,14 @@ module.exports = {
       },
       bathrooms: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      access: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      listed: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       createdAt: {

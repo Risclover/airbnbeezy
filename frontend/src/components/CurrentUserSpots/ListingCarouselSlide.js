@@ -23,7 +23,7 @@ export default function ListingCarouselSlide({ spot }) {
           {reviews.length > 3 && " (" + reviews.length + ")"}
         </p>
         <p className="carousel-title">
-          {spot.access.slice(0, 1).toUpperCase() + spot.access.slice(1)}{" "}
+          {spot.access?.slice(0, 1).toUpperCase() + spot.access?.slice(1)}{" "}
           home/apt - {spot.category}
         </p>
         <p className="carousel-title">{spot.name}</p>

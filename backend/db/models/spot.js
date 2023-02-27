@@ -35,14 +35,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lat: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      lng: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -73,6 +65,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       bathrooms: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      access: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      listed: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
     },

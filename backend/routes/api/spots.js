@@ -31,8 +31,6 @@ router.post("/", requireAuth, async (req, res) => {
     city,
     state,
     country,
-    lat,
-    lng,
     name,
     description,
     price,
@@ -41,6 +39,8 @@ router.post("/", requireAuth, async (req, res) => {
     beds,
     bedrooms,
     bathrooms,
+    access,
+    listed,
   } = req.body;
 
   // Identify current user
@@ -58,8 +58,6 @@ router.post("/", requireAuth, async (req, res) => {
     city: city,
     state: state,
     country: country,
-    lat: lat,
-    lng: lng,
     name: name,
     description: description,
     price: price,
@@ -68,6 +66,8 @@ router.post("/", requireAuth, async (req, res) => {
     beds: beds,
     bedrooms: bedrooms,
     bathrooms: bathrooms,
+    access: access,
+    listed: listed,
   });
 
   res.json(createdSpot);
@@ -133,7 +133,17 @@ router.get("/", async (req, res) => {
       raw: true,
     });
 
-    console.log(previewImage);
+    const otherImages = await SpotImage.findAll({
+      where: {
+        preview: false,
+        spotId: spot.id,
+      },
+      raw: true,
+    });
+
+    spot.otherImages = otherImages;
+
+    console.log(spot.otherImages);
 
     if (previewImage !== null) {
       spot.previewImage = previewImage.url;
@@ -200,6 +210,16 @@ router.get("/current", async (req, res) => {
     });
 
     spot.previewImage = previewImage.url;
+
+    const otherImages = await SpotImage.findAll({
+      where: {
+        preview: false,
+        spotId: spot.id,
+      },
+      raw: true,
+    });
+
+    console.log("OTHER IMAGES:", otherImages);
 
     // Remove avgRating if page or size exists
     const reviews = await Review.findAll({
@@ -311,8 +331,6 @@ router.put("/:spotId", async (req, res, next) => {
     city,
     state,
     country,
-    lat,
-    lng,
     name,
     description,
     price,
@@ -321,6 +339,8 @@ router.put("/:spotId", async (req, res, next) => {
     beds,
     bedrooms,
     bathrooms,
+    access,
+    listed,
   } = req.body;
 
   const correctSpot = await Spot.findByPk(spotId);
@@ -339,8 +359,6 @@ router.put("/:spotId", async (req, res, next) => {
     city: city,
     state: state,
     country: country,
-    lat: lat,
-    lng: lng,
     name: name,
     description: description,
     price: price,
@@ -349,6 +367,8 @@ router.put("/:spotId", async (req, res, next) => {
     beds: beds,
     bedrooms: bedrooms,
     bathrooms: bathrooms,
+    access: access,
+    listed: listed,
   });
 
   res.json(correctSpot);
@@ -471,7 +491,7 @@ router.post("/:spotId/reviews", validateReview, async (req, res, next) => {
 // Create a booking from a spot based on the spot's id
 router.post("/:spotId/bookings", async (req, res) => {
   const { spotId } = req.params;
-  const { startDate, endDate } = req.body;
+  const { startDate, endDate, guests } = req.body;
 
   const spot = await Spot.findByPk(spotId);
 

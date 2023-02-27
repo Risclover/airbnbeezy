@@ -21,6 +21,26 @@ const validateReview = [
   handleValidationErrors,
 ];
 
+// Get all reviews
+router.get("/", async (req, res) => {
+  const allReviews = await Review.findAll();
+
+  const reviewsList = [];
+  allReviews.forEach((review) => {
+    reviewsList.push(review.toJSON());
+  });
+
+  const user = await User.findOne({
+    where: {
+      id: req.user.id,
+    },
+  });
+
+  user.reviews = reviewsList;
+
+  res.json({ Reviews: reviewsList });
+});
+
 // Get all Reviews of the Current User
 router.get("/current", async (req, res) => {
   const allReviews = await Review.findAll({
