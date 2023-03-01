@@ -1,39 +1,62 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getSpotById } from "../../../store/spots";
-import { addBooking } from "../../../store/bookings";
+import { useHistory, useParams } from "react-router-dom";
+import { getAllSpots, getSpotById } from "../../../store/spots";
+import {
+  addBooking,
+  getBookings,
+  getBookingsByOwnerId,
+  getBookingsBySpotId,
+} from "../../../store/bookings";
 import { isWithinInterval } from "date-fns";
 import Calendar from "./Calendar.js";
 import "./SingleSpotAbout.css";
 import "react-calendar/dist/Calendar.css";
 import CurrentUserReviews from "../../CurrentUserReviews";
+import { getUsers } from "../../../store/users";
 
 export default function SingleSpotReservation() {
   const dispatch = useDispatch();
-  let now = new Date();
-  const [date, onChange] = useState(now);
+  const history = useHistory();
 
+  const [booked, setBooked] = useState(false);
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
-  const [guests, setGuests] = useState(0);
-  const [days, setDays] = useState(0);
+  const [guests, setGuests] = useState(1);
   const [guestList, setGuestlist] = useState([]);
   const { spotId } = useParams();
   const spot = useSelector(getSpotById(spotId));
   const currentUser = useSelector((state) => state.session.user);
-  const bookings = useSelector((state) => state.bookings);
+  const bookings = useSelector((state) => Object.values(state.bookings));
   moment().format();
 
+  useEffect(() => {
+    dispatch(getBookings());
+    dispatch(getAllSpots());
+    dispatch(getUsers());
+  }, []);
+
+  useEffect(() => {
+    for (let booking of bookings) {
+      let today = new Date();
+      let startDate = new Date(booking.startDate);
+      let endDate = new Date(booking.endDate);
+
+      if (booking.userId === currentUser.id && booking.spotId === +spotId) {
+        if (
+          today.getTime() > startDate.getTime() &&
+          today.getTime() < endDate.getTime()
+        ) {
+          setBooked(true);
+        }
+      }
+    }
+  }, [booked]);
   const startDate = moment(checkinDate);
   const timeEnd = moment(checkoutDate);
   const diff = timeEnd.diff(startDate);
   const diffDuration = moment.duration(diff);
-
-  const disableDates = new Date("March 7, 2023 23:15:30");
-  const date1 = disableDates.getDate();
-  console.log("date1", disableDates);
 
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
@@ -68,12 +91,16 @@ export default function SingleSpotReservation() {
       guests: guests,
     };
     await dispatch(addBooking(payload, spot?.id));
+    await dispatch(getAllSpots());
+    await dispatch(getBookings());
+    await dispatch(getUsers());
+    history.push("/my-bookings");
   };
 
   return (
     <div className="single-spot-reservation">
       <div className="single-spot-reservation-box">
-        <Calendar />
+        {/* <Calendar /> */}
         <div className="reservation-head">
           <div className="reservation-head-left">
             <span className="reservation-head-left-price">${spot.price}</span>{" "}
@@ -100,7 +127,6 @@ export default function SingleSpotReservation() {
                 type="date"
                 onChange={(e) => {
                   setCheckinDate(e.target.value);
-                  console.log(checkinDate);
                 }}
                 value={checkinDate}
                 className="input-group-input-left"
@@ -119,7 +145,7 @@ export default function SingleSpotReservation() {
             </div>
           </div>
           <div className="input-group-two">
-            <label className="input-label">Guests</label>
+            <label className="input-label-guests">Guests</label>
             <select
               className="reservation-form-guests"
               onChange={(e) => setGuests(e.target.value)}
@@ -130,9 +156,22 @@ export default function SingleSpotReservation() {
               ))}
             </select>
           </div>
-          <button className="reservation-form-submit" onClick={handleBooking}>
-            Reserve
-          </button>
+          {booked && (
+            <div className="reservation-btn">
+              <button className="reservation-form-submit" disabled>
+                Reserve
+              </button>
+              <span className="reservation-error">
+                You've already booked this location. You may book again once
+                your booking has lapsed.
+              </span>
+            </div>
+          )}
+          {!booked && (
+            <button className="reservation-form-submit" onClick={handleBooking}>
+              Reserve
+            </button>
+          )}
           {/* <p className="no-charge">Feature coming soon.</p> */}
           <div className="reservation-fees">
             <div className="fee">

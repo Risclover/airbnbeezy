@@ -1,5 +1,7 @@
 .spots-div {
-  padding: 30px 35px;
+  padding: 30px 40px;
+  max-width: 2500px;
+  margin: 0 auto;
 }
 .spot-info {
   padding-top: 7px;
@@ -9,14 +11,16 @@
 }
 
 .spots-body {
+  height: max-content;
   margin-top: 80px;
+  min-height: 120%;
 }
 
 .spot-box {
-  /* max-width: 350px; */
-  /* max-height: 450px; */
-  /* width: 100%;
-  height: 100%; */
+  max-width: 350px;
+  max-height: 450px;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 20/19;
 }
 
@@ -57,8 +61,30 @@
 }
 
 .spotcard-location {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 600;
   margin-bottom: 2px;
+  margin-top: 5px;
+}
+
+.spotcard-location-left {
+  width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.spotcard-location-right {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.spotcard-location-right svg {
+  margin-right: 5px;
+  font-size: 16px;
 }
 
 .spotcard-subinfo {
@@ -93,10 +119,13 @@
   top: 60px;
   height: 98px;
   background: white;
-  z-index: 1;
+  z-index: 8;
+  margin: 0 auto;
   margin-top: 75px;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
+  /* max-width: 2500px; */
+  display: none;
   transition: box-shadow 0.2s ease;
 }
 
@@ -107,8 +136,9 @@
   max-width: 2500px;
   background: white;
   padding: 0 80px;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   padding-bottom: 0;
+  z-index: 99;
 }
 
 .bottom-border {
@@ -122,11 +152,12 @@
   opacity: 0.6;
   padding-bottom: 10px;
   transition: opacity 0.5s ease;
-  padding-top: 40px;
+  padding-top: 30px;
   border-bottom: 2px solid transparent;
   background-color: white;
   height: auto;
   outline: none;
+  width: max-content;
   border-color: transparent;
 }
 
@@ -136,12 +167,12 @@
 
 .category.category-clicked {
   opacity: 1;
-  border-bottom: 2px solid #434343;
+  border-bottom: 2px solid black;
 }
 
 .category.category-clicked:hover {
   transform: scale(1);
-  border-bottom-color: #434343;
+  border-bottom-color: #717171;
   cursor: default;
 }
 
@@ -153,15 +184,18 @@
 
 .category-icon img {
   width: 24px;
-  height: 26px;
+  height: 24px;
 }
 
 .category-name {
   font-size: 12px;
   font-family: "Figtree", sans-serif;
-  margin-top: 6px;
+  margin-top: 8px;
+  word-break: nowrap;
+  overflow-wrap: nowrap;
   font-weight: 600;
-  color: #434343;
+  min-width: 50px;
+  color: black;
 }
 
 .category:hover {
@@ -172,32 +206,67 @@
 
 .category:active,
 .category-focus {
-  border-bottom: 2px solid #434343;
+  border-bottom-color: rgb(223, 223, 223);
+}
+
+@media (min-width: 2200px) {
+  .spots-categories-bar {
+    display: flex;
+  }
 }
 
 @media (min-width: 1880px) {
   .spots-list {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+
+  .spots-div {
+    padding: 30px 40px !important;
+  }
 }
 
 @media (min-width: 1640px) and (max-width: 1879px) {
   .spots-list {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    padding-left: 40px;
-    padding-right: 40px;
+    /* padding-left: 40px;
+    padding-right: 40px; */
+  }
+
+  .spots-div {
+    padding: 30px 40px !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .spots-div {
+    padding: 30px 80px;
+  }
+
+  .spot-categories {
+    padding: 0 80px !important;
+    overflow-x: hidden;
   }
 }
 
 @media (min-width: 1128px) and (max-width: 1639px) {
+  .spots-categories-bar {
+    overflow-x: scroll;
+  }
   .spots-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding-left: 0;
     padding-right: 0;
   }
+
+  .spot-categories {
+    padding: 0 40px;
+  }
 }
 
 @media (min-width: 950px) and (max-width: 1127px) {
+  .spots-categories-bar {
+    overflow-x: scroll;
+  }
   .spots-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     padding-left: 0;
@@ -205,7 +274,16 @@
   }
 }
 
+@media (min-width: 744px) {
+  .spot-categories {
+    padding: 0 40px;
+  }
+}
+
 @media (min-width: 550px) and (max-width: 949px) {
+  .spots-categories-bar {
+    overflow-x: scroll;
+  }
   .spots-list {
     grid-template-columns: auto auto;
     padding-left: 0;
@@ -214,6 +292,9 @@
 }
 
 @media (min-width: 1px) and (max-width: 549px) {
+  .spots-categories-bar {
+    overflow-x: scroll;
+  }
   .spots-list {
     grid-template-columns: auto;
     padding-left: 0;

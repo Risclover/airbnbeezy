@@ -25,11 +25,11 @@ function Root() {
     <Provider store={store}>
       <ModalProvider>
         <BrowserRouter>
-        <div>
-        <Route path="/">
-          <App />
-        </Route>
-      </div>
+          <div>
+            <Route path="/">
+              <App />
+            </Route>
+          </div>
         </BrowserRouter>
       </ModalProvider>
     </Provider>
@@ -40,5 +40,5 @@ ReactDOM.render(
   <React.StrictMode>
     <Root />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

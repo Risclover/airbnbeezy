@@ -52,6 +52,13 @@ export default function ProfileButton({
     <>
       <button className="open-menu" onClick={openMenu}>
         <MdMenu />
+        {currentUser !== null &&
+          usersList[currentUser?.id]?.profileImageUrl && (
+            <img
+              className="profile-menu-user-img"
+              src={usersList[currentUser?.id]?.profileImageUrl}
+            />
+          )}
         {currentUser !== null && usersList[currentUser?.id]?.userImage && (
           <img
             className="profile-menu-user-img"
@@ -61,9 +68,11 @@ export default function ProfileButton({
         {currentUser === null && (
           <img className="open-menu-circle" src={LoggedOut} />
         )}
-        {currentUser !== null && !usersList[currentUser?.id]?.userImage && (
-          <img className="open-menu-circle" src={LoggedIn} />
-        )}
+        {currentUser !== null &&
+          !usersList[currentUser?.id]?.userImage &&
+          !usersList[currentUser?.id]?.profileImageUrl && (
+            <img className="open-menu-circle" src={LoggedIn} />
+          )}
       </button>
       {showMenu &&
         (user ? (
@@ -76,12 +85,15 @@ export default function ProfileButton({
             </div>
             <div className="profile-dropdown-top">
               <ul className="profile-dropdown-ul">
-                <NavLink to="/spots/current">
+                <NavLink to="/my-listings">
                   <li>Manage listings</li>
                 </NavLink>
-                <li onClick={() => setShowCreateModal(true)}>
-                  Airbnbeezy your home
-                </li>{" "}
+                <NavLink to="/my-bookings">
+                  <li>Manage bookings</li>
+                </NavLink>
+                <NavLink to="/create-spot">
+                  <li>Airbnbeezy your home</li>
+                </NavLink>
                 <NavLink to={`/users/${currentUser.id}/profile`}>
                   <li>Profile</li>
                 </NavLink>

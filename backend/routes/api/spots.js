@@ -518,6 +518,7 @@ router.post("/:spotId/bookings", async (req, res) => {
     },
     raw: true,
   });
+
   const errors = {};
   for (let booking of allBookings) {
     const currentStartDate = new Date(booking.startDate);
@@ -544,6 +545,8 @@ router.post("/:spotId/bookings", async (req, res) => {
     endDate: endDate,
     guests: guests,
   });
+
+  newBooking.spot = spot;
 
   res.json(newBooking);
 });

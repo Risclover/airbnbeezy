@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Countries from "../../../APIs/countries.json";
 import "./CreateSpot.css";
 import { addSpot } from "../../../store/spots";
+import SpotMap from "../../SingleSpotPage/SpotMap";
 
 export default function CreateSpotLocation({
   address,
@@ -46,8 +47,8 @@ export default function CreateSpotLocation({
   console.log("category:", category);
 
   return (
-    <div className="create-spot-location">
-      <div className="create-spot-location-page">
+    <div className="create-spot-location-page">
+      <div className="create-spot-location">
         <Helmet>
           <title>Enter the location - Airbnbeezy</title>
         </Helmet>
@@ -142,6 +143,9 @@ export default function CreateSpotLocation({
             </div>
             <div className="create-spot-field spot-field-last">
               <select onChange={(e) => setCountry(e.target.value)}>
+                <option defaultValue selected disabled>
+                  Choose country
+                </option>
                 {Countries.map((country) => (
                   <option value={country.name}>
                     {country.name} - {country.iso2}
@@ -155,6 +159,15 @@ export default function CreateSpotLocation({
               </label>
             </div>
           </form>
+          <div className="create-spot-location-spot-map">
+            <SpotMap
+              city={city}
+              country={country}
+              state={state}
+              width="100%"
+              height="280px"
+            />
+          </div>
         </div>
         <div className="create-spot-button-bar">
           <div className="button-bar-step-bars">

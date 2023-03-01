@@ -2,9 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { addSpot, addImage, getAllSpots } from "../../../store/spots";
+import { addSpotImg } from "../../../store/spot-images";
+import {
+  addSpot,
+  addImage,
+  getAllSpots,
+  addPreviewImage,
+} from "../../../store/spots";
 export default function CreateSpotReceipt({
   imgUrl,
+  imgUrl2,
+  imgUrl3,
+  imgUrl4,
+  imgUrl5,
   title,
   description,
   category,
@@ -24,9 +34,15 @@ export default function CreateSpotReceipt({
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.users[currentUser.id]);
 
   const handleNext = async (e) => {
     e.preventDefault();
+    const img = { url: imgUrl, preview: true };
+    const img2 = { url: imgUrl2, preview: false };
+    const img3 = { url: imgUrl3, preview: false };
+    const img4 = { url: imgUrl4, preview: false };
+    const img5 = { url: imgUrl5, preview: false };
     const payload = {
       name: title,
       description,
@@ -42,15 +58,27 @@ export default function CreateSpotReceipt({
       bathrooms,
       category: category,
       previewImage: imgUrl,
+      otherImages: [imgUrl2, imgUrl3, imgUrl4, imgUrl5],
       listed: true,
       access: access,
     };
 
-    const img = { url: imgUrl, preview: true };
     const data = await dispatch(addSpot(payload));
     dispatch(getAllSpots());
-    await dispatch(addImage(img, data));
-    history.push("/");
+    await dispatch(addPreviewImage(img, data));
+    await dispatch(
+      addSpotImg({ url: imgUrl2, preview: false, spotId: data.id })
+    );
+    await dispatch(
+      addSpotImg({ url: imgUrl3, preview: false, spotId: data.id })
+    );
+    await dispatch(
+      addSpotImg({ url: imgUrl4, preview: false, spotId: data.id })
+    );
+    await dispatch(
+      addSpotImg({ url: imgUrl5, preview: false, spotId: data.id })
+    );
+    history.push("/my-listings");
   };
   return (
     <div className="create-spot-receipt-page">
@@ -71,12 +99,18 @@ export default function CreateSpotReceipt({
           <div className="create-spot-right">
             <h1>{title}</h1>
             <div className="create-spot-header-details">
-              <h2>
-                {category} hosted by {currentUser.firstName}
-              </h2>
-              <div className="create-spot-header-subtitle">
-                {guests} guests - {bedrooms} bedrooms - {beds} beds -{" "}
-                {bathrooms} baths
+              <div className="create-spot-header-details-left">
+                <h2>
+                  {category} hosted by {currentUser.firstName}
+                </h2>
+                <div className="create-spot-header-subtitle">
+                  {guests} guests - {bedrooms} bedrooms - {beds} beds -{" "}
+                  {bathrooms} baths
+                </div>
+              </div>
+
+              <div className="create-spot-user-img">
+                <img src={user?.userImage} />
               </div>
             </div>
             <div

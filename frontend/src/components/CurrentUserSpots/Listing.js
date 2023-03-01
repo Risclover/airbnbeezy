@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpot, getAllSpots } from "../../store/spots";
-import EditSpot from "../SpotForm/EditSpot/EditSpot";
+import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
 import { Modal } from "../../context/Modal";
 
 import "./CurrentUserSpots.css";

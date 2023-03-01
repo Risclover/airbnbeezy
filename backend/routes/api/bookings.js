@@ -2,6 +2,18 @@ const express = require("express");
 const { Spot, SpotImage, Booking } = require("../../db/models");
 const router = express.Router();
 
+// Get all bookings
+router.get("/", async (req, res) => {
+  const bookings = await Booking.findAll();
+
+  let bookingsList = [];
+  bookings.forEach((booking) => {
+    bookingsList.push(booking.toJSON());
+  });
+
+  res.json({ Bookings: bookingsList });
+});
+
 // Get all of the current user's bookings
 router.get("/current", async (req, res) => {
   const currentUserId = req.user.id;
@@ -25,8 +37,6 @@ router.get("/current", async (req, res) => {
         "city",
         "state",
         "country",
-        "lat",
-        "lng",
         "name",
         "price",
       ],
@@ -117,7 +127,8 @@ router.put("/:bookingId", async (req, res, next) => {
 
 // Delete a Booking
 router.delete("/:bookingId", async (req, res, next) => {
-  const booking = await Booking.findByPk(req.params.bookingId);
+  const { bookingId } = req.params;
+  const booking = await Booking.findByPk(bookingId);
 
   if (!booking) {
     res.status(404);
@@ -128,22 +139,26 @@ router.delete("/:bookingId", async (req, res, next) => {
   }
 
   const startDateObj = new Date(booking.startDate);
+  const endDateObj = new Date(booking.endDate);
   const now = Date.now();
 
-  if (startDateObj < now) {
-    res.status(403);
-    return res.json({
-      message: "Bookings that have been started can't be deleted",
-      statusCode: 403,
-    });
-  }
+  // if (startDateObj < now && endDateObj > now) {
+  //   res.status(403);
+  //   return res.json({
+  //     message: "Bookings that have been started can't be deleted",
+  //     statusCode: 403,
+  //   });
+  // }
 
   await booking.destroy();
 
-  res.json({
-    message: "Successfully deleted",
-    statusCode: 200,
-  });
+  res
+    .json({
+      message: "Successfully deleted",
+      booking: booking,
+      statusCode: 200,
+    })
+    .status(200);
 });
 
 module.exports = router;

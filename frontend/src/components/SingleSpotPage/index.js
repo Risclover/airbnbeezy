@@ -4,12 +4,14 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { getSpotById, deleteSpot, getAllSpots } from "../../store/spots";
 
 import "./SingleSpotPage.css";
-import EditSpot from "../SpotForm/EditSpot/EditSpot";
+import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
 import SingleSpotHead from "./SingleSpotHead";
 import SingleSpotPhotos from "./SingleSpotPhotos";
 import SingleSpotReviews from "./SingleSpotReviews";
 import SingleSpotAbout from "./SingleSpotAbout/SingleSpotAbout";
 import { Helmet } from "react-helmet";
+import SpotMap from "./SpotMap";
+import { getSpotImgs } from "../../store/spot-images";
 
 export default function SingleSpotPage() {
   const [editSpotId, setEditSpotId] = useState(null);
@@ -27,6 +29,7 @@ export default function SingleSpotPage() {
   useEffect(() => {
     setEditSpotId(null);
     dispatch(getAllSpots());
+    dispatch(getSpotImgs());
   }, [dispatch, setEditSpotId]);
 
   const nav = document.querySelector(".nav");
@@ -68,6 +71,19 @@ export default function SingleSpotPage() {
       {/* <SingleSpotReservation /> */}
       <SingleSpotAbout spot={spot} />
       <SingleSpotReviews count={count} spot={spot} />
+      <div className="embed-map-box">
+        <h2>Where you'll be</h2>
+        <p>
+          {spot.city}, {spot.state ? spot.state + ", " : ""} {spot.country}
+        </p>
+        <SpotMap
+          city={spot?.city}
+          state={spot?.state}
+          country={spot?.country}
+          width="1120px"
+          height="480px"
+        />
+      </div>
     </div>
   );
 }

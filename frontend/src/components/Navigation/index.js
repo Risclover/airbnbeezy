@@ -46,9 +46,9 @@ function Navigation({ isLoaded, scroll }) {
             <img className="site-logo" alt="Site logo" src={Logo} />
           </Link>
         </div>
-        <div className="nav-center">
+        {/* <div className="nav-center">
           <SearchBar />
-        </div>
+        </div> */}
         <div className="nav-right">
           {sessionUser !== null ? (
             <button

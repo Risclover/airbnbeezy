@@ -11,7 +11,7 @@ import { getUserReviews } from "../../store/reviews";
 import { Modal } from "../../context/Modal";
 import { updateUser } from "../../store/users";
 import "./CurrentUserSpots.css";
-import EditSpot from "../SpotForm/EditSpot/EditSpot";
+import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
 import IdentityModal from "./IdentityModal";
 import { getUsers } from "../../store/users";
 import { RiSuitcaseFill } from "react-icons/ri";
@@ -72,7 +72,8 @@ export default function CurrentUserSpots() {
     .then((response) => console.log(response))
     .catch((err) => console.error(err));
 
-  let userImg = user?.userImage;
+  let userImg = user?.profileImageUrl;
+  let userImg2 = user?.userImage;
 
   let reviewCount = reviews.length;
   console.log("REVIEW COUNT:", reviewCount);
@@ -110,8 +111,9 @@ export default function CurrentUserSpots() {
       </Helmet>
       <div className="user-info-side">
         <div className="user-image">
-          {user?.userImage && <img src={userImg} />}
-          {!user?.userImage && <img src={LoggedIn} />}
+          {user?.profileImageUrl && <img src={userImg} />}
+          {user?.userImage && <img src={userImg2} />}
+          {!user?.userImage && !user?.profileImageUrl && <img src={LoggedIn} />}
         </div>
         <ul className="user-bullets">
           <li className="user-reviews">

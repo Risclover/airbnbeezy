@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { BiMinus } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
+import { Helmet } from "react-helmet";
 import "./CreateSpot.css";
 
 export default function CreateSpotFloorplan({
@@ -21,9 +22,13 @@ export default function CreateSpotFloorplan({
     e.preventDefault();
     history.push("/create-spot/standout");
   };
+  console.log("category:", category);
 
   return (
     <div className="create-spot-floorplan-page">
+      <Helmet>
+        <title>Select the total guests - Airbnbeezy</title>
+      </Helmet>
       <div className="create-spot-floorplan">
         <div className="create-spot-floorplan-header">
           <h1>Share some basics about your place</h1>

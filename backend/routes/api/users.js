@@ -2,7 +2,8 @@ const express = require("express");
 const { setTokenCookie } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { requireAuth } = require("../../utils/auth");
-
+const { singlePublicFileUpload } = require("../../awsS3");
+const { singleMulterUpload } = require("../../awsS3");
 const { handleValidationErrors } = require("../../utils/validation");
 // ...
 const { User, UserImage, Spot, Review } = require("../../db/models");
@@ -33,24 +34,32 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-// Sign up
-router.post("/", validateSignup, async (req, res) => {
-  const { email, password, username, firstName, lastName } = req.body;
-  let user = await User.signup({
-    email,
-    username,
-    firstName,
-    lastName,
-    password,
-  });
+// Post /api/users ---Sign up
+router.post(
+  "/",
+  singleMulterUpload("image"),
+  validateSignup,
+  async (req, res) => {
+    const { email, password, username, firstName, lastName } = req.body;
+    const profileImageUrl = await singlePublicFileUpload(req.file);
+    const user = await User.signup({
+      username,
+      email,
+      password,
+      firstName,
+      lastName,
+      profileImageUrl,
+    });
 
-  await setTokenCookie(res, user);
-  user = user.toJSON();
+    user.userImage = profileImageUrl;
 
-  delete user.updatedAt;
+    setTokenCookie(res, user);
 
-  return res.json({ user });
-});
+    return res.json({
+      user,
+    });
+  }
+);
 
 // Get users
 router.get("/", async (req, res, next) => {
@@ -138,8 +147,6 @@ router.get("/:userId/reviews", async (req, res, next) => {
         "city",
         "state",
         "country",
-        "lat",
-        "lng",
         "name",
         "price",
       ],

@@ -27,6 +27,11 @@ nav {
 
 .no-hover {
   cursor: default !important;
+  background: white;
+}
+
+.no-hover:hover {
+  background: white !important;
 }
 
 ul,

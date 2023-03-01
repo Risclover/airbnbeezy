@@ -99,19 +99,36 @@
 .reservation-form select {
   border: 1px solid #b5b5b5;
   outline: none;
+  width: 100%;
 }
 
 .reservation-form-top {
   display: flex;
   margin-top: 25px;
+  width: 100%;
 }
 
-.input-group,
+.input-group {
+  position: relative;
+  width: 50%;
+}
+
 .input-group-two {
+  width: 100%;
   position: relative;
 }
 
 .input-label {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-family: "Figtree", sans-serif;
+  font-weight: 700;
+  position: absolute;
+  top: 14px;
+  left: 12px;
+}
+
+.input-label-guests {
   text-transform: uppercase;
   font-size: 10px;
   font-family: "Figtree", sans-serif;
@@ -122,24 +139,32 @@
 }
 
 .input-group-input-left {
+  width: 100%;
   border-top-left-radius: 8px;
-  padding: 20px 10px 15px 10px !important;
+  padding: 25px 5px 10px 10px !important;
+  margin-top: 5px;
+  font-family: "Figtree", sans-serif;
 }
 
 .input-group-input-right {
+  font-family: "Figtree", sans-serif;
   border-radius: 0;
+  margin-top: 5px;
+  margin-bottom: -5px;
   border-top-right-radius: 8px;
-  padding: 20px 10px 15px 10px;
-  margin-left: -1px;
+  padding: 25px 5px 10px 10px;
+  /* margin-left: -1px; */
+  border-left: none !important;
+  width: 100% !important;
 }
 
 .reservation-form-guests {
-  width: calc(100% - 1px);
+  width: 100%;
   font-family: "Figtree", sans-serif;
-  padding: 22px 20px 15px 9px !important;
+  padding: 22px 5px 10px 7px !important;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  margin-top: -1px;
+  margin-top: -2px;
 }
 
 .input-group-two .input-label {
@@ -147,6 +172,21 @@
   z-index: 3;
 }
 
+.reservation-btn {
+  text-align: center;
+}
+
+.reservation-form-submit:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+  margin-bottom: 3px;
+}
+
+.reservation-error {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
 .reservation-form-submit {
   margin-top: 15px;
   width: 100%;
@@ -181,8 +221,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-size: 17px;
-  font-weight: 300 !important;
+  font-size: 16px;
+  font-weight: 400 !important;
   margin-top: 25px;
   border-bottom: 1px solid #c5c5c5;
   padding-bottom: 10px;
@@ -198,6 +238,8 @@
 
 .fees-left {
   text-decoration: underline;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .total-fees {
@@ -215,10 +257,10 @@
 }
 
 .single-spot-about-rooms {
-  font-size: 17px;
+  font-size: 16px;
   display: flex;
   align-items: center;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .fa-circle {
@@ -277,10 +319,10 @@
 }
 
 .single-spot-about-aircover p {
-  font-size: 17px;
+  font-size: 16px;
   color: #222;
   margin-top: 20px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 20px;
   margin-bottom: 18px;
 }
@@ -307,8 +349,8 @@
 
 .single-spot-about-description {
   padding-top: 33px;
-  font-weight: 300;
-  font-size: 17px;
+  font-weight: 400;
+  font-size: 16px;
   line-height: 24px;
   max-width: 700px;
   color: #222;

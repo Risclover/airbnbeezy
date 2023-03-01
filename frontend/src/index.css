@@ -16,10 +16,12 @@ html {
   line-height: 18px;
   font-size: 14px;
   position: relative;
+  height: max-content;
 }
 
 #root {
   position: relative;
+  height: max-content;
 }
 
 button {

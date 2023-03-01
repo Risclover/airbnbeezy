@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import "swiper/css";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
 import Home from "../../images/places/home.png";
 import Apartment from "../../images/places/apartment.png";
 import Barn from "../../images/places/barn.png";

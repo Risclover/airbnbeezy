@@ -4,6 +4,7 @@ const initialState = {};
 
 const ADD = "spots/ADD";
 const ADD_IMAGE = "spots/ADD_IMAGE";
+const ADD_IMG = "spots/ADD_IMG";
 const POPULATE = "spots/POPULATE";
 const UPDATE = "spots/UPDATE";
 const REMOVE = "spots/REMOVE";
@@ -13,8 +14,14 @@ const add = (spots) => ({
   spots,
 });
 
-const addSpotImg = (img, spot) => ({
+const addPreviewImg = (img, spot) => ({
   type: ADD_IMAGE,
+  img,
+  spot,
+});
+
+const addImg = (img, spot) => ({
+  type: ADD_IMG,
   img,
   spot,
 });
@@ -97,6 +104,22 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   }
 };
 
+export const addPreviewImage = (payload, spot) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    const img = await response.json();
+    dispatch(addPreviewImg(img, spot));
+    return img;
+  }
+};
+
 export const addImage = (payload, spot) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
     method: "POST",
@@ -108,7 +131,7 @@ export const addImage = (payload, spot) => async (dispatch) => {
 
   if (response.ok) {
     const img = await response.json();
-    dispatch(addSpotImg(img, spot));
+    dispatch(addImg(img, spot));
     return img;
   }
 };
@@ -128,6 +151,14 @@ export default function spotsReducer(state = initialState, action) {
       return {
         ...state,
         [action.spot.id]: { ...action.spot, previewImage: action.img.url },
+      };
+    case ADD_IMG:
+      return {
+        ...state,
+        [action.spot.id]: {
+          ...action.spot,
+          otherImages: [...action.spot.otherImages, action.img.url],
+        },
       };
     case REMOVE:
       let removeState = { ...state };

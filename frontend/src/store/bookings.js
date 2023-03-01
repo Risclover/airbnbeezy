@@ -32,10 +32,19 @@ const populate = (bookings) => {
   };
 };
 
-export const getBookings = (state) => Object.values(state.bookings);
+// export const getBookings = (state) => Object.values(state.bookings);
 export const getBookingById = (id) => (state) => state.bookings[id];
 export const getBookingsByOwnerId = (ownerId) => (state) =>
   state.bookings[ownerId];
+
+export const getBookings = () => async (dispatch) => {
+  const response = await csrfFetch("/api/bookings");
+  if (response.ok) {
+    const bookings = await response.json();
+    dispatch(populate(bookings));
+    return bookings;
+  }
+};
 
 export const addBooking = (formData, spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/bookings/`, {
@@ -53,6 +62,21 @@ export const addBooking = (formData, spotId) => async (dispatch) => {
   }
 };
 
+export const deleteBooking = (bookingId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    const booking = await response.json();
+    dispatch(remove(bookingId));
+    console.log("booking info:", booking);
+    return booking;
+  }
+};
+
 export default function bookingsReducer(state = initialState, action) {
   switch (action.type) {
     case POPULATE:
@@ -66,7 +90,7 @@ export default function bookingsReducer(state = initialState, action) {
       return { ...state, bookings: { [action.bookings.id]: action.bookings } };
     case REMOVE:
       let removeState = { ...state };
-      delete removeState[action.itemId];
+      delete removeState[action.bookingId];
       return removeState;
     default:
       return state;

@@ -24,7 +24,7 @@ export default function SingleSpotAboutHeader({ spot }) {
             ? access + " room in "
             : access}{" "}
           {spot.category.toLowerCase()} hosted by{" "}
-          {usersList[spot.ownerId]?.username}
+          {usersList[spot.ownerId]?.firstName}
         </h2>
         <div className="single-spot-about-rooms">
           {spot.guests === 1 ? spot.guests + " guest" : spot.guests + " guests"}{" "}

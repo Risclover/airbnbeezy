@@ -325,19 +325,21 @@
   text-overflow: ellipsis;
   /* width: 100%; */
   -webkit-box-orient: vertical;
+  text-align: left;
   -webkit-line-clamp: 1;
 }
-.swiper {
+.user-carousel .swiper {
   height: min-content;
   position: relative;
 }
 
-.swiper-wrapper {
+.user-carousel .swiper-wrapper {
   /* height: 300px; */
   width: 100%;
+  /* height: auto; */
 }
 
-.swiper-slide {
+.user-carousel .swiper-slide {
   margin: 5px;
   border-radius: 12px;
 }
@@ -393,18 +395,18 @@
   right: -8px !important;
 }
 
-.swiper-img {
+.user-carousel .swiper-img {
   width: 300px;
   height: 200px;
   border-radius: 12px;
   object-fit: cover;
 }
 
-.swiper-button-prev {
+.user-carousel .swiper-button-prev {
   background: red;
 }
 
-.swiper-slide {
+.user-carousel .swiper-slide {
   width: 306px !important;
   /* height: 280px !important; */
   position: relative;

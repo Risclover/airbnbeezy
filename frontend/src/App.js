@@ -10,7 +10,7 @@ import CurrentUserSpots from "./components/CurrentUserSpots";
 import Spots from "./components/Spots";
 import CreateSpot from "./components/SpotForm/CreateSpotPages/CreateSpot";
 import ReviewPage from "./components/ReviewPage";
-import ManageListings from "./components/CurrentUserSpots/ManageListings";
+import ManageListings from "./components/ManageListings/ManageListings";
 import CurrentUserReviews from "./components/CurrentUserReviews";
 import ScrollToTop from "./components/ScrollToTop";
 import CreateSpotOverview from "./components/SpotForm/CreateSpotPages/CreateSpotOverview";
@@ -26,6 +26,8 @@ import CreateSpotReceipt from "./components/SpotForm/CreateSpotPages/CreateSpotR
 import CreateSpotAccess from "./components/SpotForm/CreateSpotPages/CreateSpotAccess";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import EditSpot from "./components/SpotForm/EditSpot/EditSpot";
+import ManageBookings from "./components/ManageBookings/ManageBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +51,10 @@ function App() {
   const [state, setState] = useState("");
   const [price, setPrice] = useState(0);
   const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl2, setImgUrl2] = useState("");
+  const [imgUrl3, setImgUrl3] = useState("");
+  const [imgUrl4, setImgUrl4] = useState("");
+  const [imgUrl5, setImgUrl5] = useState("");
   const [step, setStep] = useState(1);
   const [part, setPart] = useState(1);
 
@@ -136,6 +142,14 @@ function App() {
               category={category}
               imgUrl={imgUrl}
               setImgUrl={setImgUrl}
+              imgUrl2={imgUrl2}
+              imgUrl3={imgUrl3}
+              imgUrl4={imgUrl4}
+              imgUrl5={imgUrl5}
+              setImgUrl2={setImgUrl2}
+              setImgUrl3={setImgUrl3}
+              setImgUrl4={setImgUrl4}
+              setImgUrl5={setImgUrl5}
             />
           </Route>
           <Route exact path="/create-spot/title">
@@ -180,8 +194,14 @@ function App() {
               access={access}
             />
           </Route>
-          <Route exact path="/spots/current">
+          <Route exact path="/spots/:spotId/edit">
+            <EditSpot />
+          </Route>
+          <Route exact path="/my-listings">
             <ManageListings />
+          </Route>
+          <Route exact path="/my-bookings">
+            <ManageBookings />
           </Route>
           <Route exact path="/users/:userId/profile">
             <CurrentUserSpots />

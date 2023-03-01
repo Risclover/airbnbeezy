@@ -1,0 +1,263 @@
+.manage-bookings-page {
+  margin-top: 100px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.manage-bookings {
+  padding: 40px 64px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.manage-bookings-header {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.manage-bookings h1 {
+  font-size: 24px;
+  line-height: 28px;
+  flex-grow: 1;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.manage-bookings-create-listing-btn {
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: "Figtree", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  height: 40px;
+}
+
+.manage-bookings-create-listing-btn:hover {
+  background: #f7f7f7;
+}
+
+.manage-bookings-create-listing-btn svg {
+  margin-right: 8px;
+  font-size: 12px;
+}
+
+.bookings-table {
+  width: calc(100% - 24px);
+  border-collapse: collapse;
+  margin-top: 70px;
+}
+
+.bookings-table tr {
+  border-bottom: 1px solid #ebebeb;
+}
+
+.bookings-table tbody tr:hover {
+  border-radius: 8px;
+  background: #f7f7f7;
+  border-top-color: #f7f7f7;
+  box-shadow: -12px 0 0 0 #f7f7f7, 12px 0 0 0 #f7f7f7;
+}
+
+.bookings-table th:hover,
+.bookings-table thead:hover {
+  background: white;
+}
+
+.bookings-table th,
+.bookings-table td {
+  /* border: 1px solid black; */
+  padding: 8px;
+  text-align: left;
+}
+
+.bookings-table td {
+  padding: 16px 8px;
+}
+
+.bookings-table-img {
+  min-width: 56px;
+  height: 40px;
+  width: 56px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.column-type-1 {
+  min-width: 300px;
+}
+
+.column-type-2 {
+  min-width: 200px;
+}
+
+.column-type-3 {
+  min-width: 100px;
+}
+
+.listing-cell {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content flex-start; */
+  /* font-size: 14px; */
+  font-weight: 700;
+  width: 100%;
+  word-break: break-word;
+  margin-bottom: 0px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* display: -webkit-box; */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.edit-column {
+  width: 30px;
+  color: #222;
+  font-size: 15px;
+}
+
+.edit-column-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.edit-column svg {
+  cursor: pointer;
+}
+
+.listing-cell img {
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+.list-status-green svg,
+.list-status-red svg {
+  font-size: 10px;
+  margin-right: 8px;
+}
+
+.bookings-table button,
+.bookings-table th {
+  background: transparent;
+  border-color: transparent;
+  font-family: "Figtree", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #717171;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 6px;
+  margin: -6px;
+}
+
+.bookings-table-head-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 1px solid red;
+}
+
+.bookings-table-head-btn svg {
+  margin-left: 10px;
+  color: #ddd;
+}
+
+.table-sort-head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.table-sort-head svg {
+  margin-left: 8px;
+  font-size: 12px;
+  color: rgb(221, 221, 221);
+}
+
+.sort-icons.icon-black svg {
+  color: black !important;
+}
+
+.contact-host-col svg {
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.contact-host-col {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+
+  /* width: 150px; */
+  text-align: left;
+}
+
+.contact-host-btn {
+  cursor: pointer;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-host-btn svg {
+  margin-right: 10px;
+}
+
+.bookings-table td:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+
+.booking-spot-img {
+  min-width: 56px;
+  height: 40px;
+  width: 56px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 12px;
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+.booking-name-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.bookings-table a {
+  width: 100%;
+}
+
+.delete-booking-btn {
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.delete-booking-btn svg {
+  font-size: 20px;
+}

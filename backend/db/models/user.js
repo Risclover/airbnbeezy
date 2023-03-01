@@ -5,8 +5,9 @@ const { Model, Validator } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      const { id, username, email, firstName, lastName } = this;
-      return { id, username, email, firstName, lastName };
+      const { id, username, email, firstName, lastName, profileImageUrl } =
+        this;
+      return { id, username, email, firstName, lastName, profileImageUrl };
     }
 
     validatePassword(password) {
@@ -32,7 +33,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password, firstName, lastName }) {
+    static async signup({
+      username,
+      email,
+      password,
+      firstName,
+      lastName,
+      profileImageUrl,
+    }) {
       const hashedPassword = bcrypt.hashSync(password);
 
       const user = await User.create({
@@ -41,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
         username,
         email,
         hashedPassword,
+        profileImageUrl,
       });
       return await User.scope("currentUser").findByPk(user.id);
     }
@@ -100,6 +109,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       work: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      profileImageUrl: {
+        type: DataTypes.TEXT,
         allowNull: true,
       },
     },

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
+
 function SignupFormPage({ setShowModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -12,20 +13,24 @@ function SignupFormPage({ setShowModal }) {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [image, setImage] = useState(null);
+
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const user = useSelector((state) => state.session.user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signup({
+        sessionActions.createUser({
           email,
           username,
           password,
           firstName,
           lastName,
+          image,
         })
       )
         .then(() => setShowModal(false))
@@ -38,6 +43,12 @@ function SignupFormPage({ setShowModal }) {
       "Confirm Password field must be the same as the Password field",
     ]);
   };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
+
   return (
     <div className="loginform-container">
       <div className="loginform-header">
@@ -102,11 +113,25 @@ function SignupFormPage({ setShowModal }) {
             required
             id="signup-password"
           />
-
+          <label>
+            <input type="file" onChange={updateFile} />
+          </label>
           <button className="login-btn" type="submit">
             Sign Up
           </button>
         </form>
+        <div>
+          {user && (
+            <div>
+              <h1>{user.username}</h1>
+              <img
+                style={{ width: "150px" }}
+                src={user.profileImageUrl}
+                alt="profile"
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
 import { getUsers } from "../../store/users";
@@ -7,6 +7,8 @@ import SpotForm from "../SpotForm";
 import SpotCategories from "./SpotCategories";
 import "./Spots.css";
 import moment from "moment";
+import Spot from "./Spot/Spot";
+import { AiFillStar } from "react-icons/ai";
 
 export default function Spots() {
   const dispatch = useDispatch();
@@ -84,62 +86,125 @@ export default function Spots() {
       <div className="spots-div">
         <div className="spots-list">
           {activeCategory === "Ne"
-            ? spotsList.map((spot) => (
-                <Link to={`/spots/${spot.id}`} price={spot.price}>
-                  <div key={spot.id} className="spot-box">
-                    <div className="spot-img">
-                      <img src={spot.previewImage} />
-                    </div>
-                    <div className="spot-info">
-                      <ul>
-                        <li className="spotcard-location">
-                          {spot.city}, {spot.state}
-                        </li>
-                        <li className="spotcard-subinfo">
-                          Hosted by {usersList[spot.ownerId]?.username}
-                        </li>
-                        <li className="spotcard-subinfo">
-                          Added {moment(spot.createdAt).fromNow()}
-                        </li>
-                        <li className="spotcard-priceline">
-                          <span className="spotcard-price">${spot.price}</span>{" "}
-                          night
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </Link>
-              ))
+            ? spotsList.map(
+                (spot) =>
+                  spot.listed && (
+                    <NavLink to={`/spots/${spot.id}`}>
+                      <div className="spot-box">
+                        <Spot spot={spot} />
+                        <div className="spot-info">
+                          <ul>
+                            <li className="spotcard-location">
+                              <div className="spotcard-location-left">
+                                {spot.city}, {spot.state && spot.state + ", "}{" "}
+                                {spot.country}
+                              </div>
+                              <div className="spotcard-location-right">
+                                <AiFillStar />
+                                {spot.avgRating
+                                  ? parseFloat(spot?.avgRating?.toFixed(2))
+                                  : "New"}
+                              </div>
+                            </li>
+                            <li className="spotcard-subinfo">
+                              Hosted by {usersList[spot.ownerId]?.firstName}
+                            </li>
+                            <li className="spotcard-subinfo">
+                              Added {moment(spot.createdAt).fromNow()}
+                            </li>
+                            <li className="spotcard-priceline">
+                              <span className="spotcard-price">
+                                ${spot.price}
+                              </span>{" "}
+                              night
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </NavLink>
+                  )
+                // <Link to={`/spots/${spot.id}`} price={spot.price}>
+                //   <div key={spot.id} className="spot-box">
+                //     <div className="spot-img">
+                //       <img src={spot.previewImage} />
+                //     </div>
+                //     <div className="spot-info">
+                //       <ul>
+                //         <li className="spotcard-location">
+                //           {spot.city}, {spot.state}
+                //         </li>
+                //         <li className="spotcard-subinfo">
+                //           Hosted by {usersList[spot.ownerId]?.username}
+                //         </li>
+                //         <li className="spotcard-subinfo">
+                //           Added {moment(spot.createdAt).fromNow()}
+                //         </li>
+                //         <li className="spotcard-priceline">
+                //           <span className="spotcard-price">${spot.price}</span>{" "}
+                //           night
+                //         </li>
+                //       </ul>
+                //     </div>
+                //   </div>
+                // </Link>
+              )
             : spotsList
                 .filter((spot) => spot.category === activeCategory)
-                .map((spot) => (
-                  <Link to={`/spots/${spot.id}`} price={spot.price}>
-                    <div key={spot.id} className="spot-box">
-                      <div className="spot-img">
-                        <img src={spot.previewImage} />
-                      </div>
-                      <div className="spot-info">
-                        <ul>
-                          <li className="spotcard-location">
-                            {spot.city}, {spot.state}
-                          </li>
-                          <li className="spotcard-subinfo">
-                            Hosted by {usersList[spot.ownerId]?.username}
-                          </li>
-                          <li className="spotcard-subinfo">
-                            Added {moment(spot.createdAt).fromNow()}
-                          </li>
-                          <li className="spotcard-priceline">
-                            <span className="spotcard-price">
-                              ${spot.price}
-                            </span>{" "}
-                            night
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                .map(
+                  (spot) =>
+                    spot.listed && (
+                      <NavLink to={`/spots/${spot.id}`}>
+                        <div className="spot-box">
+                          <Spot spot={spot} />
+                          <div className="spot-info">
+                            <ul>
+                              <li className="spotcard-location">
+                                {spot.city}, {spot.state}
+                              </li>
+                              <li className="spotcard-subinfo">
+                                Hosted by {usersList[spot.ownerId]?.username}
+                              </li>
+                              <li className="spotcard-subinfo">
+                                Added {moment(spot.createdAt).fromNow()}
+                              </li>
+                              <li className="spotcard-priceline">
+                                <span className="spotcard-price">
+                                  ${spot.price}
+                                </span>{" "}
+                                night
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </NavLink>
+                    )
+                    // <Link to={`/spots/${spot.id}`} price={spot.price}>
+                    //   <div key={spot.id} className="spot-box">
+                    //     <div className="spot-img">
+                    //       <img src={spot.previewImage} />
+                    //     </div>
+                    //     <div className="spot-info">
+                    //       <ul>
+                    //         <li className="spotcard-location">
+                    //           {spot.city}, {spot.state}
+                    //         </li>
+                    //         <li className="spotcard-subinfo">
+                    //           Hosted by {usersList[spot.ownerId]?.username}
+                    //         </li>
+                    //         <li className="spotcard-subinfo">
+                    //           Added {moment(spot.createdAt).fromNow()}
+                    //         </li>
+                    //         <li className="spotcard-priceline">
+                    //           <span className="spotcard-price">
+                    //             ${spot.price}
+                    //           </span>{" "}
+                    //           night
+                    //         </li>
+                    //       </ul>
+                    //     </div>
+                    //   </div>
+                    // </Link>
+                )}
         </div>
       </div>
     </div>

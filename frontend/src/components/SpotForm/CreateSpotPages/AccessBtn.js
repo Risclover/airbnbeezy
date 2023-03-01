@@ -4,7 +4,6 @@ import "./CreateSpot.css";
 export default function AccessBtn({
   access,
   setAccess,
-  active,
   setActive,
   title,
   desc,
@@ -14,8 +13,6 @@ export default function AccessBtn({
   const handleClick = (e) => {
     setActive(title);
     setAccess(accessCode);
-    console.log("title:", title);
-    console.log("access:", access);
   };
   return (
     <div className="create-spot-access-listitem">
