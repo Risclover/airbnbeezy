@@ -16,6 +16,7 @@
 .signup-form select {
   margin-top: 5px;
   padding: 5px;
+  border-radius: 8px;
 }
 
 .signup-form button {
@@ -31,6 +32,7 @@
 #signup-password {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .loginform-content input {
@@ -40,4 +42,11 @@
 .signup-close {
   background: none;
   border: 0;
+}
+
+.user-input-img input {
+  margin-top: 10px;
+  border-radius: 8px;
+  width: 100%;
+  font-family: "Figtree", sans-serif;
 }

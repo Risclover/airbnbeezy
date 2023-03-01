@@ -43,7 +43,7 @@ export default function SingleSpotReservation() {
       let startDate = new Date(booking.startDate);
       let endDate = new Date(booking.endDate);
 
-      if (booking.userId === currentUser.id && booking.spotId === +spotId) {
+      if (booking?.userId === currentUser?.id && booking?.spotId === +spotId) {
         if (
           today.getTime() > startDate.getTime() &&
           today.getTime() < endDate.getTime()

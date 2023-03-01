@@ -37,6 +37,11 @@
   outline: none;
 }
 
+.user-img-input {
+  border-radius: 8px;
+  width: 100%;
+}
+
 .loginform-input-top {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -118,8 +123,10 @@
   display: flex;
   align-items: center;
   width: 100%;
+  margin: 20px 0;
   justify-content: space-evenly;
-  padding: 20px 0;
+  /* padding: 20px 0 */
+  word-break: unset !important;
 }
 
 .side-or {

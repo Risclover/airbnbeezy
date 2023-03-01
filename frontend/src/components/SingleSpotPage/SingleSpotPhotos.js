@@ -18,10 +18,10 @@ export default function SingleSpotPhotos() {
       </div>
       <div className="photos-photo-box-middle">
         <div className="photos-photo-top">
-          <img src={images[2]?.url} alt="Bedroom" />
+          <img src={images[0]?.url} alt="Bedroom" />
         </div>
         <div className="photos-photo-bottom">
-          <img src={images[3]?.url} alt="Bedroom" />
+          <img src={images[1]?.url} alt="Bedroom" />
         </div>
       </div>
       <div className="photos-photo-box-right">
