@@ -2,33 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./CreateSpot.css";
-import EditSpotPhotos from "../EditSpot/EditSpotPhotos";
 
-export default function CreateSpotPhotos({
-  category,
-  imgUrl,
-  imgUrl2,
-  imgUrl3,
-  imgUrl4,
-  imgUrl5,
-  setImgUrl,
-  setImgUrl2,
-  setImgUrl3,
-  setImgUrl4,
-  setImgUrl5,
-}) {
+export default function CreateSpotPhotos({ category, imgUrl, setImgUrl }) {
   const history = useHistory();
 
   const [step1, setStep1] = useState("part5");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (imgUrl && imgUrl2 && imgUrl3 && imgUrl4 && imgUrl5) {
+    if (imgUrl) {
       setDone(true);
     } else {
       setDone(false);
     }
-  }, [imgUrl, imgUrl2, imgUrl3, imgUrl4, imgUrl5]);
+  }, [imgUrl]);
 
   console.log("category:", category);
 
@@ -45,11 +32,21 @@ export default function CreateSpotPhotos({
         <div className="create-spot-photos-header">
           <h1>Add some photos of your {category.toLowerCase()}</h1>
           <p>
-            You'll need at least 5 photos to get started. You can add more or
+            You'll need at least 1 photo to get started. You can add more or
             make changes later.
           </p>
         </div>
-        <EditSpotPhotos />
+        <label for="input-spot-photo">
+          <div className="create-spot-photos-input">
+            <input
+              id="input-spot-photo"
+              className="input-create-spot-photo"
+              onChange={(e) => setImgUrl(e.target.value)}
+              value={imgUrl}
+              type="text"
+            />
+          </div>
+        </label>
       </div>
       <div className="create-spot-button-bar">
         <div className="button-bar-step-bars">

@@ -2,19 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { addSpotImg } from "../../../store/spot-images";
-import {
-  addSpot,
-  addImage,
-  getAllSpots,
-  addPreviewImage,
-} from "../../../store/spots";
+import { addSpot, addImage, getAllSpots } from "../../../store/spots";
 export default function CreateSpotReceipt({
   imgUrl,
-  imgUrl2,
-  imgUrl3,
-  imgUrl4,
-  imgUrl5,
   title,
   description,
   category,
@@ -38,11 +28,6 @@ export default function CreateSpotReceipt({
 
   const handleNext = async (e) => {
     e.preventDefault();
-    const img = { url: imgUrl, preview: true };
-    const img2 = { url: imgUrl2, preview: false };
-    const img3 = { url: imgUrl3, preview: false };
-    const img4 = { url: imgUrl4, preview: false };
-    const img5 = { url: imgUrl5, preview: false };
     const payload = {
       name: title,
       description,
@@ -58,27 +43,15 @@ export default function CreateSpotReceipt({
       bathrooms,
       category: category,
       previewImage: imgUrl,
-      otherImages: [imgUrl2, imgUrl3, imgUrl4, imgUrl5],
       listed: true,
       access: access,
     };
 
+    const img = { url: imgUrl, preview: true };
     const data = await dispatch(addSpot(payload));
     dispatch(getAllSpots());
-    await dispatch(addPreviewImage(img, data));
-    await dispatch(
-      addSpotImg({ url: imgUrl2, preview: false, spotId: data.id })
-    );
-    await dispatch(
-      addSpotImg({ url: imgUrl3, preview: false, spotId: data.id })
-    );
-    await dispatch(
-      addSpotImg({ url: imgUrl4, preview: false, spotId: data.id })
-    );
-    await dispatch(
-      addSpotImg({ url: imgUrl5, preview: false, spotId: data.id })
-    );
     history.push("/my-listings");
+    await dispatch(addImage(img, data));
   };
   return (
     <div className="create-spot-receipt-page">
