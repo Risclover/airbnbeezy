@@ -81,7 +81,6 @@ const categories = [
 export default function SpotCategories({ activeCategory, setActiveCategory }) {
   const [activeBtn, setActiveBtn] = useState();
 
-  console.log(activeCategory);
   return (
     <div className="spot-categories">
       {categories.map((category) => (

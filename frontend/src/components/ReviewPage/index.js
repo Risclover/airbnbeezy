@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import "./ReviewPage.css";
 
 import { addReview, getSpotReviews } from "../../store/reviews";
-import { getSpotById, getAllSpots } from "../../store/spots";
+import { getAllSpots } from "../../store/spots";
 
 export default function ReviewPage({ spot, setShowReviewModal }) {
   const { spotId } = useParams();
@@ -13,7 +13,6 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
@@ -24,8 +23,6 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
       count += 1;
     }
   });
-
-  console.log("count:", count);
 
   useEffect(() => {
     const errors = [];

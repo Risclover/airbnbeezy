@@ -3,26 +3,31 @@ import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getAllSpots, getSpotById } from "../../../store/spots";
-import {
-  addBooking,
-  getBookings,
-  getBookingsByOwnerId,
-  getBookingsBySpotId,
-} from "../../../store/bookings";
-import { isWithinInterval } from "date-fns";
-import Calendar from "./Calendar.js";
+import { addBooking, getBookings } from "../../../store/bookings";
 import "./SingleSpotAbout.css";
 import "react-calendar/dist/Calendar.css";
-import CurrentUserReviews from "../../CurrentUserReviews";
 import { getUsers } from "../../../store/users";
 import { Modal } from "../../../context/Modal";
-import LoginForm from "../../LoginFormModal/LoginForm";
 import AuthModal from "../../LoginFormModal/AuthModal";
+import PriceModal from "./PriceModal";
+
+function getDates(startDate, stopDate) {
+  var dateArray = [];
+  var currentDate = moment(startDate);
+  var stopDate = moment(stopDate);
+  while (currentDate <= stopDate) {
+    dateArray.push(moment(currentDate).format("M/D/YYYY"));
+    currentDate = moment(currentDate).add(1, "days");
+  }
+  return dateArray;
+}
 
 export default function SingleSpotReservation() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [dates, setDates] = useState([]);
+  const [showPriceModal, setShowPriceModal] = useState(false);
   const [login, setLogin] = useState(false);
   const [errors, setErrors] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -42,6 +47,10 @@ export default function SingleSpotReservation() {
     dispatch(getAllSpots());
     dispatch(getUsers());
   }, []);
+
+  useEffect(() => {
+    setDates(getDates(checkinDate, checkoutDate));
+  }, [checkinDate, checkoutDate]);
 
   useEffect(() => {
     for (let booking of bookings) {
@@ -101,11 +110,8 @@ export default function SingleSpotReservation() {
         endDate: checkoutDate,
         guests: guests,
       };
-      const data = await dispatch(addBooking(payload, spot?.id));
 
-      if (data) {
-        console.log("data:", data);
-      }
+      await dispatch(addBooking(payload, spot?.id));
       await dispatch(getAllSpots());
       await dispatch(getBookings());
       await dispatch(getUsers());
@@ -119,7 +125,9 @@ export default function SingleSpotReservation() {
         {/* <Calendar /> */}
         <div className="reservation-head">
           <div className="reservation-head-left">
-            <span className="reservation-head-left-price">${spot.price}</span>{" "}
+            <span className="reservation-head-left-price">
+              ${spot.price.toLocaleString()}
+            </span>{" "}
             night
           </div>
           <div className="reservation-head-right">
@@ -231,13 +239,27 @@ export default function SingleSpotReservation() {
           {/* <p className="no-charge">Feature coming soon.</p> */}
           <div className="reservation-fees">
             <div className="fee">
-              <div className="fees-left">
-                ${spot.price} x {diffDuration.days() ? diffDuration.days() : 0}{" "}
-                nights
+              <div
+                className="fees-left"
+                onClick={() => setShowPriceModal(true)}
+              >
+                ${spot.price.toLocaleString()} x{" "}
+                {diffDuration.days() ? diffDuration.days() : 0} nights
               </div>
               <div className="fees-right">
-                ${spot.price * diffDuration.days()}
+                ${(spot.price * diffDuration.days()).toLocaleString()}
               </div>
+              {showPriceModal && (
+                <Modal onClose={() => setShowPriceModal(false)}>
+                  <PriceModal
+                    startDate={checkinDate}
+                    endDate={checkoutDate}
+                    setShowPriceModal={setShowPriceModal}
+                    dates={dates}
+                    price={spot.price}
+                  />
+                </Modal>
+              )}
             </div>
             <div className="fee">
               <div className="fees-left">Cleaning fee</div>
@@ -251,7 +273,7 @@ export default function SingleSpotReservation() {
           <div className="total-fees">
             <div className="fees-left">Total before taxes</div>
             <div className="fees-right">
-              ${spot.price * diffDuration.days() + 17 + 399}
+              ${(spot.price * diffDuration.days() + 17 + 399).toLocaleString()}
             </div>
           </div>
         </div>

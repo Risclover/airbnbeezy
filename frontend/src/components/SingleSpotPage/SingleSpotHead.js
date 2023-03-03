@@ -41,9 +41,11 @@ export default function SingleSpotHead() {
           )}
 
           <div className="spot-info-spot">•</div>
-          <div className="spot-info-location">
-            {spot.city}, {spot.state ? spot.state + "," : ""} {spot.country}
-          </div>
+          <a href="#location">
+            <div className="spot-info-location">
+              {spot.city}, {spot.state ? spot.state + "," : ""} {spot.country}
+            </div>
+          </a>
         </div>
         <div className="spot-info-right">
           <button

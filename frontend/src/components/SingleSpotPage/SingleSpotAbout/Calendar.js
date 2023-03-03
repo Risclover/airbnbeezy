@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import DatePicker, { CalendarContainer } from "react-datepicker";
-import { subDays, addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Calendar.css";
 
@@ -11,9 +10,6 @@ function Calendar() {
     return (
       <div>
         <CalendarContainer className={className}>
-          {/* <div style={{ background: "#f0f0f0" }}>
-            What is your favorite day?
-          </div> */}
           <div style={{ position: "relative" }}>{children}</div>
         </CalendarContainer>
       </div>

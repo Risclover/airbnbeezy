@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./LoginForm.css";
 import { Modal } from "../../context/Modal";
 import SignupFormPage from "../SignupFormPage";
 
-function LoginForm({ setShowModal, login, setLogin }) {
+function LoginForm({ setShowModal, setLogin }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -33,14 +33,6 @@ function LoginForm({ setShowModal, login, setLogin }) {
     return dispatch(
       sessionActions.login({ credential: "Demolition", password: "password" })
     ).then(() => setShowModal(false));
-  };
-
-  const switchToSignup = async (e) => {
-    e.preventDefault();
-    setShowModal(false);
-    setTimeout(() => {
-      setShowSignupModal(true);
-    }, 2000);
   };
 
   return (

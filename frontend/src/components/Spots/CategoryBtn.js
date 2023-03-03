@@ -5,7 +5,6 @@ export default function CategoryBtn({
   img,
   activeBtn,
   setActiveBtn,
-  activeCategory,
   setActiveCategory,
 }) {
   const [cname, setCname] = useState("");
@@ -14,7 +13,6 @@ export default function CategoryBtn({
     e.preventDefault();
     setActiveBtn(category);
     setActiveCategory(category.slice(0, -1));
-    console.log(activeCategory);
   };
 
   useEffect(() => {

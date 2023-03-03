@@ -14,7 +14,6 @@ export default function EditSpot() {
   const { spotId } = useParams();
 
   const spot = useSelector(getSpotById(spotId));
-  console.log("spot:", spot);
 
   useEffect(() => {
     dispatch(getAllSpots());

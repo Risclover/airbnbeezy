@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { getSpots, getAllSpots } from "../../store/spots";
-import Listing from "../CurrentUserSpots/Listing";
 import { BsPlusLg, BsCircleFill } from "react-icons/bs";
 import moment from "moment";
 import "./ManageListings.css";

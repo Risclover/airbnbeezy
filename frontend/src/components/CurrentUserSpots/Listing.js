@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpot, getAllSpots } from "../../store/spots";
 import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
@@ -12,22 +12,14 @@ export default function Listing({ spot }) {
   const dispatch = useDispatch();
 
   const [style, setStyle] = useState({ display: "none" });
-  const [editSpotId, setEditSpotId] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
-
-  const spotToEdit = useSelector((state) => state.spots[editSpotId]);
 
   useEffect(() => {
     dispatch(getAllSpots());
   }, []);
 
-  useEffect(() => {
-    setEditSpotId(null);
-  }, [setEditSpotId]);
-
-  const handleEdit = (e, id) => {
+  const handleEdit = (e) => {
     e.preventDefault();
-    setEditSpotId(id);
     setShowEditModal(true);
   };
 
@@ -90,7 +82,6 @@ export default function Listing({ spot }) {
               {spot.city}, {spot.country}
             </li>
             <li className="listing-price">{spot.price}</li>
-            {/* <li className="spotcard-title">{spot.name}</li> */}
           </ul>
         </div>
       </div>

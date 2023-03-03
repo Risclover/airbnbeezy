@@ -143,8 +143,6 @@ router.get("/", async (req, res) => {
 
     spot.otherImages = otherImages;
 
-    console.log(spot.otherImages);
-
     if (previewImage !== null) {
       spot.previewImage = previewImage.url;
     }
@@ -218,8 +216,6 @@ router.get("/current", async (req, res) => {
       },
       raw: true,
     });
-
-    console.log("OTHER IMAGES:", otherImages);
 
     // Remove avgRating if page or size exists
     const reviews = await Review.findAll({

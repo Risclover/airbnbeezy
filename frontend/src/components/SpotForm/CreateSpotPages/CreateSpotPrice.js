@@ -37,8 +37,6 @@ export default function CreateSpotPrice({ price, setPrice, category }) {
     }
   };
 
-  console.log("category:", category);
-
   return (
     <div className="create-spot-price-page">
       <Helmet>

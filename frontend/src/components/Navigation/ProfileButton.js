@@ -5,16 +5,10 @@ import * as sessionActions from "../../store/session";
 import { getUsers } from "../../store/users";
 import "./Navigation.css";
 import { MdMenu } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import LoggedIn from "../../images/logged-in-user2.png";
 import LoggedOut from "../../images/logged-out-user.png";
 
-export default function ProfileButton({
-  user,
-  setLogin,
-  setShowModal,
-  setShowCreateModal,
-}) {
+export default function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
 

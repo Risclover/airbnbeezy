@@ -5,19 +5,18 @@ import { getBookings } from "../../store/bookings";
 import { getAllSpots } from "../../store/spots";
 import { getUsers } from "../../store/users";
 import "./ManageBookings.css";
-import { Modal } from "../../context/Modal";
-import ConfirmDeleteBooking from "./ConfirmDeleteBooking";
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
 
-  const [showDeleteBooking, setShowDeleteBooking] = useState(false);
   const [list, setList] = useState([]);
+  const [nameModified, setNameModified] = useState(false);
+  const [priceModified, setPriceModified] = useState(false);
   const [guestsModified, setGuestsModified] = useState(false);
   const [checkinModified, setCheckinModified] = useState(false);
   const [checkoutModified, setCheckoutModified] = useState(false);
-  const [nameModified, setNameModified] = useState(false);
   const [nameSort, setNameSort] = useState(false);
+  const [priceSort, setPriceSort] = useState(false);
   const [guestsSort, setGuestsSort] = useState(false);
   const [checkinSort, setCheckinSort] = useState(false);
   const [checkoutSort, setCheckoutSort] = useState(false);
@@ -165,6 +164,29 @@ export default function ManageBookings() {
                   onClick={sortByName}
                 >
                   Location
+                  {!nameModified && (
+                    <div className="sort-icons">
+                      <i className="fa-solid fa-sort"></i>
+                    </div>
+                  )}
+                  {nameModified && nameSort && (
+                    <div className="sort-icons icon-black">
+                      <i className="fa-solid fa-sort-up"></i>
+                    </div>
+                  )}
+                  {nameModified && !nameSort && (
+                    <div className="sort-icons icon-black">
+                      <i className="fa-solid fa-sort-down"></i>
+                    </div>
+                  )}
+                </button>
+              </th>
+              <th className="column-type-1">
+                <button
+                  className="bookings-table-head-btn"
+                  onClick={sortByName}
+                >
+                  Price
                   {!nameModified && (
                     <div className="sort-icons">
                       <i className="fa-solid fa-sort"></i>

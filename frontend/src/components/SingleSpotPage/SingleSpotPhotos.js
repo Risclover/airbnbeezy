@@ -9,8 +9,6 @@ export default function SingleSpotPhotos() {
   const spot = useSelector(getSpotById(spotId));
   const images = Object.values(spot.otherImages);
 
-  console.log("images:", images);
-
   return (
     <div className="singlespot-photos-grid">
       <div className="photos-default">

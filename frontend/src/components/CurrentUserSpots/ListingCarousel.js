@@ -1,17 +1,12 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { useSelector } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import {
-  getAllReviews,
-  getSpotReviews,
-  getUserReviews,
-} from "../../store/reviews";
+
 import ListingCarouselSlide from "./ListingCarouselSlide";
 
 export default function ListingCarousel({ spotsList, user }) {
@@ -55,7 +50,6 @@ export default function ListingCarousel({ spotsList, user }) {
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}
-        // navigation={true}
         className="mySwiper"
       >
         {Object.values(spotsList).map(
@@ -73,8 +67,7 @@ export default function ListingCarousel({ spotsList, user }) {
           className="carousel-right"
           onClick={() => {
             setPage((prev) => prev + 1);
-            console.log(page);
-            console.log("max:", maxNum);
+
             swiperRef.current?.slideNext();
           }}
         >

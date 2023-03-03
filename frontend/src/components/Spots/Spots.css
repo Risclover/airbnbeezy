@@ -17,7 +17,7 @@
 }
 
 .spot-box {
-  max-width: 350px;
+  /* max-width: 350px; */
   max-height: 450px;
   width: 100%;
   height: 100%;
@@ -280,14 +280,22 @@
   }
 }
 
-@media (min-width: 550px) and (max-width: 949px) {
-  .spots-categories-bar {
-    overflow-x: scroll;
-  }
+@media (min-width: 850px) and (max-width: 949px) {
   .spots-list {
     grid-template-columns: auto auto;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .spot-box {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 949px) {
+  .spots-categories-bar {
+    overflow-x: scroll;
   }
 }
 
@@ -299,5 +307,8 @@
     grid-template-columns: auto;
     padding-left: 0;
     padding-right: 0;
+  }
+  .spot-box {
+    margin: 0 auto;
   }
 }

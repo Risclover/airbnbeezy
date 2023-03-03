@@ -197,7 +197,6 @@ export default function EditSpotMain({ spot }) {
 
   const handleListedChange = (e) => {
     const { name } = e.target;
-    console.log("clicked", name);
 
     if (name === "listed") {
       setListed(true);

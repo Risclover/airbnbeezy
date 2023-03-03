@@ -22,7 +22,6 @@ export default function CreateSpotFloorplan({
     e.preventDefault();
     history.push("/create-spot/standout");
   };
-  console.log("category:", category);
 
   return (
     <div className="create-spot-floorplan-page">

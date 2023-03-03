@@ -88,10 +88,7 @@ export default function CreateSpot({ category, setCategory }) {
 
   const handleClick = (e) => {
     setCategory(e.target.textContent);
-    console.log("category:", category);
   };
-
-  console.log("category:", category);
 
   return (
     <div className="create-spot-page">

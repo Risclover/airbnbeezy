@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
-import {
-  getAllSpots,
-  getSpots,
-  getSpotById,
-  deleteSpot,
-} from "../../store/spots";
+import { NavLink, useParams } from "react-router-dom";
+import { getAllSpots, getSpots } from "../../store/spots";
 import { getUserReviews } from "../../store/reviews";
 import { Modal } from "../../context/Modal";
 import { updateUser } from "../../store/users";
 import "./CurrentUserSpots.css";
-import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
 import IdentityModal from "./IdentityModal";
 import { getUsers } from "../../store/users";
 import { RiSuitcaseFill } from "react-icons/ri";
@@ -54,7 +48,6 @@ export default function CurrentUserSpots() {
 
   let userDate = new Date(user?.createdAt);
   let userYear = userDate.getFullYear();
-  let userMonth = userDate.getMonth();
 
   const options = {
     method: "GET",
@@ -76,7 +69,6 @@ export default function CurrentUserSpots() {
   let userImg2 = user?.userImage;
 
   let reviewCount = reviews.length;
-  console.log("REVIEW COUNT:", reviewCount);
 
   if (!reviews) return null;
 
@@ -88,11 +80,8 @@ export default function CurrentUserSpots() {
     }
   });
 
-  // if (!user) return null;
-
   const handleUpdate = async (e) => {
     e.preventDefault();
-
     const payload = {
       id: userId,
       about: about,

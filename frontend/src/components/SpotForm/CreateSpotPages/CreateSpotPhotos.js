@@ -17,8 +17,6 @@ export default function CreateSpotPhotos({ category, imgUrl, setImgUrl }) {
     }
   }, [imgUrl]);
 
-  console.log("category:", category);
-
   const handleNext = (e) => {
     e.preventDefault();
     history.push("/create-spot/title");

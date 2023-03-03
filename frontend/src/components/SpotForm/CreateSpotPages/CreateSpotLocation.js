@@ -44,8 +44,6 @@ export default function CreateSpotLocation({
     history.push("/create-spot/floorplan");
   };
 
-  console.log("category:", category);
-
   return (
     <div className="create-spot-location-page">
       <div className="create-spot-location">

@@ -102,7 +102,7 @@ export default function Spots() {
                               <div className="spotcard-location-right">
                                 <AiFillStar />
                                 {spot.avgRating
-                                  ? parseFloat(spot?.avgRating?.toFixed(2))
+                                  ? spot?.avgRating?.toFixed(2)
                                   : "New"}
                               </div>
                             </li>
@@ -178,32 +178,32 @@ export default function Spots() {
                         </div>
                       </NavLink>
                     )
-                    // <Link to={`/spots/${spot.id}`} price={spot.price}>
-                    //   <div key={spot.id} className="spot-box">
-                    //     <div className="spot-img">
-                    //       <img src={spot.previewImage} />
-                    //     </div>
-                    //     <div className="spot-info">
-                    //       <ul>
-                    //         <li className="spotcard-location">
-                    //           {spot.city}, {spot.state}
-                    //         </li>
-                    //         <li className="spotcard-subinfo">
-                    //           Hosted by {usersList[spot.ownerId]?.username}
-                    //         </li>
-                    //         <li className="spotcard-subinfo">
-                    //           Added {moment(spot.createdAt).fromNow()}
-                    //         </li>
-                    //         <li className="spotcard-priceline">
-                    //           <span className="spotcard-price">
-                    //             ${spot.price}
-                    //           </span>{" "}
-                    //           night
-                    //         </li>
-                    //       </ul>
-                    //     </div>
-                    //   </div>
-                    // </Link>
+                  // <Link to={`/spots/${spot.id}`} price={spot.price}>
+                  //   <div key={spot.id} className="spot-box">
+                  //     <div className="spot-img">
+                  //       <img src={spot.previewImage} />
+                  //     </div>
+                  //     <div className="spot-info">
+                  //       <ul>
+                  //         <li className="spotcard-location">
+                  //           {spot.city}, {spot.state}
+                  //         </li>
+                  //         <li className="spotcard-subinfo">
+                  //           Hosted by {usersList[spot.ownerId]?.username}
+                  //         </li>
+                  //         <li className="spotcard-subinfo">
+                  //           Added {moment(spot.createdAt).fromNow()}
+                  //         </li>
+                  //         <li className="spotcard-priceline">
+                  //           <span className="spotcard-price">
+                  //             ${spot.price}
+                  //           </span>{" "}
+                  //           night
+                  //         </li>
+                  //       </ul>
+                  //     </div>
+                  //   </div>
+                  // </Link>
                 )}
         </div>
       </div>

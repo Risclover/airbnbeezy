@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SpotForm from "../SpotForm";
 
 export default function RightNav(props) {

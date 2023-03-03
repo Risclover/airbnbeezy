@@ -72,7 +72,6 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
   if (response.ok) {
     const booking = await response.json();
     dispatch(remove(bookingId));
-    console.log("booking info:", booking);
     return booking;
   }
 };

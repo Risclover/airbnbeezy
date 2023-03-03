@@ -71,6 +71,7 @@ export default function SingleSpotPage() {
       {/* <SingleSpotReservation /> */}
       <SingleSpotAbout spot={spot} />
       <SingleSpotReviews count={count} spot={spot} />
+      <a id="location"></a>
       <div className="embed-map-box">
         <h2>Where you'll be</h2>
         <p>
