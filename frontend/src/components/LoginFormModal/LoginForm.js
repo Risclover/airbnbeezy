@@ -3,13 +3,17 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 import "./LoginForm.css";
+import { Modal } from "../../context/Modal";
+import SignupFormPage from "../SignupFormPage";
 
-function LoginForm({ setShowModal }) {
+function LoginForm({ setShowModal, login, setLogin }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +33,14 @@ function LoginForm({ setShowModal }) {
     return dispatch(
       sessionActions.login({ credential: "Demolition", password: "password" })
     ).then(() => setShowModal(false));
+  };
+
+  const switchToSignup = async (e) => {
+    e.preventDefault();
+    setShowModal(false);
+    setTimeout(() => {
+      setShowSignupModal(true);
+    }, 2000);
   };
 
   return (
@@ -81,6 +93,18 @@ function LoginForm({ setShowModal }) {
             <div></div>
           </button>
         </form>
+        <p className="switch-to-signup">
+          Need an account?{" "}
+          <button className="signup-switch-btn" onClick={() => setLogin(false)}>
+            Sign up
+          </button>{" "}
+          instead.
+        </p>
+        {showSignupModal && (
+          <Modal onClose={() => setShowSignupModal(false)}>
+            <SignupFormPage setShowModal={setShowSignupModal} />
+          </Modal>
+        )}
       </div>
     </div>
   );

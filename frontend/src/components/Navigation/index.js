@@ -11,9 +11,11 @@ import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
 import SpotForm from "../SpotForm";
 import SignupFormPage from "../SignupFormPage";
+import AuthModal from "../LoginFormModal/AuthModal";
 
 function Navigation({ isLoaded, scroll }) {
   const [showModal, setShowModal] = useState(false);
+
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [login, setLogin] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
@@ -46,20 +48,20 @@ function Navigation({ isLoaded, scroll }) {
             <img className="site-logo" alt="Site logo" src={Logo} />
           </Link>
         </div>
-        {/* <div className="nav-center">
+        <div className="nav-center">
           <SearchBar />
-        </div> */}
+        </div>
         <div className="nav-right">
           {sessionUser !== null ? (
             <button
               className="switch-btn"
               onClick={() => history.push("/create-spot")}
             >
-              Airbnbeezy your home
+              Airbnbeezy your home?
             </button>
           ) : (
-            <button className="switch-btn" onClick={() => showModal(true)}>
-              Airbnbeezy your home
+            <button className="switch-btn" onClick={() => setShowModal(true)}>
+              Airbnbeezy your home?
             </button>
           )}
 
@@ -76,11 +78,11 @@ function Navigation({ isLoaded, scroll }) {
 
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            {login ? (
-              <LoginForm setShowModal={setShowModal} />
-            ) : (
-              <SignupFormPage setShowModal={setShowModal} />
-            )}
+            <AuthModal
+              setShowModal={setShowModal}
+              login={login}
+              setLogin={setLogin}
+            />
           </Modal>
         )}
       </div>

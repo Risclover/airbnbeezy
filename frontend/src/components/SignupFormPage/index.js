@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 
-function SignupFormPage({ setShowModal }) {
+function SignupFormPage({ setShowModal, login, setLogin }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -124,18 +124,13 @@ function SignupFormPage({ setShowModal }) {
             Sign Up
           </button>
         </form>
-        <div>
-          {user && (
-            <div>
-              <h1>{user.username}</h1>
-              <img
-                style={{ width: "150px" }}
-                src={user.profileImageUrl}
-                alt="profile"
-              />
-            </div>
-          )}
-        </div>
+        <p className="switch-login">
+          Already have an account?{" "}
+          <button className="switch-login-btn" onClick={() => setLogin(true)}>
+            Log in
+          </button>{" "}
+          instead.
+        </p>
       </div>
     </div>
   );

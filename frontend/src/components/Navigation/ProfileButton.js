@@ -75,7 +75,7 @@ export default function ProfileButton({
           )}
       </button>
       {showMenu &&
-        (user ? (
+        (currentUser ? (
           <div className="profile-dropdown">
             <div className="profile-dropdown-top">
               <ul className="profile-dropdown-ul">
@@ -130,7 +130,12 @@ export default function ProfileButton({
             </div>
             <div className="profile-dropdown-bottom">
               <ul className="profile-dropdown-ul">
-                <li onClick={() => history.push("/create-spot")}>
+                <li
+                  onClick={() => {
+                    setLogin(false);
+                    setShowModal(true);
+                  }}
+                >
                   Airbnbeezy your home
                 </li>
                 <li>Host an experience</li>

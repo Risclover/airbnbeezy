@@ -15,11 +15,17 @@ import "./SingleSpotAbout.css";
 import "react-calendar/dist/Calendar.css";
 import CurrentUserReviews from "../../CurrentUserReviews";
 import { getUsers } from "../../../store/users";
+import { Modal } from "../../../context/Modal";
+import LoginForm from "../../LoginFormModal/LoginForm";
+import AuthModal from "../../LoginFormModal/AuthModal";
 
 export default function SingleSpotReservation() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [login, setLogin] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [booked, setBooked] = useState(false);
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
@@ -61,14 +67,6 @@ export default function SingleSpotReservation() {
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
 
-  let count = 0;
-
-  // reviews.forEach((review) => {
-  //   if (review) {
-  //     count++;
-  //   }
-  // });
-
   useEffect(() => {
     const gustlist = [];
     if (spot?.guests > 0) {
@@ -85,16 +83,34 @@ export default function SingleSpotReservation() {
 
   const handleBooking = async (e) => {
     e.preventDefault();
-    const payload = {
-      startDate: checkinDate,
-      endDate: checkoutDate,
-      guests: guests,
-    };
-    await dispatch(addBooking(payload, spot?.id));
-    await dispatch(getAllSpots());
-    await dispatch(getBookings());
-    await dispatch(getUsers());
-    history.push("/my-bookings");
+
+    if (!currentUser) {
+      setShowModal(true);
+    } else {
+      let errors = [];
+      if (new Date(checkoutDate).getTime() < new Date(checkinDate).getTime()) {
+        errors.push("Check-out date must be after check-in date.");
+      }
+      if (!checkinDate) errors.push("Please select a check-in date.");
+      if (!checkoutDate) errors.push("Please select a check-out date.");
+
+      if (errors.length > 0) setErrors(errors);
+
+      const payload = {
+        startDate: checkinDate,
+        endDate: checkoutDate,
+        guests: guests,
+      };
+      const data = await dispatch(addBooking(payload, spot?.id));
+
+      if (data) {
+        console.log("data:", data);
+      }
+      await dispatch(getAllSpots());
+      await dispatch(getBookings());
+      await dispatch(getUsers());
+      history.push("/my-bookings");
+    }
   };
 
   return (
@@ -108,13 +124,13 @@ export default function SingleSpotReservation() {
           </div>
           <div className="reservation-head-right">
             <i className="fa-solid fa-star"></i>
-            {count === 0 ? (
+            {reviews.length <= 3 ? (
               "New"
             ) : (
               <div className="rat">
-                {Number(spot.avgRating).toFixed(1)}
+                {+spot.avgRating?.toFixed(2)}
                 <span className="dot">•</span>
-                <a href="#Reviews">{count} reviews</a>
+                <a href="#Reviews">{reviews.length} reviews</a>
               </div>
             )}
           </div>
@@ -156,7 +172,7 @@ export default function SingleSpotReservation() {
               ))}
             </select>
           </div>
-          {booked && (
+          {booked && currentUser && (
             <div className="reservation-btn">
               <button className="reservation-form-submit" disabled>
                 Reserve
@@ -167,10 +183,50 @@ export default function SingleSpotReservation() {
               </span>
             </div>
           )}
-          {!booked && (
-            <button className="reservation-form-submit" onClick={handleBooking}>
-              Reserve
-            </button>
+          {!booked && currentUser && (
+            <div className="reservation-btn">
+              <button
+                className="reservation-form-submit"
+                onClick={handleBooking}
+              >
+                Reserve
+              </button>
+              <div className="errors-box">
+                {errors.length > 0 &&
+                  errors.map((error) => (
+                    <p className="reservation-error">{error}</p>
+                  ))}
+              </div>
+            </div>
+          )}
+          {!currentUser && (
+            <div className="reservation-btn">
+              <button className="reservation-form-submit res-login" disabled>
+                Reserve
+              </button>
+              <span className="reservation-login">
+                <button
+                  className="switch-login-btn"
+                  onClick={() => {
+                    setLogin(true);
+                    setShowModal(true);
+                  }}
+                >
+                  Log in
+                </button>{" "}
+                to make a reservation.
+              </span>
+            </div>
+          )}
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              <AuthModal
+                setShowModal={setShowModal}
+                showModal={showModal}
+                login={login}
+                setLogin={setLogin}
+              />
+            </Modal>
           )}
           {/* <p className="no-charge">Feature coming soon.</p> */}
           <div className="reservation-fees">

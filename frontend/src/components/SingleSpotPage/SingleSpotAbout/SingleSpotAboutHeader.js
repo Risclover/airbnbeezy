@@ -21,7 +21,7 @@ export default function SingleSpotAboutHeader({ spot }) {
       <div className="single-spot-about-header-details">
         <h2>
           {access === "Shared" || access === "Private"
-            ? access + " room in "
+            ? access + " room in a "
             : access}{" "}
           {spot.category.toLowerCase()} hosted by{" "}
           {usersList[spot.ownerId]?.firstName}

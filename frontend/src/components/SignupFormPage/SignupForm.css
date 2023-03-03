@@ -29,6 +29,19 @@
   border-top-right-radius: 8px;
 }
 
+.switch-login {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.switch-login-btn {
+  font-family: "Figtree", sans-serif;
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
 #signup-password {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;

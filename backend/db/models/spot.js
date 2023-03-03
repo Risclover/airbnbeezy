@@ -53,6 +53,9 @@ module.exports = (sequelize, DataTypes) => {
       guests: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          min: 1,
+        },
       },
       category: {
         type: DataTypes.TEXT,

@@ -13,6 +13,7 @@ export default function SingleSpotReviews({ spot }) {
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
   const usersList = useSelector((state) => state.users);
+  const currentUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getSpotReviews(spot.id));
@@ -93,18 +94,20 @@ export default function SingleSpotReviews({ spot }) {
             <div className="reviews-head">
               <h2>
                 <i className="fa-solid fa-star"></i>
-                {Number(spot.avgRating).toFixed(1)}{" "}
+                {+spot.avgRating.toFixed(2)}
                 <span className="dot">•</span> {count} reviews
               </h2>
             </div>
           )}
 
-          <button
-            className="add-review-btn"
-            onClick={() => setShowReviewModal(true)}
-          >
-            Add Review
-          </button>
+          {currentUser && (
+            <button
+              className="add-review-btn"
+              onClick={() => setShowReviewModal(true)}
+            >
+              Add Review
+            </button>
+          )}
 
           {showReviewModal && (
             <Modal onClose={() => setShowReviewModal(false)}>

@@ -20,10 +20,12 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
 
   let count = 0;
   reviews.forEach((review) => {
-    if (review.User.id === user.id) {
-      count++;
+    if (review.userId === user.id) {
+      count += 1;
     }
   });
+
+  console.log("count:", count);
 
   useEffect(() => {
     const errors = [];
@@ -31,7 +33,9 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
       errors.push("You can't review your own listing.");
     } else {
       if (count > 0) {
-        errors.push("Sorry, you're only allowed to review a place once.");
+        errors.push(
+          "Sorry, you're only allowed to review a place once. Visit your reviews page to edit existing reviews."
+        );
       } else {
         if (stars > 5 || stars < 1) {
           errors.push("Star rating must be between 1 and 5");
@@ -160,7 +164,7 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
               </button>
             </form>
           ))}
-        {(count === 0 || spot.ownerId !== user.id) && (
+        {count === 0 && spot.ownerId !== user.id && (
           <form onSubmit={handleSubmit} className="review-form">
             <textarea
               value={review}

@@ -36,7 +36,9 @@ export default function CreateSpotFloorplan({
               {" "}
               <button
                 className="create-spot-floorplan-listitem-btn"
-                onClick={() => setGuests((prev) => (guests > 0 ? prev - 1 : 0))}
+                onClick={() =>
+                  setGuests((prev) => (guests >= 2 ? prev - 1 : 1))
+                }
               >
                 <BiMinus />
               </button>
@@ -80,7 +82,7 @@ export default function CreateSpotFloorplan({
               {" "}
               <button
                 className="create-spot-floorplan-listitem-btn"
-                onClick={() => setBeds((prev) => (beds > 0 ? prev - 1 : 0))}
+                onClick={() => setBeds((prev) => (beds >= 2 ? prev - 1 : 1))}
               >
                 <BiMinus />
               </button>

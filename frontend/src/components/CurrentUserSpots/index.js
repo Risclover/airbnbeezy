@@ -34,7 +34,7 @@ export default function CurrentUserSpots() {
   const spotsList = useSelector(getSpots);
   let reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
-  reviews = reviews.filter((review) => review.userId === sessionUser.id);
+  reviews = reviews.filter((review) => review.userId === sessionUser?.id);
   const currentUser = useSelector((state) => state.session.user);
 
   useEffect(() => {

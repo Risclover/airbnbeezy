@@ -78,6 +78,15 @@
   position: relative;
 }
 
+.signup-switch-btn {
+  font-family: "Figtree", sans-serif;
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .login-btn::before {
   background: linear-gradient(
     90deg,
@@ -164,4 +173,9 @@
 .demo-btn:hover {
   cursor: pointer;
   background-color: rgb(250, 250, 250);
+}
+
+.switch-to-signup {
+  margin-top: 20px;
+  text-align: center;
 }

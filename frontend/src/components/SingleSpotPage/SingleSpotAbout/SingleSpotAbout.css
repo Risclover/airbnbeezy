@@ -38,6 +38,10 @@
   justify-content: space-between;
 }
 
+.reservation-form-submit.res-login {
+  margin-bottom: 10px !important;
+}
+
 .single-spot-about-header h2 {
   font-size: 23px;
   font-weight: 600;
@@ -187,6 +191,11 @@
   font-size: 13px;
   text-align: center;
 }
+
+.errors-box {
+  margin-top: 5px;
+}
+
 .reservation-form-submit {
   margin-top: 15px;
   width: 100%;
