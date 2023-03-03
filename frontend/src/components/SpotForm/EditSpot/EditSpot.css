@@ -7,6 +7,14 @@
   padding-top: 80px;
 }
 
+.edit-spot-page button {
+  transition: transform 0.1s ease;
+}
+
+.edit-spot-page button:active {
+  transform: scale(0.96);
+}
+
 .edit-spot {
   -webkit-box-pack: start;
   -webkit-box-align: stretch;

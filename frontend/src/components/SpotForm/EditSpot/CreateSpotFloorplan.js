@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { BiMinus } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
@@ -13,11 +13,9 @@ export default function CreateSpotFloorplan({
   setGuests,
   setBeds,
   setBedrooms,
-  category,
   setBathrooms,
 }) {
   const history = useHistory();
-  const [step1, setStep1] = useState("part3");
   const handleNext = (e) => {
     e.preventDefault();
     history.push("/create-spot/standout");
@@ -37,7 +35,6 @@ export default function CreateSpotFloorplan({
           <div className="create-spot-floorplan-listitem">
             <div className="create-spot-floorplan-listitem-left">Guests</div>
             <div className="create-spot-floorplan-listitem-right">
-              {" "}
               <button
                 className="create-spot-floorplan-listitem-btn"
                 onClick={() => setGuests((prev) => (guests > 0 ? prev - 1 : 0))}

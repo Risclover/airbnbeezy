@@ -43,7 +43,7 @@ export default function CreateSpotReceipt({
       bathrooms,
       category: category,
       previewImage: imgUrl,
-      listed: true,
+      listed: false,
       access: access,
     };
 

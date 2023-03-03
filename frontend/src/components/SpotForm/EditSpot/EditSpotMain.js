@@ -48,7 +48,7 @@ const categories = [
   "Yurt",
 ];
 
-export default function EditSpotMain({ spot }) {
+export default function EditSpotMain({ setPhotos, spot }) {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const [name, setName] = useState(spot?.name ? spot.name : "");
@@ -252,9 +252,12 @@ export default function EditSpotMain({ spot }) {
               Photos
             </span>
           </div>
-          {/* <button className="edit-spot-main-section-edit-btn">
+          <button
+            className="edit-spot-main-section-edit-btn"
+            onClick={() => setPhotos(true)}
+          >
             Edit <RxChevronRight />
-          </button> */}
+          </button>
         </div>
         <EditSpotPhotos />
         <div className="edit-spot-main-section-photos">
@@ -843,7 +846,6 @@ export default function EditSpotMain({ spot }) {
           </div>
         </div>
       </div>
-
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">

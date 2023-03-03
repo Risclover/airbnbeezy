@@ -7,11 +7,15 @@ import { BsFillCircleFill } from "react-icons/bs";
 import "./EditSpot.css";
 import EditSpotNavbar from "./EditSpotNavbar";
 import EditSpotMain from "./EditSpotMain";
+import EditPhotos from "./Photos/EditPhotos";
+import EditPhotosNavbar from "./Photos/EditPhotosNavbar";
 
 export default function EditSpot() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { spotId } = useParams();
+
+  const [photos, setPhotos] = useState(false);
 
   const spot = useSelector(getSpotById(spotId));
 
@@ -46,8 +50,10 @@ export default function EditSpot() {
             </div>
           </div>
         </div>
-        <EditSpotNavbar />
-        <EditSpotMain spot={spot} />
+        {photos && <EditPhotosNavbar setPhotos={setPhotos} />}
+        {!photos && <EditSpotNavbar setPhotos={setPhotos} />}
+        {!photos && <EditSpotMain setPhotos={setPhotos} spot={spot} />}
+        {photos && <EditPhotos spot={spot} />}
       </div>
     </div>
   );
