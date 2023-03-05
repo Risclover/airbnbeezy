@@ -53,6 +53,12 @@ export default function EditSpotMain({
   spot,
   openListed,
   setOpenListed,
+  pricingRef,
+  propertyRef,
+  locationRef,
+  listingRef,
+  photosRef,
+  statusRef,
 }) {
   const dispatch = useDispatch();
   const { spotId } = useParams();
@@ -252,7 +258,7 @@ export default function EditSpotMain({
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span className="anchor" id="Photos">
+            <span className="anchor" ref={photosRef}>
               Photos
             </span>
           </div>
@@ -279,7 +285,7 @@ export default function EditSpotMain({
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span className="anchor" id="Listing%20basics">
+            <span className="anchor" ref={listingRef}>
               Listing basics
             </span>
           </div>
@@ -468,6 +474,7 @@ export default function EditSpotMain({
           <div
             id="Status"
             className="edit-spot-main-section-subsection status-subsection"
+            ref={statusRef}
           >
             <div className="edit-spot-main-section-subsection-heading">
               <h3>Listing status</h3>
@@ -569,7 +576,7 @@ export default function EditSpotMain({
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span className="anchor" id="Location">
+            <span className="anchor" ref={locationRef}>
               Location
             </span>
           </div>
@@ -683,7 +690,7 @@ export default function EditSpotMain({
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span className="anchor" id="Property%20and%20rooms">
+            <span className="anchor" ref={propertyRef}>
               Property and rooms
             </span>
           </div>
@@ -856,7 +863,7 @@ export default function EditSpotMain({
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span className="anchor" id="Pricing">
+            <span className="anchor" ref={pricingRef}>
               Pricing
             </span>
           </div>

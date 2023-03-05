@@ -2,16 +2,30 @@ import React, { useState } from "react";
 import "./EditSpot.css";
 import EditSpotNavItem from "./EditSpotNavItem";
 
-const navItems = [
-  { item: "Photos" },
-  { item: "Listing basics" },
-  { item: "Location" },
-  { item: "Property and rooms" },
-  { item: "Pricing" },
-];
-
-export default function EditSpotNavbar() {
+export default function EditSpotNavbar({
+  pricingRef,
+  propertyRef,
+  locationRef,
+  listingRef,
+  photosRef,
+}) {
   const [active, setActive] = useState("Photos");
+
+  const propertyScroll = () =>
+    propertyRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const locationScroll = () =>
+    locationRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const pricingScroll = () =>
+    pricingRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const listingScroll = () =>
+    listingRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const photosScroll = () => {
+    photosRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="edit-spot-navbar-wrapper">
@@ -20,20 +34,72 @@ export default function EditSpotNavbar() {
           <li className="edit-spot-navtitle">
             <p>Listing details</p>
             <ol className="edit-spot-inner-nav">
-              {navItems.map((item) => (
-                <a href={`#${item.item}`}>
-                  <li
-                    className={
-                      active === item.item
-                        ? "inner-nav-selected"
-                        : "edit-spot-navitem"
-                    }
-                    onClick={(e) => setActive(item.item)}
-                  >
-                    {item.item}
-                  </li>
-                </a>
-              ))}
+              <li
+                className={
+                  active === "Photos"
+                    ? "inner-nav-selected"
+                    : "edit-spot-navitem"
+                }
+                onClick={() => {
+                  photosScroll();
+                  setActive("Photos");
+                }}
+              >
+                Photos
+              </li>
+              <li
+                className={
+                  active === "Listing basics"
+                    ? "inner-nav-selected"
+                    : "edit-spot-navitem"
+                }
+                onClick={() => {
+                  listingScroll();
+                  setActive("Listing basics");
+                }}
+              >
+                Listing basics
+              </li>
+              <li
+                className={
+                  active === "Location"
+                    ? "inner-nav-selected"
+                    : "edit-spot-navitem"
+                }
+                onClick={() => {
+                  locationScroll();
+                  setActive("Location");
+                }}
+              >
+                Location
+              </li>
+              <li
+                className={
+                  active === "Property and rooms"
+                    ? "inner-nav-selected"
+                    : "edit-spot-navitem"
+                }
+                onClick={() => {
+                  propertyScroll();
+                  setActive("Property and rooms");
+                }}
+              >
+                Property and rooms
+              </li>
+              <li
+                className={
+                  active === "Pricing"
+                    ? "inner-nav-selected"
+                    : "edit-spot-navitem"
+                }
+                onClick={() => {
+                  pricingScroll();
+                  setActive("Pricing");
+                }}
+              >
+                Pricing
+              </li>
+
               {/* <li className="edit-spot-navitem inner-nav-selected">Photos</li>
               <li className="edit-spot-navitem">Listing basics</li>
               <li className="edit-spot-navitem">Location</li>

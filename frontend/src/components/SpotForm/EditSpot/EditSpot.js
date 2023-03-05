@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSpots, getSpotById, getSpots } from "../../../store/spots";
@@ -11,6 +11,13 @@ import EditPhotos from "./Photos/EditPhotos";
 import EditPhotosNavbar from "./Photos/EditPhotosNavbar";
 
 export default function EditSpot() {
+  const photosRef = useRef(null);
+  const listingRef = useRef(null);
+  const locationRef = useRef(null);
+  const propertyRef = useRef(null);
+  const pricingRef = useRef(null);
+  const statusRef = useRef(null);
+
   const history = useHistory();
   const dispatch = useDispatch();
   const { spotId } = useParams();
@@ -28,6 +35,10 @@ export default function EditSpot() {
     if (spot?.ownerId === currentUser.id) setIsOwner(true);
   }, []);
 
+  const statusScroll = () => {
+    statusRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="edit-spot-page">
       {isOwner && (
@@ -37,7 +48,7 @@ export default function EditSpot() {
               <h1>{spot?.name}</h1>
             </div>
             <div className="edit-spot-header-right">
-              <a href="#Status">
+              <span onClick={statusScroll}>
                 <div
                   className={
                     spot?.listed
@@ -47,7 +58,7 @@ export default function EditSpot() {
                 >
                   <BsFillCircleFill /> {spot?.listed ? "Listed" : "Unlisted"}
                 </div>
-              </a>
+              </span>
               <div className="edit-spot-preview-btn">
                 <div
                   className="edit-spot-preview"
@@ -59,13 +70,28 @@ export default function EditSpot() {
             </div>
           </div>
           {photos && <EditPhotosNavbar setPhotos={setPhotos} />}
-          {!photos && <EditSpotNavbar setPhotos={setPhotos} />}
+          {!photos && (
+            <EditSpotNavbar
+              pricingRef={pricingRef}
+              propertyRef={propertyRef}
+              locationRef={locationRef}
+              listingRef={listingRef}
+              photosRef={photosRef}
+              setPhotos={setPhotos}
+            />
+          )}
           {!photos && (
             <EditSpotMain
               openListed={openListed}
               setOpenListed={setOpenListed}
               setPhotos={setPhotos}
               spot={spot}
+              pricingRef={pricingRef}
+              propertyRef={propertyRef}
+              locationRef={locationRef}
+              listingRef={listingRef}
+              photosRef={photosRef}
+              statusRef={statusRef}
             />
           )}
           {photos && <EditPhotos spot={spot} />}

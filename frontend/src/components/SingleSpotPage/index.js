@@ -16,6 +16,9 @@ import SingleSpotHostSection from "./SingleSpotHostSection";
 
 export default function SingleSpotPage() {
   const scrollRef = useRef(null);
+  const locationRef = useRef(null);
+  const reviewsRef = useRef(null);
+
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -56,13 +59,21 @@ export default function SingleSpotPage() {
           spot.state ? spot.state + "," : ""
         } ${spot.country} - Airbnbeezy`}</title>
       </Helmet>
-      <SingleSpotHead count={count} />
+      <SingleSpotHead
+        reviewsRef={reviewsRef}
+        locationRef={locationRef}
+        count={count}
+      />
       <SingleSpotPhotos />
       {/* <SingleSpotReservation /> */}
-      <SingleSpotAbout scrollRef={scrollRef} spot={spot} />
-      <SingleSpotReviews count={count} spot={spot} />
+      <SingleSpotAbout
+        reviewsRef={reviewsRef}
+        scrollRef={scrollRef}
+        spot={spot}
+      />
+      <SingleSpotReviews reviewsRef={reviewsRef} count={count} spot={spot} />
       <a id="location"></a>
-      <div className="embed-map-box">
+      <div className="embed-map-box" ref={locationRef}>
         <h2>Where you'll be</h2>
         <p>
           {spot.city}, {spot.state ? spot.state + ", " : ""} {spot.country}

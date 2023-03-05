@@ -67,6 +67,7 @@
   margin: 0;
   margin-left: 5px !important;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .spot-head-info .fa-star {
@@ -104,6 +105,8 @@
 
 .spot-info-location {
   font-size: 15px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .singlespot-photos-grid {

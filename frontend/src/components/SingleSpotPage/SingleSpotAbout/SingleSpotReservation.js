@@ -22,7 +22,7 @@ function getDates(startDate, stopDate) {
   return dateArray;
 }
 
-export default function SingleSpotReservation() {
+export default function SingleSpotReservation({ reviewsRef }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -119,6 +119,9 @@ export default function SingleSpotReservation() {
     }
   };
 
+  const reviewsScroll = () =>
+    reviewsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
   return (
     <div className="single-spot-reservation">
       <div className="single-spot-reservation-box">
@@ -132,13 +135,17 @@ export default function SingleSpotReservation() {
           </div>
           <div className="reservation-head-right">
             {reviews.length < 3 ? (
-              <a href="#Reviews">{reviews.length} reviews</a>
+              <span onClick={reviewsScroll} className="reviews-link">
+                {reviews.length} reviews
+              </span>
             ) : (
               <div className="rat">
                 <i className="fa-solid fa-star"></i>
                 {parseFloat(spot.avgRating?.toFixed(2))}
                 <span className="dot">•</span>
-                <a href="#Reviews">{reviews.length} reviews</a>
+                <span onClick={reviewsScroll} className="grey-reviews-link">
+                  {reviews.length} reviews
+                </span>
               </div>
             )}
           </div>

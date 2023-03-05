@@ -7,7 +7,7 @@ import { getUsers } from "../../store/users";
 import { Modal } from "../../context/Modal";
 import ReviewPage from "../ReviewPage";
 
-export default function SingleSpotReviews({ spot }) {
+export default function SingleSpotReviews({ spot, reviewsRef }) {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const dispatch = useDispatch();
   let reviews = useSelector((state) => Object.values(state.reviews));
@@ -77,7 +77,7 @@ export default function SingleSpotReviews({ spot }) {
   if (!reviews) return null;
   return (
     <div className="reviews-section">
-      <span id="Reviews" className="anchor">
+      <span id="Reviews" className="anchor" ref={reviewsRef}>
         &nbsp;
       </span>
       <div className="review-stats">

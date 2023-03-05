@@ -2,7 +2,7 @@
   width: 100%;
   position: absolute;
   bottom: 0;
-  z-index: 100000;
+  z-index: 5000;
   /* border: 1px solid red; */
   display: flex;
   align-items: center;

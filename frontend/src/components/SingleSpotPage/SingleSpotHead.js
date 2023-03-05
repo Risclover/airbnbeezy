@@ -6,7 +6,7 @@ import { getSpotById, deleteSpot } from "../../store/spots";
 import { getSpotReviews } from "../../store/reviews";
 import ShareModal from "./ShareModal";
 
-export default function SingleSpotHead() {
+export default function SingleSpotHead({ reviewsRef, locationRef }) {
   const { spotId } = useParams();
   const [showShareModal, setShowShareModal] = useState(false);
   const spot = useSelector(getSpotById(spotId));
@@ -18,6 +18,13 @@ export default function SingleSpotHead() {
       count++;
     }
   });
+
+  const reviewsScroll = () =>
+    reviewsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const locationScroll = () =>
+    locationRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
   return (
     <div className="spot-head">
       <div className="spot-title">
@@ -34,18 +41,17 @@ export default function SingleSpotHead() {
               <i className="fa-solid fa-star"></i>
 
               {parseFloat(spot.avgRating?.toFixed(2)) + " • "}
-              <a className="reviews-link" href="#Reviews">
+              <span onClick={reviewsScroll} className="reviews-link">
                 {count + (count === 1 ? " review " : " reviews ")}
-              </a>
+              </span>
             </div>
           )}
 
           <div className="spot-info-spot">•</div>
-          <a href="#location">
-            <div className="spot-info-location">
-              {spot.city}, {spot.state ? spot.state + "," : ""} {spot.country}
-            </div>
-          </a>
+
+          <div className="spot-info-location" onClick={locationScroll}>
+            {spot.city}, {spot.state ? spot.state + "," : ""} {spot.country}
+          </div>
         </div>
         <div className="spot-info-right">
           <button
