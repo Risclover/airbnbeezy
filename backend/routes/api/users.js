@@ -6,7 +6,7 @@ const { singlePublicFileUpload } = require("../../awsS3");
 const { singleMulterUpload } = require("../../awsS3");
 const { handleValidationErrors } = require("../../utils/validation");
 // ...
-const { User, UserImage, Spot, Review } = require("../../db/models");
+const { User, UserImage, Spot, Review, Message } = require("../../db/models");
 const user = require("../../db/models/user");
 
 const router = express.Router();
@@ -80,6 +80,17 @@ router.get("/", async (req, res, next) => {
 
     if (userImg !== null) {
       user.userImage = userImg.url;
+    }
+
+    const receivedMsgs = await Message.findAll({
+      where: {
+        recipientId: user.id,
+      },
+      raw: true,
+    });
+
+    if (receivedMsgs !== null) {
+      user.receivedMessages = receivedMsgs;
     }
   }
 

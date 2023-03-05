@@ -20,10 +20,16 @@ module.exports = {
       senderId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Users",
+        },
       },
       recipientId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Users",
+        },
       },
       createdAt: {
         allowNull: false,

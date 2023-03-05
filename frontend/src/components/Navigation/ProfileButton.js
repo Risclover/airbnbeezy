@@ -79,6 +79,9 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
             </div>
             <div className="profile-dropdown-top">
               <ul className="profile-dropdown-ul">
+                <NavLink to="/my-messages">
+                  <li>Messages</li>
+                </NavLink>
                 <NavLink to="/my-listings">
                   <li>Manage listings</li>
                 </NavLink>

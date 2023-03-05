@@ -29,6 +29,7 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import EditSpot from "./components/SpotForm/EditSpot/EditSpot";
 import ManageBookings from "./components/ManageBookings/ManageBookings";
 import SiteFooter from "./components/SiteFooter.js/SiteFooter";
+import Messages from "./components/Messages/Messages";
 
 function App() {
   const dispatch = useDispatch();
@@ -230,6 +231,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <SingleSpotPage />
+          </Route>
+          <Route exact path="/my-messages">
+            <Messages />
           </Route>
           <Route path="/signup">
             <SignupFormPage />

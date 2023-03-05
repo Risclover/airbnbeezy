@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../store/users";
@@ -7,6 +7,7 @@ import { getAllReviews } from "../../store/reviews";
 import { AiFillStar } from "react-icons/ai";
 import { RiShieldCheckFill } from "react-icons/ri";
 import moment from "moment";
+import { createMessage } from "../../store/messages";
 
 function translateMonth(num) {
   switch (num) {
@@ -42,6 +43,12 @@ function translateMonth(num) {
 export default function SingleSpotHostSection({ spot, scrollRef }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+
+  const [content, setContent] = useState("");
+  const [senderId, setSenderId] = useState(sessionUser.id);
+  const [recipientId, setRecipientId] = useState(spot.ownerId);
+  const [seen, setSeen] = useState(false);
+
   const usersList = useSelector((state) => state.users);
   let reviews = useSelector((state) => Object.values(state.reviews));
 
@@ -53,6 +60,18 @@ export default function SingleSpotHostSection({ spot, scrollRef }) {
     dispatch(getUsers());
     dispatch(getAllReviews());
   }, []);
+
+  const handleMessage = async (e) => {
+    e.preventDefault();
+    const payload = {
+      content,
+      senderId,
+      recipientId,
+      seen,
+    };
+
+    await dispatch(createMessage(payload));
+  };
 
   return (
     <div className="host-section" ref={scrollRef}>
@@ -93,7 +112,13 @@ export default function SingleSpotHostSection({ spot, scrollRef }) {
       </div>
       <div className="host-about">{usersList[spot.ownerId]?.about}</div>
       <div className="host-section-contact-host">
-        <button className="host-section-contact-btn">Contact Host</button>
+        <textarea
+          onChange={(e) => setContent(e.target.value)}
+          value={content}
+        ></textarea>
+        <button className="host-section-contact-btn" onClick={handleMessage}>
+          Contact Host
+        </button>
       </div>
     </div>
   );

@@ -942,7 +942,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     return queryInterface.bulkDelete("Spots", {
       ownerId: {
-        [Op.in]: [1, 2, 3, 4, 5, 6, 7],
+        [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8],
       },
     });
   },
