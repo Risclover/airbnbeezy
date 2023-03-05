@@ -157,7 +157,7 @@ export default function spotsReducer(state = initialState, action) {
         ...state,
         [action.spot.id]: {
           ...action.spot,
-          otherImages: [...action.spot.otherImages, action.img.url],
+          otherImages: [action.img.url],
         },
       };
     case REMOVE:

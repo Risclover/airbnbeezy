@@ -6,7 +6,7 @@ export default function SingleSpotAboutHighlights() {
     <div className="single-spot-about-highlights">
       <div className="single-spot-about-highlight">
         <div className="single-spot-about-highlight-icon">
-          <i class="fa-solid fa-door-closed"></i>
+          <i className="fa-solid fa-door-closed"></i>
         </div>
         <div className="single-spot-about-highlight-details">
           <div className="single-spot-about-highlight-title">Self check-in</div>
@@ -17,7 +17,7 @@ export default function SingleSpotAboutHighlights() {
       </div>
       <div className="single-spot-about-highlight">
         <div className="single-spot-about-highlight-icon">
-          <i class="fa-solid fa-location-dot"></i>
+          <i className="fa-solid fa-location-dot"></i>
         </div>
         <div className="single-spot-about-highlight-details">
           <div className="single-spot-about-highlight-title">
@@ -30,7 +30,7 @@ export default function SingleSpotAboutHighlights() {
       </div>
       <div className="single-spot-about-highlight">
         <div className="single-spot-about-highlight-icon">
-          <i class="fa-solid fa-key"></i>
+          <i className="fa-solid fa-key"></i>
         </div>
         <div className="single-spot-about-highlight-details">
           <div className="single-spot-about-highlight-title">

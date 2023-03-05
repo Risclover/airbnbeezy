@@ -15,46 +15,67 @@ export default function EditSpot() {
   const dispatch = useDispatch();
   const { spotId } = useParams();
 
+  const [isOwner, setIsOwner] = useState(false);
+  const [openListed, setOpenListed] = useState(false);
+
   const [photos, setPhotos] = useState(false);
 
+  const currentUser = useSelector((state) => state.session.user);
   const spot = useSelector(getSpotById(spotId));
 
   useEffect(() => {
     dispatch(getAllSpots());
+    if (spot?.ownerId === currentUser.id) setIsOwner(true);
   }, []);
 
   return (
     <div className="edit-spot-page">
-      <div className="edit-spot">
-        <div className="edit-spot-header">
-          <div className="edit-spot-header-left">
-            <h1>{spot?.name}</h1>
-          </div>
-          <div className="edit-spot-header-right">
-            <div
-              className={
-                spot?.listed
-                  ? "edit-spot-list-status list-status-green"
-                  : "edit-spot-list-status list-status-red"
-              }
-            >
-              <BsFillCircleFill /> {spot?.listed ? "Listed" : "Unlisted"}
+      {isOwner && (
+        <div className="edit-spot">
+          <div className="edit-spot-header">
+            <div className="edit-spot-header-left">
+              <h1>{spot?.name}</h1>
             </div>
-            <div className="edit-spot-preview-btn">
-              <div
-                className="edit-spot-preview"
-                onClick={() => history.push(`/spots/${spotId}`)}
-              >
-                View listing
+            <div className="edit-spot-header-right">
+              <a href="#Status">
+                <div
+                  className={
+                    spot?.listed
+                      ? "edit-spot-list-status list-status-green"
+                      : "edit-spot-list-status list-status-red"
+                  }
+                >
+                  <BsFillCircleFill /> {spot?.listed ? "Listed" : "Unlisted"}
+                </div>
+              </a>
+              <div className="edit-spot-preview-btn">
+                <div
+                  className="edit-spot-preview"
+                  onClick={() => history.push(`/spots/${spotId}`)}
+                >
+                  View listing
+                </div>
               </div>
             </div>
           </div>
+          {photos && <EditPhotosNavbar setPhotos={setPhotos} />}
+          {!photos && <EditSpotNavbar setPhotos={setPhotos} />}
+          {!photos && (
+            <EditSpotMain
+              openListed={openListed}
+              setOpenListed={setOpenListed}
+              setPhotos={setPhotos}
+              spot={spot}
+            />
+          )}
+          {photos && <EditPhotos spot={spot} />}
         </div>
-        {photos && <EditPhotosNavbar setPhotos={setPhotos} />}
-        {!photos && <EditSpotNavbar setPhotos={setPhotos} />}
-        {!photos && <EditSpotMain setPhotos={setPhotos} spot={spot} />}
-        {photos && <EditPhotos spot={spot} />}
-      </div>
+      )}
+      {!isOwner && (
+        <div className="edit-spot-illegal">
+          <h1>You aren't the owner of this listing.</h1>
+        </div>
+      )}
     </div>
   );
 }

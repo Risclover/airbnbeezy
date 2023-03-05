@@ -1,0 +1,88 @@
+.site-footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 100000;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  background: #f7f7f7;
+  border-top: #ddd;
+}
+
+.site-footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.site-footer-right svg,
+.site-footer-right i {
+  font-size: 25px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.developer-links {
+  display: flex;
+  align-items: center;
+}
+
+.developer-link {
+  background: none;
+  cursor: pointer;
+  color: #222;
+
+  border: 0;
+  outline: 0;
+  transition: color 0.5s ease, transform 0.1s ease;
+}
+
+.developer-link:hover {
+  color: #454545;
+}
+
+.developer-link:active {
+  transform: scale(0.9);
+}
+
+.tooltip {
+  position: relative;
+  /* display: inline-block; */
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 85px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 40px;
+  font-family: "Figtree", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  left: -15px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

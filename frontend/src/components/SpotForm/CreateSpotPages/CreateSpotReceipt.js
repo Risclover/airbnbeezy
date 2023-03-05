@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { addSpot, addImage, getAllSpots } from "../../../store/spots";
+import { addSpot, addImage, getAllSpots, getSpots } from "../../../store/spots";
+import { addSpotImg } from "../../../store/spot-images";
+
 export default function CreateSpotReceipt({
   imgUrl,
   title,
@@ -19,6 +21,22 @@ export default function CreateSpotReceipt({
   access,
   country,
   zipcode,
+  setIsCreatePage,
+  setImgUrl,
+  setTitle,
+  setDescription,
+  setCategory,
+  setGuests,
+  setBeds,
+  setBedrooms,
+  setBathrooms,
+  setAddress,
+  setCity,
+  setState,
+  setCountry,
+  setPrice,
+  setAccess,
+  setZipcode,
 }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -47,12 +65,31 @@ export default function CreateSpotReceipt({
       access: access,
     };
 
-    const img = { url: imgUrl, preview: true };
     const data = await dispatch(addSpot(payload));
-    dispatch(getAllSpots());
-    history.push("/my-listings");
+    const img = { url: imgUrl, preview: true, spotId: data.id };
     await dispatch(addImage(img, data));
+    history.push("/my-listings");
+    setIsCreatePage(false);
+    setImgUrl("");
+    setTitle("");
+    setDescription(
+      "You'll always remember your time at this unique place to stay."
+    );
+    setCategory("");
+    setGuests(1);
+    setBeds(1);
+    setBedrooms(0);
+    setBathrooms(0);
+    setAddress("");
+    setCity("");
+    setState("");
+    setZipcode("");
+    setCountry("");
+    setAccess("");
+    setPrice(0);
+    await dispatch(getAllSpots());
   };
+
   return (
     <div className="create-spot-receipt-page">
       <Helmet>

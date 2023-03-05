@@ -36,6 +36,27 @@ router.get("/", async (req, res) => {
   res.json({ SpotImages: imgList });
 });
 
+// Update spot image
+router.put("/:imageId", async (req, res) => {
+  const { preview, url } = req.body;
+
+  const img = await SpotImage.findByPk(req.params.imageId);
+
+  if (!img) {
+    return res.status(404).json({
+      message: "Spot Image couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  img.update({
+    preview: preview,
+    url: url,
+  });
+
+  res.json(img);
+});
+
 // Delete spot image
 router.delete("/:imageId", async (req, res, next) => {
   const img = await SpotImage.findByPk(req.params.imageId);

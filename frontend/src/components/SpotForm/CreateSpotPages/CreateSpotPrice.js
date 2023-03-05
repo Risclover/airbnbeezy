@@ -51,7 +51,7 @@ export default function CreateSpotPrice({ price, setPrice, category }) {
           <div className="create-spot-price-input-wrapper">
             <button
               className="create-spot-price-btn"
-              onClick={() => setPrice((prev) => prev - 5)}
+              onClick={() => setPrice((prev) => (prev > 0 ? prev - 5 : 0))}
             >
               <BiMinus />
             </button>

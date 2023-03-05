@@ -28,10 +28,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import EditSpot from "./components/SpotForm/EditSpot/EditSpot";
 import ManageBookings from "./components/ManageBookings/ManageBookings";
+import SiteFooter from "./components/SiteFooter.js/SiteFooter";
 
 function App() {
   const dispatch = useDispatch();
 
+  const [isCreatePage, setIsCreatePage] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [access, setAccess] = useState("");
   const [category, setCategory] = useState("");
@@ -73,6 +75,7 @@ function App() {
           </Route>
           <Route exact path="/create-spot">
             <CreateSpotOverview
+              setIsCreatePage={setIsCreatePage}
               category={category}
               setCategory={setCategory}
               guests={guests}
@@ -178,6 +181,7 @@ function App() {
           </Route>
           <Route exact path="/create-spot/receipt">
             <CreateSpotReceipt
+              setIsCreatePage={setIsCreatePage}
               imgUrl={imgUrl}
               title={title}
               description={description}
@@ -192,6 +196,21 @@ function App() {
               bedrooms={bedrooms}
               bathrooms={bathrooms}
               access={access}
+              setImgUrl={setImgUrl}
+              setTitle={setTitle}
+              setDescription={setDescription}
+              setCategory={setCategory}
+              setGuests={setGuests}
+              setBedrooms={setBedrooms}
+              setBeds={setBeds}
+              setBathrooms={setBathrooms}
+              setAddress={setAddress}
+              setAccess={setAccess}
+              setPrice={setPrice}
+              setZipcode={setZipcode}
+              setCountry={setCountry}
+              setCity={setCity}
+              setState={setState}
             />
           </Route>
           <Route exact path="/spots/:spotId/edit">
@@ -220,6 +239,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      {!isCreatePage && <SiteFooter />}
     </LocalizationProvider>
   );
 }

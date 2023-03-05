@@ -11,14 +11,15 @@ function SignupFormPage({ setShowModal, setLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [image, setImage] = useState("");
   const [lastName, setLastName] = useState("");
-  const [image, setImage] = useState(null);
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!image) errors.push("Please include a profile picture to sign up.");
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
@@ -38,6 +39,7 @@ function SignupFormPage({ setShowModal, setLogin }) {
         });
     }
     return setErrors([
+      ...errors,
       "Confirm Password field must be the same as the Password field",
     ]);
   };

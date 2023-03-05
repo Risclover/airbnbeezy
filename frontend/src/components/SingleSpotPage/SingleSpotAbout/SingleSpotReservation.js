@@ -131,12 +131,12 @@ export default function SingleSpotReservation() {
             night
           </div>
           <div className="reservation-head-right">
-            <i className="fa-solid fa-star"></i>
-            {reviews.length <= 3 ? (
-              "New"
+            {reviews.length < 3 ? (
+              <a href="#Reviews">{reviews.length} reviews</a>
             ) : (
               <div className="rat">
-                {+spot.avgRating?.toFixed(2)}
+                <i className="fa-solid fa-star"></i>
+                {parseFloat(spot.avgRating?.toFixed(2))}
                 <span className="dot">•</span>
                 <a href="#Reviews">{reviews.length} reviews</a>
               </div>

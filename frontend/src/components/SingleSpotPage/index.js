@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { getSpotById, deleteSpot, getAllSpots } from "../../store/spots";
@@ -12,13 +12,15 @@ import SingleSpotAbout from "./SingleSpotAbout/SingleSpotAbout";
 import { Helmet } from "react-helmet";
 import SpotMap from "./SpotMap";
 import { getSpotImgs } from "../../store/spot-images";
+import SingleSpotHostSection from "./SingleSpotHostSection";
 
 export default function SingleSpotPage() {
-  const [editSpotId, setEditSpotId] = useState(null);
-
+  const scrollRef = useRef(null);
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [editSpotId, setEditSpotId] = useState(null);
 
   const spot = useSelector(getSpotById(spotId));
   const sessionUser = useSelector((state) => state.session.user);
@@ -36,18 +38,6 @@ export default function SingleSpotPage() {
   nav.style.position = "static";
   nav.style.paddingLeft = "40px";
   nav.style.paddingRight = "40px";
-
-  // const handleEdit = (e, id) => {
-  //   e.preventDefault();
-  //   setEditSpotId(id);
-  //   setShowCreateSpotForm(true);
-  // };
-
-  // const handleDelete = (e, id) => {
-  //   e.preventDefault();
-  //   dispatch(deleteSpot(id));
-  //   history.replace("/");
-  // };
 
   let count = 0;
 
@@ -69,7 +59,7 @@ export default function SingleSpotPage() {
       <SingleSpotHead count={count} />
       <SingleSpotPhotos />
       {/* <SingleSpotReservation /> */}
-      <SingleSpotAbout spot={spot} />
+      <SingleSpotAbout scrollRef={scrollRef} spot={spot} />
       <SingleSpotReviews count={count} spot={spot} />
       <a id="location"></a>
       <div className="embed-map-box">
@@ -85,6 +75,7 @@ export default function SingleSpotPage() {
           height="480px"
         />
       </div>
+      <SingleSpotHostSection scrollRef={scrollRef} spot={spot} />
     </div>
   );
 }

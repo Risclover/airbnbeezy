@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { MdOutlineClose } from "react-icons/md";
 import { BsCheckSquareFill, BsSquare } from "react-icons/bs";
-import { deleteSpot } from "../../../store/spots";
+import { deleteSpot, getAllSpots, getSpots } from "../../../store/spots";
+import { getUsers } from "../../../store/users";
 
 export default function ConfirmDeleteSpot({ setShowDeleteModal, spotId }) {
   const dispatch = useDispatch();
@@ -17,8 +18,10 @@ export default function ConfirmDeleteSpot({ setShowDeleteModal, spotId }) {
   const handleSpotDeletion = async (e) => {
     e.preventDefault();
     await dispatch(deleteSpot(spotId));
+    await dispatch(getAllSpots());
     setShowDeleteModal(false);
     history.push("/my-listings");
+    dispatch(getUsers());
   };
 
   return (

@@ -8,14 +8,14 @@ import SingleSpotAboutAircover from "./SingleSpotAboutAircover";
 import SingleSpotAboutDescription from "./SingleSpotAboutDescription";
 import SingleSpotReservation from "./SingleSpotReservation";
 
-export default function SingleSpotAbout({ spot }) {
+export default function SingleSpotAbout({ spot, scrollRef }) {
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [modalContent, setModalContent] = useState("about");
 
   return (
     <div className="single-spot-about">
       <div className="single-spot-about-boxes">
-        <SingleSpotAboutHeader spot={spot} />
+        <SingleSpotAboutHeader scrollRef={scrollRef} spot={spot} />
         <SingleSpotAboutHighlights />
         <SingleSpotAboutAircover setShowAboutModal={setShowAboutModal} />
         <SingleSpotAboutDescription spot={spot} />

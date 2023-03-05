@@ -211,6 +211,7 @@
   transition: box-shadow 0.2s ease, transform 0.1s ease;
   border: none;
   background: transparent;
+  font-family: "Figtree", sans-serif;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
@@ -810,6 +811,10 @@
   color: #717171;
 }
 
+.radio-deactivate {
+  font-family: "Figtree", sans-serif;
+}
+
 .radio-deactivate svg {
   font-size: 20px;
   color: rgb(193, 53, 21);
@@ -987,6 +992,14 @@
 .price-error {
   color: red;
   margin-left: 15px;
+}
+
+.edit-spot-illegal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 85px);
+  width: 100vw;
 }
 @media (min-width: 1440px) {
   .edit-spot {

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../../store/users";
 import "./SingleSpotAbout.css";
 
-export default function SingleSpotAboutHeader({ spot }) {
+export default function SingleSpotAboutHeader({ spot, scrollRef }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const usersList = useSelector((state) => state.users);
@@ -15,6 +15,9 @@ export default function SingleSpotAboutHeader({ spot }) {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
+  const executeScroll = () =>
+    scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
     <div className="single-spot-about-header">
@@ -28,21 +31,19 @@ export default function SingleSpotAboutHeader({ spot }) {
         </h2>
         <div className="single-spot-about-rooms">
           {spot.guests === 1 ? spot.guests + " guest" : spot.guests + " guests"}{" "}
-          <i class="fa-solid fa-circle"></i>
+          <i className="fa-solid fa-circle"></i>
           {spot.bedrooms > 1 || spot.bedrooms === 0
             ? spot.bedrooms + " bedrooms"
             : spot.bedrooms + " bedroom"}{" "}
-          <i class="fa-solid fa-circle"></i>{" "}
+          <i className="fa-solid fa-circle"></i>{" "}
           {spot.beds === 1 ? spot.beds + " bed" : spot.beds + " beds"}{" "}
-          <i class="fa-solid fa-circle"></i>{" "}
+          <i className="fa-solid fa-circle"></i>{" "}
           {spot.bathrooms === 1
             ? spot.bathrooms + " bath"
             : spot.bathrooms + " baths"}
         </div>
       </div>
-      <NavLink to={`/users/${usersList[spot.ownerId]?.id}/profile`}>
-        <img src={usersList[spot.ownerId]?.userImage} />
-      </NavLink>
+      <img src={usersList[spot.ownerId]?.userImage} onClick={executeScroll} />
     </div>
   );
 }

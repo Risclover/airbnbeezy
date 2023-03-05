@@ -81,7 +81,7 @@ function LoginForm({ setShowModal, setLogin }) {
           </div>
 
           <button className="demo-btn" onClick={handleDemo}>
-            <i class="fa-regular fa-id-card"></i>Continue with Demo Login
+            <i className="fa-regular fa-id-card"></i>Continue with Demo Login
             <div></div>
           </button>
         </form>

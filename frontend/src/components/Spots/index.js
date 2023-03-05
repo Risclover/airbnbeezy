@@ -3,7 +3,6 @@ import { Redirect, Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
 import { getUsers } from "../../store/users";
-import SpotForm from "../SpotForm";
 import SpotCategories from "./SpotCategories";
 import "./Spots.css";
 import moment from "moment";
@@ -50,16 +49,6 @@ export default function Spots() {
     }
   }
 
-  if (showCreateSpotForm) {
-    content = (
-      <div className="create-spot-stuff">
-        <SpotForm
-          showCreateSpotForm={showCreateSpotForm}
-          setShowCreateSpotForm={setShowCreateSpotForm}
-        />
-      </div>
-    );
-  }
   if (!spotsList) return null;
 
   spotsList.sort((a, b) => {

@@ -41,6 +41,7 @@ router.post("/", requireAuth, async (req, res) => {
     bathrooms,
     access,
     listed,
+    previewImage,
   } = req.body;
 
   // Identify current user
@@ -67,6 +68,7 @@ router.post("/", requireAuth, async (req, res) => {
     bedrooms: bedrooms,
     bathrooms: bathrooms,
     access: access,
+    previewImage: previewImage,
     listed: listed,
   });
 
@@ -337,6 +339,7 @@ router.put("/:spotId", async (req, res, next) => {
     bathrooms,
     access,
     listed,
+    previewImage,
   } = req.body;
 
   const correctSpot = await Spot.findByPk(spotId);
@@ -365,6 +368,7 @@ router.put("/:spotId", async (req, res, next) => {
     bathrooms: bathrooms,
     access: access,
     listed: listed,
+    previewImage: previewImage,
   });
 
   res.json(correctSpot);

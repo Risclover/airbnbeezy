@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../../../context/Modal";
+import { getSpotImgs } from "../../../../store/spot-images";
 import CoverPhotoSelectionModal from "./CoverPhotoSelectionModal";
+import PhotoModal from "./PhotoModal";
 
 export default function EditPhotos({ spot }) {
+  const dispatch = useDispatch();
+
   const [showCoverPhotoModal, setShowCoverPhotoModal] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [photoUrl, setPhotoUrl] = useState();
 
   let photos = spot?.otherImages?.map((image) => image.url);
+  photos?.unshift(spot?.previewImage);
 
+  const spotImages = useSelector((state) => state.spotImages);
+
+  const imageList = [];
+
+  for (let image of Object.values(spotImages)) {
+    if (image.spotId === spot.id) {
+      imageList.push(image);
+    }
+  }
+
+  console.log("image list:", imageList);
+
+  useEffect(() => {
+    dispatch(getSpotImgs());
+  }, []);
   console.log("photos:", photos);
   return (
     <div className="photos-page">
@@ -29,20 +52,35 @@ export default function EditPhotos({ spot }) {
         <div className="all-photos-head">
           <div className="all-photos-info">
             <h3>All photos</h3>
-            <p>Drag and drop your photos to change the order.</p>
+            <p>Click on a photo to view / delete.</p>
           </div>
-          <button className="upload-photos-btn">Upload photos</button>
+          {/* <button className="upload-photos-btn">Upload photos</button> */}
         </div>
         <div className="all-photos-photo-grid">
-          {photos.map((photo) => (
+          {imageList.map((photo) => (
             <div className="all-photos-photo">
-              <img src={photo} />
+              <img
+                src={photo.url}
+                onClick={() => {
+                  setPhotoUrl(photo);
+                  setShowPhotoModal(true);
+                }}
+              />
             </div>
           ))}
         </div>
+        {showPhotoModal && (
+          <Modal onClose={() => setShowPhotoModal(false)}>
+            <PhotoModal
+              setShowPhotoModal={setShowPhotoModal}
+              photo={photoUrl}
+            />
+          </Modal>
+        )}
         {showCoverPhotoModal && (
           <Modal onClose={() => setShowCoverPhotoModal(false)}>
             <CoverPhotoSelectionModal
+              spot={spot}
               photos={photos}
               setShowCoverPhotoModal={setShowCoverPhotoModal}
             />

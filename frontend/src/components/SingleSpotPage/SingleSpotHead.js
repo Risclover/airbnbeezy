@@ -33,7 +33,7 @@ export default function SingleSpotHead() {
             <div className="spot-info-stars">
               <i className="fa-solid fa-star"></i>
 
-              {Number(spot.avgRating).toFixed(1) + " • "}
+              {parseFloat(spot.avgRating?.toFixed(2)) + " • "}
               <a className="reviews-link" href="#Reviews">
                 {count + (count === 1 ? " review " : " reviews ")}
               </a>
@@ -52,7 +52,7 @@ export default function SingleSpotHead() {
             className="spot-info-right-btn spot-info-share"
             onClick={() => setShowShareModal(true)}
           >
-            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <i className="fa-solid fa-arrow-up-from-bracket"></i>
             Share
           </button>
           {showShareModal && (
@@ -66,7 +66,7 @@ export default function SingleSpotHead() {
             </Modal>
           )}
           {/* <div className="spot-info-right-btn spot-info-save">
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
             <a href="">Save</a>
           </div> */}
         </div>

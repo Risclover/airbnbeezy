@@ -20,7 +20,9 @@ export default function ListingCarouselSlide({ spot }) {
         <p className="carousel-name">
           <AiFillStar />
           {spot?.avgRating ? parseFloat(spot?.avgRating?.toFixed(2)) : "New"}
-          {reviews.length > 3 && " (" + reviews.length + ")"}
+          <span className="spot-rating-count-num">
+            {reviews.length > 0 && " (" + reviews.length + ")"}
+          </span>
         </p>
         <p className="carousel-title">
           {spot.access?.slice(0, 1).toUpperCase() + spot.access?.slice(1)}{" "}

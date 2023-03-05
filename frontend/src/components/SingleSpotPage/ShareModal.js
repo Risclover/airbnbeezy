@@ -7,7 +7,7 @@ export default function ShareModal({
   spotId,
 }) {
   const [copyText, setCopyText] = useState(
-    `http://localhost:3002/spots/${spotId}`
+    `http://air-bnbeezy.herokuapp.com/spots/${spotId}`
   );
   const [showResults, setShowResults] = useState(false);
 
@@ -34,6 +34,7 @@ export default function ShareModal({
             onClick={() => {
               navigator.clipboard.writeText(copyText);
               setShowResults(true);
+              console.log(copyText);
             }}
           >
             {" "}

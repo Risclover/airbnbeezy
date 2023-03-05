@@ -15,13 +15,16 @@ html {
   color: #222;
   line-height: 18px;
   font-size: 14px;
+  /* height: 100%; */
   position: relative;
-  height: max-content;
+  /* height: max-content; */
 }
 
 #root {
   position: relative;
   height: max-content;
+  min-height: 100%;
+  padding-bottom: 80px;
 }
 
 button {

@@ -76,7 +76,10 @@ export default function SingleSpotReviews({ spot }) {
 
   if (!reviews) return null;
   return (
-    <div className="reviews-section" id="Reviews">
+    <div className="reviews-section">
+      <span id="Reviews" className="anchor">
+        &nbsp;
+      </span>
       <div className="review-stats">
         <div className="reviews-top-head">
           {count > 0 && count < 3 ? (
@@ -123,7 +126,7 @@ export default function SingleSpotReviews({ spot }) {
                   <img src={usersList[review.userId]?.userImage} />
                 </NavLink>
                 <div className="review-name">
-                  <h3>{review.User.firstName}</h3>
+                  <h3>{review.User?.firstName}</h3>
                   <p>
                     {reviewMonth} {reviewYear}
                   </p>

@@ -48,7 +48,12 @@ const categories = [
   "Yurt",
 ];
 
-export default function EditSpotMain({ setPhotos, spot }) {
+export default function EditSpotMain({
+  setPhotos,
+  spot,
+  openListed,
+  setOpenListed,
+}) {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const [name, setName] = useState(spot?.name ? spot.name : "");
@@ -71,7 +76,6 @@ export default function EditSpotMain({ setPhotos, spot }) {
   const [listed, setListed] = useState(
     spot?.listed === true ? true : spot?.listed === false ? false : false
   );
-  const [openListed, setOpenListed] = useState(false);
   const [originalListed, setOriginalListed] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [openRooms, setOpenRooms] = useState(false);
@@ -248,7 +252,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span class="anchor" id="Photos">
+            <span className="anchor" id="Photos">
               Photos
             </span>
           </div>
@@ -275,7 +279,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span class="anchor" id="Listing%20basics">
+            <span className="anchor" id="Listing%20basics">
               Listing basics
             </span>
           </div>
@@ -461,7 +465,10 @@ export default function EditSpotMain({ setPhotos, spot }) {
           </div>
         </div>
         {!openListed && (
-          <div className="edit-spot-main-section-subsection status-subsection">
+          <div
+            id="Status"
+            className="edit-spot-main-section-subsection status-subsection"
+          >
             <div className="edit-spot-main-section-subsection-heading">
               <h3>Listing status</h3>
               {spot?.listed === true && (
@@ -562,7 +569,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span class="anchor" id="Location">
+            <span className="anchor" id="Location">
               Location
             </span>
           </div>
@@ -676,7 +683,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span class="anchor" id="Property%20and%20rooms">
+            <span className="anchor" id="Property%20and%20rooms">
               Property and rooms
             </span>
           </div>
@@ -805,7 +812,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
             <button
               className="edit-spot-less-guests"
               onClick={(e) => {
-                setBedrooms((prev) => (bedrooms !== 1 ? prev - 1 : prev));
+                setBedrooms((prev) => (bedrooms > 0 ? prev - 1 : 0));
               }}
             >
               <BiMinus />
@@ -829,7 +836,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
             <button
               className="edit-spot-less-guests"
               onClick={(e) => {
-                setBathrooms((prev) => (bathrooms !== 1 ? prev - 1 : prev));
+                setBathrooms((prev) => (bathrooms > 0 ? prev - 1 : 0));
               }}
             >
               <BiMinus />
@@ -849,7 +856,7 @@ export default function EditSpotMain({ setPhotos, spot }) {
       <div className="edit-spot-main-section-section">
         <div className="edit-spot-main-section-header">
           <div className="edit-spot-main-section-header-left">
-            <span class="anchor" id="Pricing">
+            <span className="anchor" id="Pricing">
               Pricing
             </span>
           </div>

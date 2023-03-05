@@ -11,7 +11,7 @@ export default function ManageListings() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const spotsList = useSelector(getSpots);
+  const spotsList = useSelector((state) => Object.values(state.spots));
   const sessionUser = useSelector((state) => state.session.user);
 
   const [nameModified, setNameModified] = useState(false);
@@ -21,7 +21,7 @@ export default function ManageListings() {
   const [bathroomsModified, setBathroomsModified] = useState(false);
   const [locationModified, setLocationModified] = useState(false);
   const [updateModified, setUpdateModified] = useState(false);
-  const [sorted, setSorted] = useState([...spotsList]);
+  const [sorted, setSorted] = useState([]);
   const [nameSort, setNameSort] = useState(false);
   const [statusSort, setStatusSort] = useState(false);
   const [bedroomsSort, setBedroomsSort] = useState(false);
@@ -32,6 +32,7 @@ export default function ManageListings() {
 
   useEffect(() => {
     dispatch(getAllSpots());
+    setSorted(spotsList);
   }, []);
 
   let count = 0;

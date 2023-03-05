@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./CreateSpot.css";
 import { Helmet } from "react-helmet";
 
-export default function CreateSpotOverview({ step, part, setStep, setPart }) {
+export default function CreateSpotOverview({ setIsCreatePage }) {
+  useEffect(() => {
+    setIsCreatePage(true);
+  }, []);
+
   return (
     <div className="create-spot-overview-page">
       <Helmet>
@@ -63,9 +67,7 @@ export default function CreateSpotOverview({ step, part, setStep, setPart }) {
       </div>
       <div className="create-spot-button-box">
         <NavLink to={`/create-spot/category`}>
-          <button className="create-spot-btn" onClick={() => setPart(2)}>
-            Get started
-          </button>
+          <button className="create-spot-btn">Get started</button>
         </NavLink>
       </div>
     </div>

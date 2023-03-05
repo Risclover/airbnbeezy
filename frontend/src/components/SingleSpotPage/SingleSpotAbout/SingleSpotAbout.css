@@ -24,6 +24,7 @@
 
 .single-spot-about-header img {
   border-radius: 100%;
+  cursor: pointer;
   height: 56px;
   object-fit: cover;
   width: 56px;
@@ -85,13 +86,27 @@
 }
 .reservation-head-right .fa-star {
   font-size: 10px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   margin-right: 3px;
 }
 
 .reservation-head-right .dot {
-  font-size: 5px;
+  font-size: 10px;
   margin: 0 5px;
+}
+
+.rat {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.rat a {
+  color: #717171;
+  font-weight: 400;
+}
+.reservation-head-right svg {
+  font-size: 20px;
 }
 
 .reservation-head-right a {
