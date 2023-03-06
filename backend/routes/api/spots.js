@@ -483,6 +483,7 @@ router.post("/:spotId/reviews", validateReview, async (req, res, next) => {
     spotId: spotId,
     review: review,
     stars: stars,
+    hasResponse: false,
   });
 
   res.json(createdReview);

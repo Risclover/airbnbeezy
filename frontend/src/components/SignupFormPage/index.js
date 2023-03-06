@@ -114,12 +114,14 @@ function SignupFormPage({ setShowModal, setLogin }) {
             id="signup-password"
           />
           <label className="user-img-input">
+            <p className="upload-profile-img">Upload profile image:</p>
             <input
               className="user-img-input"
               type="file"
               onChange={updateFile}
             />
           </label>
+
           <button className="login-btn" type="submit">
             Sign Up
           </button>

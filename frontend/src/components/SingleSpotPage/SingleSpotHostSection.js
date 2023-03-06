@@ -45,7 +45,7 @@ export default function SingleSpotHostSection({ spot, scrollRef }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [content, setContent] = useState("");
-  const [senderId, setSenderId] = useState(sessionUser.id);
+  const [senderId, setSenderId] = useState(sessionUser?.id);
   const [recipientId, setRecipientId] = useState(spot.ownerId);
   const [seen, setSeen] = useState(false);
 

@@ -752,3 +752,13 @@ h2 .dot {
   left: 0px;
   height: 80px;
 }
+
+.review-reply-btn {
+  margin-top: 35px;
+  padding: 8px;
+  background: none;
+  border: 1px solid #222;
+  border-radius: 8px;
+  width: 80px;
+  font-family: "Figtree", sans-serif;
+}

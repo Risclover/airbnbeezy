@@ -81,6 +81,7 @@ module.exports = (sequelize, DataTypes) => {
       previewImage: {
         type: DataTypes.TEXT,
         allowNull: true,
+        defaultValue: "https://www.fxnetworks.com/img/fpo/placeholder.png",
       },
     },
     {

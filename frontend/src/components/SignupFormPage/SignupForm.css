@@ -34,6 +34,10 @@
   text-align: center;
 }
 
+.upload-profile-img {
+  margin: 10px 0;
+}
+
 .switch-login-btn {
   font-family: "Figtree", sans-serif;
   background: none;

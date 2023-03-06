@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       url: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "https://www.fxnetworks.com/img/fpo/placeholder.png",
       },
       preview: {
         type: DataTypes.BOOLEAN,

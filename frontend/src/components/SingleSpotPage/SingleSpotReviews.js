@@ -17,6 +17,7 @@ export default function SingleSpotReviews({ spot, reviewsRef }) {
 
   useEffect(() => {
     dispatch(getSpotReviews(spot.id));
+    dispatch(getUsers());
   }, [dispatch, spot.id]);
 
   let count = 0;
@@ -128,11 +129,14 @@ export default function SingleSpotReviews({ spot, reviewsRef }) {
                 <div className="review-name">
                   <h3>{review.User?.firstName}</h3>
                   <p>
-                    {reviewMonth} {reviewYear}
+                    {reviewMonth} {reviewYear}{" "}
                   </p>
                 </div>
               </div>
               <div className="review-body">{review.review}</div>
+              {currentUser && (
+                <button className="review-reply-btn">Reply</button>
+              )}
             </div>
           ))}
         </div>

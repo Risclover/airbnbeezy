@@ -12,6 +12,7 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
   const [stars, setStars] = useState(1);
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
+  const [hasResponse, setHasResponse] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   let reviews = useSelector((state) => Object.values(state.reviews));
@@ -50,11 +51,12 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setHasResponse(false);
     setErrors([]);
     const payload = {
       review,
       stars,
+      hasResponse,
     };
     await dispatch(addReview(payload, user, spot));
 

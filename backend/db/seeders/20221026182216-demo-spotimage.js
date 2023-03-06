@@ -6,18 +6,78 @@ module.exports = {
     return queryInterface.bulkInsert("SpotImages", [
       {
         spotId: 1,
-        url: "https://imageio.forbes.com/specials-images/imageserve//62b2f5b1344d85edc17a1f0b/0x0.jpg",
+        url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-584469386220279136/original/227d4c26-43d5-42da-ad84-d039515c0bad.jpeg?im_w=1200",
+        preview: true,
+      },
+      {
+        spotId: 1,
+        url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-584469386220279136/original/fc43fe58-2e6c-44e6-af3a-aa00d10d6ca3.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-584469386220279136/original/458c1368-f535-4d3d-a581-5c1c2a75ea01.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-584469386220279136/original/dd489167-14b9-464e-a291-e8390519b1dc.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-584469386220279136/original/d16d1f1b-c208-43d7-b907-aeddfe8c8804.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://a0.muscache.com/im/pictures/miso/Hosting-609348869272343138/original/80bb361b-7eb1-4210-8c8c-c32063cb54ae.jpeg?im_w=1200",
         preview: true,
       },
       {
         spotId: 2,
-        url: "https://www.boredpanda.com/blog/wp-content/uploads/2019/05/coolest-unique-best-rent-houses-airbnb-9-5cefe446e5727__700.jpg",
+        url: "https://a0.muscache.com/im/pictures/miso/Hosting-609348869272343138/original/b71624dc-0294-40dc-bb1b-7f1a5354d195.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://a0.muscache.com/im/pictures/miso/Hosting-609348869272343138/original/0e083519-fba6-4a47-ac37-1b1b8fd6f982.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://a0.muscache.com/im/pictures/miso/Hosting-609348869272343138/original/b9c920a1-f90c-4fa4-9ec7-2d5a26620f86.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 2,
+        url: "https://a0.muscache.com/im/pictures/miso/Hosting-609348869272343138/original/db4223c5-d487-473b-878b-4a17c6d1bafc.jpeg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://a0.muscache.com/im/pictures/8b29bbe1-fe0a-4a32-9dba-1af15dbde880.jpg?im_w=1200",
         preview: true,
       },
       {
         spotId: 3,
-        url: "https://www.boredpanda.com/blog/wp-content/uploads/2019/05/coolest-unique-best-rent-houses-airbnb-20-5cefe466adb03__700.jpg",
-        preview: true,
+        url: "https://a0.muscache.com/im/pictures/5d9c39cc-2f2d-4ac5-a5a7-b817757ae239.jpg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://a0.muscache.com/im/pictures/4acf5848-3e7d-4866-bf9a-ed36ab335e38.jpg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://a0.muscache.com/im/pictures/df409169-55ee-4e66-aad4-b9c46f6ca2f1.jpg?im_w=720",
+        preview: false,
+      },
+      {
+        spotId: 3,
+        url: "https://a0.muscache.com/im/pictures/ad906eb4-9108-4e47-bd60-a4122ba460e4.jpg?im_w=720",
+        preview: false,
       },
       {
         spotId: 4,
@@ -36,7 +96,7 @@ module.exports = {
       },
       {
         spotId: 4,
-        url: "https://www.airbnb.com/rooms/46276206?adults=1&category_tag=Tag%3A8144&children=0&infants=0&pets=0&search_mode=flex_destinations_search&check_in=2023-03-12&check_out=2023-03-19&federated_search_id=2f3bb33c-890b-4654-a4a6-415a349d8e9f&source_impression_id=p3_1677350481_fwTXT20U6Z2mW8%2FH&modal=PHOTO_TOUR_SCROLLABLE&modalItem=1202275556",
+        url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-46276206/original/224bba98-9e27-4e95-947f-28e09c7d2d46.jpeg?im_w=1440",
         preview: false,
       },
       {

@@ -13,6 +13,7 @@ import { Helmet } from "react-helmet";
 import SpotMap from "./SpotMap";
 import { getSpotImgs } from "../../store/spot-images";
 import SingleSpotHostSection from "./SingleSpotHostSection";
+import { getUsers } from "../../store/users";
 
 export default function SingleSpotPage() {
   const scrollRef = useRef(null);
@@ -35,6 +36,7 @@ export default function SingleSpotPage() {
     setEditSpotId(null);
     dispatch(getAllSpots());
     dispatch(getSpotImgs());
+    dispatch(getUsers());
   }, [dispatch, setEditSpotId]);
 
   const nav = document.querySelector(".nav");

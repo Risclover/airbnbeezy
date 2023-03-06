@@ -136,7 +136,7 @@ router.post("/:reviewId/images", async (req, res, next) => {
 // Edit a Review
 router.put("/:reviewId", validateReview, async (req, res, next) => {
   const { reviewId } = req.params;
-  const { review, stars } = req.body;
+  const { review, stars, hasResponse } = req.body;
 
   const currentReview = await Review.findByPk(reviewId);
 
@@ -154,6 +154,7 @@ router.put("/:reviewId", validateReview, async (req, res, next) => {
     spotId: currentReview.id,
     review: review,
     stars: stars,
+    hasResponse: hasResponse,
   });
 
   res.json(currentReview);
