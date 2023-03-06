@@ -5,7 +5,7 @@ import { getSpotImgs } from "../../../../store/spot-images";
 import CoverPhotoSelectionModal from "./CoverPhotoSelectionModal";
 import PhotoModal from "./PhotoModal";
 
-export default function EditPhotos({ spot }) {
+export default function EditPhotos({ spot, coverPhotoRef, allPhotosRef }) {
   const dispatch = useDispatch();
 
   const [showCoverPhotoModal, setShowCoverPhotoModal] = useState(false);
@@ -25,16 +25,15 @@ export default function EditPhotos({ spot }) {
     }
   }
 
-  console.log("image list:", imageList);
-
   useEffect(() => {
     dispatch(getSpotImgs());
   }, []);
-  console.log("photos:", photos);
+
   return (
     <div className="photos-page">
       <div className="cover-photo-section">
         <div className="cover-photo-info">
+          <a className="anchor" ref={coverPhotoRef}></a>
           <h3>Cover photo</h3>
           <p>Your cover photo is a guest's first impression of your listing.</p>
           <button
@@ -51,6 +50,7 @@ export default function EditPhotos({ spot }) {
       <div className="all-photos-section">
         <div className="all-photos-head">
           <div className="all-photos-info">
+            <a className="anchor" ref={allPhotosRef}></a>
             <h3>All photos</h3>
             <p>Click on a photo to view / delete.</p>
           </div>
@@ -72,6 +72,7 @@ export default function EditPhotos({ spot }) {
         {showPhotoModal && (
           <Modal onClose={() => setShowPhotoModal(false)}>
             <PhotoModal
+              spot={spot}
               setShowPhotoModal={setShowPhotoModal}
               photo={photoUrl}
             />

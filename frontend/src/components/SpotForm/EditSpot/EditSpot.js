@@ -17,6 +17,8 @@ export default function EditSpot() {
   const propertyRef = useRef(null);
   const pricingRef = useRef(null);
   const statusRef = useRef(null);
+  const coverPhotoRef = useRef(null);
+  const allPhotosRef = useRef(null);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -69,7 +71,13 @@ export default function EditSpot() {
               </div>
             </div>
           </div>
-          {photos && <EditPhotosNavbar setPhotos={setPhotos} />}
+          {photos && (
+            <EditPhotosNavbar
+              coverPhotoRef={coverPhotoRef}
+              allPhotosRef={allPhotosRef}
+              setPhotos={setPhotos}
+            />
+          )}
           {!photos && (
             <EditSpotNavbar
               pricingRef={pricingRef}
@@ -94,7 +102,13 @@ export default function EditSpot() {
               statusRef={statusRef}
             />
           )}
-          {photos && <EditPhotos spot={spot} />}
+          {photos && (
+            <EditPhotos
+              coverPhotoRef={coverPhotoRef}
+              allPhotosRef={allPhotosRef}
+              spot={spot}
+            />
+          )}
         </div>
       )}
       {!isOwner && (

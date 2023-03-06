@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
           max: 5,
         },
       },
+      hasResponse: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     },
     {
       sequelize,

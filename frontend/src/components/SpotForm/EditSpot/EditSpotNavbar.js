@@ -99,12 +99,6 @@ export default function EditSpotNavbar({
               >
                 Pricing
               </li>
-
-              {/* <li className="edit-spot-navitem inner-nav-selected">Photos</li>
-              <li className="edit-spot-navitem">Listing basics</li>
-              <li className="edit-spot-navitem">Location</li>
-              <li className="edit-spot-navitem">Property and rooms</li>
-              <li className="edit-spot-navitem">Pricing</li> */}
             </ol>
           </li>
         </ul>

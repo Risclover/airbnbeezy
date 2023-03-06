@@ -208,8 +208,21 @@ export default function EditSpotMain({
   const handleListedChange = (e) => {
     const { name } = e.target;
 
-    if (name === "listed") {
+    if (
+      name === "listed" &&
+      spot?.otherImages.length >= 4 &&
+      spot?.previewImage !== ""
+    ) {
       setListed(true);
+    } else if (
+      (name === "listed" &&
+        spot?.otherImages.length < 4 &&
+        spot?.previewImage !== "") ||
+      (spot?.otherImages.length >= 4 && spot?.previewImage === "")
+    ) {
+      window.alert(
+        "ERROR: Must have a minimum of 5 photos to set your listing status to 'Listed'."
+      );
     }
 
     if (name === "unlisted") {
@@ -276,7 +289,7 @@ export default function EditSpotMain({
             (img, idx) => idx < 3 && <img src={img.url} />
           )}
           <div className="hideyhole">
-            <span className="hideyhole-link">
+            <span className="hideyhole-link" onClick={() => setPhotos(true)}>
               {spot?.otherImages.length + 1} photos
             </span>
           </div>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteSpotImg, getSpotImgs } from "../../../../store/spot-images";
+import { getAllSpots, updateSpot } from "../../../../store/spots";
 import "./EditPhotos.css";
 
-export default function PhotoModal({ photo, setShowPhotoModal }) {
+export default function PhotoModal({ spot, photo, setShowPhotoModal }) {
   const dispatch = useDispatch();
 
   const [sure, setSure] = useState(false);
@@ -13,6 +14,16 @@ export default function PhotoModal({ photo, setShowPhotoModal }) {
     await dispatch(deleteSpotImg(photo.id));
     setShowPhotoModal(false);
     dispatch(getSpotImgs());
+
+    if (
+      (spot?.otherImages.length < 5 && spot?.previewImage !== "") ||
+      (spot?.otherImages.length >= 4 && spot?.previewImage === "") ||
+      (spot?.otherImages.length < 5 && spot?.previewImage === "")
+    ) {
+      const payload3 = { listed: false, id: spot?.id };
+      await dispatch(updateSpot(payload3));
+      dispatch(getAllSpots());
+    }
   };
 
   return (

@@ -695,3 +695,60 @@ h2 .dot {
 .host-section-contact-btn:active {
   transform: scale(0.96);
 }
+
+.single-spot-all-photos-wrapper {
+  width: 95vw;
+  height: 95vh;
+  /* position: relative; */
+}
+
+.single-spot-all-photos-page {
+  height: 100%;
+  /* padding: 30px; */
+  width: 100%;
+  background: white;
+  margin-top: 78px;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.single-spot-all-photos {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.single-spot-all-photos img {
+  padding: 10px;
+  width: 100%;
+  max-height: 900px;
+}
+
+.single-spot-all-photos-back-btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 25px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  /* position: absolute; */
+  /* top: 30px; */
+  /* left: 40px; */
+}
+
+.single-spot-all-photos-back-btn:hover {
+  background: #f7f7f7;
+}
+
+.single-spot-all-photos-header {
+  z-index: 100000;
+  position: absolute;
+  top: 0px;
+  background: white;
+  width: 95vw;
+  padding: 30px;
+  left: 0px;
+  height: 80px;
+}

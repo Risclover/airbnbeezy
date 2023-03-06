@@ -27,9 +27,9 @@ export default function CurrentUserSpots() {
 
   const spotsList = useSelector(getSpots);
   let reviews = useSelector((state) => Object.values(state.reviews));
-  const sessionUser = useSelector((state) => state.session.user);
-  reviews = reviews.filter((review) => review.userId === sessionUser?.id);
+  // const sessionUser = useSelector((state) => state.session.user);
   const currentUser = useSelector((state) => state.session.user);
+  reviews = reviews.filter((review) => review.userId === currentUser?.id);
 
   useEffect(() => {
     dispatch(getAllSpots());
@@ -48,22 +48,6 @@ export default function CurrentUserSpots() {
 
   let userDate = new Date(user?.createdAt);
   let userYear = userDate.getFullYear();
-
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "98af759825msh05127f453af56adp18afc5jsn0ef7b1c539fa",
-      "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
-    },
-  };
-
-  fetch(
-    `https://airbnb13.p.rapidapi.com/autocomplete?query=${location}`,
-    options
-  )
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
 
   let userImg = user?.profileImageUrl;
   let userImg2 = user?.userImage;
@@ -103,7 +87,9 @@ export default function CurrentUserSpots() {
           {user?.profileImageUrl && <img src={userImg} />}
           {user?.userImage && <img src={userImg2} />}
           {!user?.userImage && !user?.profileImageUrl && <img src={LoggedIn} />}
+          Hullo?
         </div>
+        {currentUser && <span className="update-image">Update photo</span>}
         <ul className="user-bullets">
           <li className="user-reviews">
             <div className="bullet-icon">
@@ -243,37 +229,6 @@ export default function CurrentUserSpots() {
           <div className="user-listings">
             {count === 0 ? "" : <h2>{user?.firstName}'s listings</h2>}
             <ListingCarousel spotsList={spotsList} user={user} />
-            {/* <div className="spots">
-              {spotsList.map((spot) =>
-                spot.ownerId === user?.id ? (
-                  <div className="outer-spot">
-                    <NavLink to={`/spots/${spot.id}`}>
-                      <div key={spot.id} className="spot-box">
-                        <div className="spot-img">
-                          <img src={spot.previewImage} />
-                        </div>
-                        <ul className="spotcard-info">
-                          <li className="spotcard-rating">
-                            <i className="fa-solid fa-star"></i>
-                            {Number(spot.avgRating).toFixed(1)}{" "}
-                          </li>
-                          <li className="spotcard-details">
-                            <div className="spotcard-location">
-                              {spot.city}, {spot.country}
-                            </div>
-                            {spot.name}
-                          </li>
-                          <li className="spotcard-title">{spot.name}</li>
-                          <li className="spotcard-title">{spot.name}</li>
-                        </ul>
-                      </div>
-                    </NavLink>
-                  </div>
-                ) : (
-                  ""
-                )
-              )}
-            </div> */}
           </div>
           <div className="user-reviews">
             <NavLink to={`/users/${userId}/reviews`}>Reviews by you</NavLink>

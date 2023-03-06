@@ -79,6 +79,9 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
             </div>
             <div className="profile-dropdown-top">
               <ul className="profile-dropdown-ul">
+                <NavLink to={`/users/${currentUser.id}/profile`}>
+                  <li>User Profile</li>
+                </NavLink>
                 <NavLink to="/my-messages">
                   <li>Messages</li>
                 </NavLink>
@@ -90,9 +93,6 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
                 </NavLink>
                 <NavLink to="/create-spot">
                   <li>Airbnbeezy your home</li>
-                </NavLink>
-                <NavLink to={`/users/${currentUser.id}/profile`}>
-                  <li>Profile</li>
                 </NavLink>
               </ul>
             </div>
