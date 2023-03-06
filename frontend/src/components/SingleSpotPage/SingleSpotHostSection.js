@@ -111,15 +111,6 @@ export default function SingleSpotHostSection({ spot, scrollRef }) {
         </ul>
       </div>
       <div className="host-about">{usersList[spot.ownerId]?.about}</div>
-      <div className="host-section-contact-host">
-        <textarea
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
-        ></textarea>
-        <button className="host-section-contact-btn" onClick={handleMessage}>
-          Contact Host
-        </button>
-      </div>
     </div>
   );
 }

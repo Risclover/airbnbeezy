@@ -82,9 +82,6 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
                 <NavLink to={`/users/${currentUser.id}/profile`}>
                   <li>User Profile</li>
                 </NavLink>
-                <NavLink to="/my-messages">
-                  <li>Messages</li>
-                </NavLink>
                 <NavLink to="/my-listings">
                   <li>Manage listings</li>
                 </NavLink>
