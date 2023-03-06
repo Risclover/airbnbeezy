@@ -134,9 +134,6 @@ export default function SingleSpotReviews({ spot, reviewsRef }) {
                 </div>
               </div>
               <div className="review-body">{review.review}</div>
-              {currentUser && (
-                <button className="review-reply-btn">Reply</button>
-              )}
             </div>
           ))}
         </div>
