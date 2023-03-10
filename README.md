@@ -1,4 +1,4 @@
-Welcome to Airbnbeezy, a soft clone of Airbnb.
+<p align="center"><img src="https://github.com/Risclover/airbnbeezy/blob/main/frontend/src/images/airbnbeezy_logo3.png" /></p>
 
 ## Features
 
