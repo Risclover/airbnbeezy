@@ -7,6 +7,7 @@
 - [Languages, Features, and Technologies](#languages-frameworks-and-technologies)
 - [Features](#features)
 - [Future Implementations](#future-implementations)
+- [Getting Started](#getting-started)
 - [Site Screenshots](#site-screenshots)
 - [Developer Links](#developer-links)
 
@@ -52,6 +53,14 @@ Future feature implementations include:
 - Favoriting listings and creating wishlists
 - Messaging users
 - Notifications for messages, reviews, and bookings
+
+## Getting Started
+
+To run this app locally:
+1. In a terminal, navigate to `/backend` and run `npm install`.
+2. Still in `/backend`, run `npm start`.
+3. In a separate terminal, navigate to `/frontend` and run `npm install`. 
+4. Still in `/frontend`, run `npm start`. The app should launch in its own browser window.
 
 ## Site Screenshots
 
