@@ -17,7 +17,7 @@ Airbnbeezy is a clone of https://www.airbnb.com. Users can use this site to book
 ## Languages, Frameworks, and Technologies
 
 - [JavaScript](https://devdocs.io/javascript/)
-- [Express](https://express.js/)
+- [Express](https://expressjs.com/)
 - [Sequelize](https://sequelize.org/)
 - [React](https://beta.reactjs.org/)
 - [Redux](https://redux.js.org/)
