@@ -3,13 +3,13 @@
 
 ## Table of Contents
 
-- [Project Information](#project-information)
-- [Languages, Features, and Technologies](#languages-frameworks-and-technologies)
-- [Features](#features)
-- [Future Implementations](#future-implementations)
-- [Getting Started](#getting-started)
-- [Site Screenshots](#site-screenshots)
-- [Developer Links](#developer-links)
+1. [Project Information](#project-information)
+2. [Languages, Features, and Technologies](#languages-frameworks-and-technologies)
+3. [Features](#features)
+4. [Future Implementations](#future-implementations)
+5. [Getting Started](#getting-started)
+6. [Site Screenshots](#site-screenshots)
+7. [Developer Links](#developer-links)
 
 ## Project Information
 
