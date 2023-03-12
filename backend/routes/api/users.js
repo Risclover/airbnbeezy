@@ -6,7 +6,7 @@ const { singlePublicFileUpload } = require("../../awsS3");
 const { singleMulterUpload } = require("../../awsS3");
 const { handleValidationErrors } = require("../../utils/validation");
 // ...
-const { User, UserImage, Spot, Review, Message } = require("../../db/models");
+const { User, Spot, Review, Message } = require("../../db/models");
 const user = require("../../db/models/user");
 
 const router = express.Router();
@@ -41,7 +41,8 @@ router.post(
   validateSignup,
   async (req, res) => {
     const { email, password, username, firstName, lastName } = req.body;
-    const profileImageUrl = await singlePublicFileUpload(req.file);
+    const profileImageUrl =
+      "https://airbnbeezy.s3.us-west-1.amazonaws.com/1678151610351.png";
     const user = await User.signup({
       username,
       email,
@@ -50,8 +51,6 @@ router.post(
       lastName,
       profileImageUrl,
     });
-
-    user.userImage = profileImageUrl;
 
     setTokenCookie(res, user);
 
@@ -70,56 +69,7 @@ router.get("/", async (req, res, next) => {
     usersList.push(user.toJSON());
   });
 
-  for (let user of usersList) {
-    const userImg = await UserImage.findOne({
-      where: {
-        userId: user.id,
-      },
-      raw: true,
-    });
-
-    if (userImg !== null) {
-      user.userImage = userImg.url;
-    }
-
-    const receivedMsgs = await Message.findAll({
-      where: {
-        recipientId: user.id,
-      },
-      raw: true,
-    });
-
-    if (receivedMsgs !== null) {
-      user.receivedMessages = receivedMsgs;
-    }
-  }
-
   res.json({ Users: usersList });
-});
-
-// Add user image
-router.post("/:userId/images", requireAuth, async (req, res, next) => {
-  const { userId } = req.params;
-  const { url } = req.body;
-
-  let user = await User.findByPk(userId);
-
-  if (!user) {
-    const err = new Error("userId invalid");
-    err.status = 404;
-    err.title = "userId invalid";
-    err.errors = ["User couldn't be found.", "statusCode: 404"];
-    return next(err);
-  }
-
-  let createdImage = await UserImage.create({
-    userId: userId,
-    url: url,
-  });
-
-  createdImage = createdImage.toJSON();
-
-  res.json(createdImage);
 });
 
 // Get user reviews
@@ -142,7 +92,7 @@ router.get("/:userId/reviews", async (req, res, next) => {
       where: {
         id: req.user.id,
       },
-      attributes: ["id", "firstName", "lastName", "userImage"],
+      attributes: ["id", "firstName", "lastName", "profileImageUrl"],
     });
 
     review.User = user;
@@ -190,10 +140,11 @@ router.get("/:userId/reviews", async (req, res, next) => {
 });
 
 // Edit user profile info
-router.put("/:userId", async (req, res, next) => {
+router.put("/:userId", singleMulterUpload("image"), async (req, res, next) => {
   const { userId } = req.params;
   const { about, location, work } = req.body;
 
+  const url = await singlePublicFileUpload(req.file);
   const user = await User.findByPk(userId);
 
   if (!user) {
@@ -208,9 +159,12 @@ router.put("/:userId", async (req, res, next) => {
     about: about,
     location: location,
     work: work,
+    profileImageUrl: url,
   });
 
   res.json(user);
 });
+
+// Upload user photo
 
 module.exports = router;

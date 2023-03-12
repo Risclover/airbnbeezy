@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllSpots, getSpotById, getSpots } from "../../../store/spots";
+import { getAllSpots, getSpotById } from "../../../store/spots";
 import { BsFillCircleFill } from "react-icons/bs";
-
-import "./EditSpot.css";
 import EditSpotNavbar from "./EditSpotNavbar";
 import EditSpotMain from "./EditSpotMain";
 import EditPhotos from "./Photos/EditPhotos";
 import EditPhotosNavbar from "./Photos/EditPhotosNavbar";
+import "./EditSpot.css";
 
-export default function EditSpot() {
+export default function EditSpot({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const photosRef = useRef(null);
   const listingRef = useRef(null);
   const locationRef = useRef(null);
@@ -26,7 +27,6 @@ export default function EditSpot() {
 
   const [isOwner, setIsOwner] = useState(false);
   const [openListed, setOpenListed] = useState(false);
-
   const [photos, setPhotos] = useState(false);
 
   const currentUser = useSelector((state) => state.session.user);

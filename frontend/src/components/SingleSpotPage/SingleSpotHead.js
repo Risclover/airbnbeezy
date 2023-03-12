@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Modal } from "../../context/Modal";
-import { getSpotById, deleteSpot } from "../../store/spots";
-import { getSpotReviews } from "../../store/reviews";
+import { getSpotById } from "../../store/spots";
 import ShareModal from "./ShareModal";
 
 export default function SingleSpotHead({ reviewsRef, locationRef }) {
   const { spotId } = useParams();
+
   const [showShareModal, setShowShareModal] = useState(false);
+
   const spot = useSelector(getSpotById(spotId));
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spot.id);
+
   let count = 0;
+
   reviews.forEach((review) => {
     if (review) {
       count++;
@@ -71,10 +74,6 @@ export default function SingleSpotHead({ reviewsRef, locationRef }) {
               />
             </Modal>
           )}
-          {/* <div className="spot-info-right-btn spot-info-save">
-            <i className="fa-regular fa-heart"></i>
-            <a href="">Save</a>
-          </div> */}
         </div>
       </div>
     </div>

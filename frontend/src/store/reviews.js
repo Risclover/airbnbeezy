@@ -42,7 +42,7 @@ export const getAllReviews = () => async (dispatch) => {
 };
 
 export const getUserReviews = (userId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/users/${userId}/reviews`);
+  const response = await csrfFetch(`/api/reviews/current`);
   if (response.ok) {
     const reviews = await response.json();
     dispatch(populate(reviews));

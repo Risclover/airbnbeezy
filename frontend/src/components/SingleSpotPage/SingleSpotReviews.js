@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
-import { getSpotById } from "../../store/spots";
-import { getUsers } from "../../store/users";
 import { Modal } from "../../context/Modal";
 import ReviewPage from "../ReviewPage";
 
 export default function SingleSpotReviews({ spot, reviewsRef }) {
-  const [showReviewModal, setShowReviewModal] = useState(false);
   const dispatch = useDispatch();
+
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
   let reviews = useSelector((state) => Object.values(state.reviews));
-  reviews = reviews.filter((review) => review.spotId === spot.id);
   const usersList = useSelector((state) => state.users);
   const currentUser = useSelector((state) => state.session.user);
 
+  reviews = reviews.filter((review) => review.spotId === spot.id);
+
   useEffect(() => {
     dispatch(getSpotReviews(spot.id));
-    dispatch(getUsers());
   }, [dispatch, spot.id]);
 
   let count = 0;
@@ -25,6 +25,7 @@ export default function SingleSpotReviews({ spot, reviewsRef }) {
   let reviewMonth;
   let reviewMonthNum;
   let reviewYear;
+
   reviews.forEach((review) => {
     if (review) {
       count++;
@@ -124,7 +125,7 @@ export default function SingleSpotReviews({ spot, reviewsRef }) {
             <div className="review-box">
               <div className="review-author">
                 <NavLink to={`/users/${usersList[review.userId]?.id}/profile`}>
-                  <img src={usersList[review.userId]?.userImage} />
+                  <img src={usersList[review.userId]?.profileImageUrl} />
                 </NavLink>
                 <div className="review-name">
                   <h3>{review.User?.firstName}</h3>

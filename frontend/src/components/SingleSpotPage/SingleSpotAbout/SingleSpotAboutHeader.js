@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../../store/users";
+import { useSelector } from "react-redux";
 import "./SingleSpotAbout.css";
 
 export default function SingleSpotAboutHeader({ spot, scrollRef }) {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const usersList = useSelector((state) => state.users);
-  const [access, setAccess] = useState(
-    spot.access.slice(0, 1).toUpperCase() + spot.access.slice(1)
-  );
+  const [access, setAccess] = useState();
 
   useEffect(() => {
-    dispatch(getUsers());
-  }, []);
+    setAccess(spot.access.slice(0, 1).toUpperCase() + spot.access.slice(1));
+  }, [access]);
 
   const executeScroll = () =>
     scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -43,7 +37,10 @@ export default function SingleSpotAboutHeader({ spot, scrollRef }) {
             : spot.bathrooms + " baths"}
         </div>
       </div>
-      <img src={usersList[spot.ownerId]?.userImage} onClick={executeScroll} />
+      <img
+        src={usersList[spot.ownerId]?.profileImageUrl}
+        onClick={executeScroll}
+      />
     </div>
   );
 }

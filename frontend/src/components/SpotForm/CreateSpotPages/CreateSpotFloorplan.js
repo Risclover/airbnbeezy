@@ -16,7 +16,7 @@ export default function CreateSpotFloorplan({
   setBathrooms,
 }) {
   const history = useHistory();
-  const [step1, setStep1] = useState("part3");
+
   const handleNext = (e) => {
     e.preventDefault();
     history.push("/create-spot/standout");

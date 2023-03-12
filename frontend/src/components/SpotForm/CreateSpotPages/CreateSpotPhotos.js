@@ -6,8 +6,12 @@ import "./CreateSpot.css";
 export default function CreateSpotPhotos({ category, imgUrl, setImgUrl }) {
   const history = useHistory();
 
-  const [step1, setStep1] = useState("part5");
+  const [step1, setStep1] = useState("");
   const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    setStep1("part5");
+  }, [step1]);
 
   useEffect(() => {
     if (imgUrl) {
@@ -21,6 +25,7 @@ export default function CreateSpotPhotos({ category, imgUrl, setImgUrl }) {
     e.preventDefault();
     history.push("/create-spot/title");
   };
+
   return (
     <div className="create-spot-photos-page">
       <Helmet>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 
@@ -13,13 +12,14 @@ function SignupFormPage({ setShowModal, setLogin }) {
   const [firstName, setFirstName] = useState("");
   const [image, setImage] = useState("");
   const [lastName, setLastName] = useState("");
-
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!image) errors.push("Please include a profile picture to sign up.");
+
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(

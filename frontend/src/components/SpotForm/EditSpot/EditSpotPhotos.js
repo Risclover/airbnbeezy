@@ -1,34 +1,18 @@
-// CreateUser.js file
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addSpotImg, getSpotImgs } from "../../../store/spot-images";
 import { getAllSpots } from "../../../store/spots";
 
-function getExtension(filename) {
-  var parts = filename.split(".");
-  return parts[parts.length - 1];
-}
-
 const EditSpotPhotos = () => {
-  const { spotId } = useParams();
   const dispatch = useDispatch();
+  const { spotId } = useParams();
 
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState("");
-  // for multuple file upload
-  //   const [images, setImages] = useState([]);
   const [errors, setErrors] = useState("");
 
-  const user = useSelector((state) => state.session.user);
-  const spot = useSelector((state) => state.spots[+spotId]);
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let newErrors = [];
 
     await dispatch(addSpotImg({ image, preview: false, spotId }));
     dispatch(getAllSpots());
@@ -55,12 +39,6 @@ const EditSpotPhotos = () => {
     if (file) setImage(file);
   };
 
-  // for multiple file upload
-  //   const updateFiles = (e) => {
-  //     const files = e.target.files;
-  //     setImages(files);
-  //   };
-
   return (
     <div>
       <form
@@ -77,13 +55,6 @@ const EditSpotPhotos = () => {
               className="img-upload"
             />
           </label>
-          {/* <label>
-            Multiple Upload
-            <input
-              type="file"
-              multiple
-              onChange={updateFiles} />
-          </label> */}
           <button type="submit" className="add-img-btn">
             Add Image
           </button>

@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import "./CurrentUserReviews.css";
 import { getUserReviews, removeReview } from "../../store/reviews";
 import { getUsers } from "../../store/users";
+import "./CurrentUserReviews.css";
 
-export default function CurrentUserReviews() {
+export default function CurrentUserReviews({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const dispatch = useDispatch();
   const { userId } = useParams();
 
   let reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user);
+
   reviews = reviews.filter((review) => review.userId === sessionUser.id);
-  const user = useSelector((state) => state.users[+userId]);
 
   useEffect(() => {
     dispatch(getUserReviews(+userId));
@@ -23,6 +26,7 @@ export default function CurrentUserReviews() {
   let reviewMonth;
   let reviewMonthNum;
   let reviewYear;
+
   reviews.forEach((review) => {
     if (review) {
       reviewDate = new Date(review.createdAt);
@@ -77,7 +81,7 @@ export default function CurrentUserReviews() {
   return (
     <div className="current-user-reviews">
       <div className="reviews-breadcrumbs">
-        <NavLink to={`/users/${user.id}/profile`}>Profile</NavLink>{" "}
+        <NavLink to={`/users/${user?.id}/profile`}>Profile</NavLink>{" "}
         <svg
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"
@@ -103,16 +107,20 @@ export default function CurrentUserReviews() {
 
       <h1>Reviews by you</h1>
       <h2>Past reviews you have written</h2>
-      {reviews.map((review) =>
-        review.id === user.id ? (
-          <div className="review-box">
-            <div className="review-name">
-              <h3>{user.firstName}</h3>
-              <p>
-                {reviewMonth} {reviewYear}
-              </p>
+      {reviews.map((review) => (
+        <div className="review-box">
+          <div className="review-name">
+            <h3 className="review-spot-title">
+              <NavLink to={`/spots/${review.spotId}`}>
+                {review.Spot.name}
+              </NavLink>
+            </h3>
+            <div className="review-spot-date">
+              {reviewMonth} {reviewYear}
             </div>
-            <div className="review-body">{review.review}</div>
+          </div>
+          <div className="review-body">{review.review}</div>
+          <div className="review-btns">
             <button
               className="remove-review"
               onClick={(e) => {
@@ -123,10 +131,8 @@ export default function CurrentUserReviews() {
               Remove
             </button>
           </div>
-        ) : (
-          ""
-        )
-      )}
+        </div>
+      ))}
     </div>
   );
 }

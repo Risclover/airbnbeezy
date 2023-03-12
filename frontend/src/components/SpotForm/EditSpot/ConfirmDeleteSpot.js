@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { MdOutlineClose } from "react-icons/md";
 import { BsCheckSquareFill, BsSquare } from "react-icons/bs";
-import { deleteSpot, getAllSpots, getSpots } from "../../../store/spots";
+import { deleteSpot, getAllSpots } from "../../../store/spots";
 import { getUsers } from "../../../store/users";
 
 export default function ConfirmDeleteSpot({ setShowDeleteModal, spotId }) {
@@ -11,7 +11,7 @@ export default function ConfirmDeleteSpot({ setShowDeleteModal, spotId }) {
   const history = useHistory();
 
   const [fakeCheck, setFakeCheck] = useState(false);
-  const handleChangeCheck = (e) => {
+  const handleChangeCheck = () => {
     setFakeCheck(!fakeCheck);
   };
 

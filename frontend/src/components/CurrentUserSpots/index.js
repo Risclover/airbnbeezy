@@ -3,22 +3,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots, getSpots } from "../../store/spots";
 import { getUserReviews } from "../../store/reviews";
-import { Modal } from "../../context/Modal";
 import { updateUser } from "../../store/users";
-import "./CurrentUserSpots.css";
-import IdentityModal from "./IdentityModal";
 import { getUsers } from "../../store/users";
 import { RiSuitcaseFill } from "react-icons/ri";
 import { ImHome } from "react-icons/im";
-import LoggedIn from "../../images/logged-in-user2.png";
 import { Helmet } from "react-helmet";
+import { Modal } from "../../context/Modal";
+import IdentityModal from "./IdentityModal";
+import LoggedIn from "../../images/logged-in-user2.png";
 import ListingCarousel from "./ListingCarousel";
+import UpdateImageModal from "./UpdateImageModal";
+import "./CurrentUserSpots.css";
 
-export default function CurrentUserSpots() {
+export default function CurrentUserSpots({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const dispatch = useDispatch();
   const { userId } = useParams();
   const user = useSelector((state) => state.users[+userId]);
 
+  const [showImageModal, setShowImageModal] = useState(false);
   const [showIdentityModal, setShowIdentityModal] = useState(false);
   const [showAboutForm, setShowAboutForm] = useState(false);
   const [about, setAbout] = useState(user?.about);
@@ -27,7 +31,6 @@ export default function CurrentUserSpots() {
 
   const spotsList = useSelector(getSpots);
   let reviews = useSelector((state) => Object.values(state.reviews));
-  // const sessionUser = useSelector((state) => state.session.user);
   const currentUser = useSelector((state) => state.session.user);
   reviews = reviews.filter((review) => review.userId === currentUser?.id);
 
@@ -66,12 +69,14 @@ export default function CurrentUserSpots() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     const payload = {
       id: userId,
       about: about,
       location: location,
       work: work,
     };
+
     await dispatch(updateUser(payload));
     await dispatch(getUsers());
     setShowAboutForm(false);
@@ -87,9 +92,23 @@ export default function CurrentUserSpots() {
           {user?.profileImageUrl && <img src={userImg} />}
           {user?.userImage && <img src={userImg2} />}
           {!user?.userImage && !user?.profileImageUrl && <img src={LoggedIn} />}
-          Hullo?
         </div>
-        {currentUser && <span className="update-image">Update photo</span>}
+        {currentUser.id === user?.id && (
+          <span
+            className="update-image"
+            onClick={() => setShowImageModal(true)}
+          >
+            Update photo
+          </span>
+        )}
+        {showImageModal && (
+          <Modal onClose={() => setShowImageModal(false)}>
+            <UpdateImageModal
+              user={currentUser}
+              setShowImageModal={setShowImageModal}
+            />
+          </Modal>
+        )}
         <ul className="user-bullets">
           <li className="user-reviews">
             <div className="bullet-icon">
@@ -230,9 +249,11 @@ export default function CurrentUserSpots() {
             {count === 0 ? "" : <h2>{user?.firstName}'s listings</h2>}
             <ListingCarousel spotsList={spotsList} user={user} />
           </div>
-          <div className="user-reviews">
-            <NavLink to={`/users/${userId}/reviews`}>Reviews by you</NavLink>
-          </div>
+          {currentUser?.id === user?.id && (
+            <div className="user-reviews">
+              <NavLink to={`/my-reviews`}>Reviews by you</NavLink>
+            </div>
+          )}
         </div>
       </div>
     </div>

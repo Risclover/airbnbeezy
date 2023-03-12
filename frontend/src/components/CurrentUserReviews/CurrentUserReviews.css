@@ -29,8 +29,13 @@
 
 .remove-review {
   background: none;
+  font-family: "Figtree", sans-serif;
   border: 0;
-  text-decoration: underline;
+  border-radius: 8px;
+  /* padding: 8px; */
+  margin-top: 20px;
+  color: red;
+  /* text-decoration: underline; */
 }
 
 .remove-review:hover {
@@ -52,9 +57,58 @@
 .current-user-reviews h2 {
   font-size: 24px;
   font-weight: 500;
-  margin-bottom: 15px;
+  margin-bottom: 55px;
 }
 
 .reviews-content {
   font-family: "Figtree", sans-serif;
+}
+
+.current-user-reviews .review-box {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 15px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.current-user-reviews .review-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.current-user-reviews .review-spot-title a {
+  text-decoration: underline;
+  /* margin-bottom: 10px; */
+  font-size: 18px;
+  max-width: 100px;
+}
+
+.current-user-reviews .review-spot-title {
+  /* max-width: 100px; */
+  overflow: hidden;
+  word-break: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 15px;
+}
+
+.current-user-reviews .review-spot-date {
+  min-width: 90px;
+  text-align: right;
+}
+.current-user-reviews .review-body {
+  margin-top: 5px;
+  line-height: 20px;
+}
+
+.current-user-reviews .review-btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* text-decoration: underline; */
 }

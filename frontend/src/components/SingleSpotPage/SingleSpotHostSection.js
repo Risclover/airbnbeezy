@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../../store/users";
-import "./SingleSpotPage.css";
-import { getAllReviews } from "../../store/reviews";
+import { useSelector } from "react-redux";
 import { AiFillStar } from "react-icons/ai";
 import { RiShieldCheckFill } from "react-icons/ri";
-import moment from "moment";
-import { createMessage } from "../../store/messages";
+import "./SingleSpotPage.css";
 
 function translateMonth(num) {
   switch (num) {
@@ -41,37 +37,12 @@ function translateMonth(num) {
 }
 
 export default function SingleSpotHostSection({ spot, scrollRef }) {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-
-  const [content, setContent] = useState("");
-  const [senderId, setSenderId] = useState(sessionUser?.id);
-  const [recipientId, setRecipientId] = useState(spot.ownerId);
-  const [seen, setSeen] = useState(false);
-
   const usersList = useSelector((state) => state.users);
   let reviews = useSelector((state) => Object.values(state.reviews));
 
   reviews = reviews.filter(
     (review) => review.userId === usersList[spot.ownerId].id
   );
-
-  useEffect(() => {
-    dispatch(getUsers());
-    dispatch(getAllReviews());
-  }, []);
-
-  const handleMessage = async (e) => {
-    e.preventDefault();
-    const payload = {
-      content,
-      senderId,
-      recipientId,
-      seen,
-    };
-
-    await dispatch(createMessage(payload));
-  };
 
   return (
     <div className="host-section" ref={scrollRef}>

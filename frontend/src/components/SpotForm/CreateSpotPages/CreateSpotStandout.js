@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./CreateSpot.css";
 
 export default function CreateSpotStandout() {
   const history = useHistory();
-  const [step1, setStep1] = useState("part4");
+  const [step1, setStep1] = useState("");
+
+  useEffect(() => {
+    setStep1("part4");
+  }, [step1]);
 
   const handleNext = (e) => {
     e.preventDefault();
     history.push("/create-spot/photos");
   };
+
   return (
     <div className="create-spot-page">
       <Helmet>

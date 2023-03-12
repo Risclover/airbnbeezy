@@ -1,43 +1,36 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
-import { getSpotById, deleteSpot, getAllSpots } from "../../store/spots";
-
-import "./SingleSpotPage.css";
-import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
+import { useParams } from "react-router-dom";
+import { getSpotImgs } from "../../store/spot-images";
+import { getSpotById, getAllSpots } from "../../store/spots";
+import { Helmet } from "react-helmet";
 import SingleSpotHead from "./SingleSpotHead";
 import SingleSpotPhotos from "./SingleSpotPhotos";
 import SingleSpotReviews from "./SingleSpotReviews";
 import SingleSpotAbout from "./SingleSpotAbout/SingleSpotAbout";
-import { Helmet } from "react-helmet";
-import SpotMap from "./SpotMap";
-import { getSpotImgs } from "../../store/spot-images";
 import SingleSpotHostSection from "./SingleSpotHostSection";
-import { getUsers } from "../../store/users";
+import SpotMap from "./SpotMap";
+import "./SingleSpotPage.css";
 
-export default function SingleSpotPage() {
+export default function SingleSpotPage({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const scrollRef = useRef(null);
   const locationRef = useRef(null);
   const reviewsRef = useRef(null);
 
   const { spotId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const [editSpotId, setEditSpotId] = useState(null);
 
   const spot = useSelector(getSpotById(spotId));
-  const sessionUser = useSelector((state) => state.session.user);
 
   let reviews = useSelector((state) => Object.values(state.reviews));
   reviews = reviews.filter((review) => review.spotId === spotId);
 
   useEffect(() => {
-    setEditSpotId(null);
     dispatch(getAllSpots());
     dispatch(getSpotImgs());
-    dispatch(getUsers());
-  }, [dispatch, setEditSpotId]);
+  }, [dispatch]);
 
   const nav = document.querySelector(".nav");
   nav.style.position = "static";
@@ -67,7 +60,6 @@ export default function SingleSpotPage() {
         count={count}
       />
       <SingleSpotPhotos />
-      {/* <SingleSpotReservation /> */}
       <SingleSpotAbout
         reviewsRef={reviewsRef}
         scrollRef={scrollRef}

@@ -11,13 +11,6 @@ const add = (bookings) => ({
   bookings,
 });
 
-const update = (bookings) => {
-  return {
-    type: UPDATE,
-    bookings,
-  };
-};
-
 const remove = (bookingId) => {
   return {
     type: REMOVE,
@@ -32,7 +25,6 @@ const populate = (bookings) => {
   };
 };
 
-// export const getBookings = (state) => Object.values(state.bookings);
 export const getBookingById = (id) => (state) => state.bookings[id];
 export const getBookingsByOwnerId = (ownerId) => (state) =>
   state.bookings[ownerId];

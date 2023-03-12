@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function ShareModal({
   setShowShareModal,
@@ -6,10 +6,12 @@ export default function ShareModal({
   title,
   spotId,
 }) {
-  const [copyText, setCopyText] = useState(
-    `https://air-bnbeezy.herokuapp.com/spots/${spotId}`
-  );
+  const [copyText, setCopyText] = useState("");
   const [showResults, setShowResults] = useState(false);
+
+  useEffect(() => {
+    setCopyText(`https://air-bnbeezy.herokuapp.com/spots/${spotId}`);
+  }, [copyText]);
 
   return (
     <div className="share-modal">
@@ -34,7 +36,6 @@ export default function ShareModal({
             onClick={() => {
               navigator.clipboard.writeText(copyText);
               setShowResults(true);
-              console.log(copyText);
             }}
           >
             {" "}

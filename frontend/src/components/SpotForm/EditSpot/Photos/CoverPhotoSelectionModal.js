@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./EditPhotos.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllSpots, getSpotById, updateSpot } from "../../../../store/spots";
+import { getAllSpots } from "../../../../store/spots";
 import { editSpotImg, getSpotImgs } from "../../../../store/spot-images";
+import "./EditPhotos.css";
 
 export default function CoverPhotoSelectionModal({
   photos,
@@ -10,6 +10,7 @@ export default function CoverPhotoSelectionModal({
   setShowCoverPhotoModal,
 }) {
   const dispatch = useDispatch();
+
   const [coverPhoto, setCoverPhoto] = useState();
   const [imgChange, setImgChange] = useState();
   const [newImg, setNewImg] = useState();
@@ -18,7 +19,9 @@ export default function CoverPhotoSelectionModal({
 
   useEffect(() => {
     dispatch(getSpotImgs());
+  }, [dispatch]);
 
+  useEffect(() => {
     for (let img of imgs) {
       if (
         img.preview === true &&
@@ -28,9 +31,7 @@ export default function CoverPhotoSelectionModal({
         setImgChange(img);
       }
     }
-  }, []);
-  console.log("cover:", coverPhoto);
-  console.log("img", imgChange);
+  }, [imgChange]);
 
   const handleChange = () => {
     for (let img of imgs) {
@@ -38,18 +39,17 @@ export default function CoverPhotoSelectionModal({
         setNewImg(img);
       }
     }
-
-    console.log("new img:", newImg);
   };
 
   const handleSave = async (e) => {
     e.preventDefault();
+
     const payload2 = { preview: false, url: imgChange.url };
     await dispatch(editSpotImg({ payload2 }, imgChange.id));
+
     const payload = { preview: true, url: newImg.url };
     await dispatch(editSpotImg({ payload }, newImg.id));
-    console.log("payload", payload);
-    console.log("payload2", payload2);
+
     dispatch(getAllSpots());
     setShowCoverPhotoModal(false);
   };

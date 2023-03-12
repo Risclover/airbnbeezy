@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RxChevronRight } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-import { deleteSpot, getAllSpots, updateSpot } from "../../../store/spots";
+import { getAllSpots, updateSpot } from "../../../store/spots";
 import { BiMinus } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { BsFillCircleFill } from "react-icons/bs";
-import RadioBtn from "./RadioBtn";
 import { Modal } from "../../../context/Modal";
 import ConfirmDeleteSpot from "./ConfirmDeleteSpot";
 import EditSpotPhotos from "./EditSpotPhotos";
 import Countries from "../../../APIs/countries.json";
-import { set } from "date-fns";
+import RadioBtn from "./RadioBtn";
 
 const categories = [
   "House",
@@ -62,6 +61,7 @@ export default function EditSpotMain({
 }) {
   const dispatch = useDispatch();
   const { spotId } = useParams();
+
   const [name, setName] = useState(spot?.name ? spot.name : "");
   const [openName, setOpenName] = useState(false);
   const [originalName, setOriginalName] = useState(false);
@@ -97,7 +97,6 @@ export default function EditSpotMain({
 
   useEffect(() => {
     const payload = { guests: guests, id: +spotId };
-
     dispatch(updateSpot(payload));
     dispatch(getAllSpots());
   }, [guests, listed]);
@@ -198,12 +197,7 @@ export default function EditSpotMain({
     await dispatch(updateSpot(payload));
     dispatch(getAllSpots());
     setOpenListed(false);
-    // setListed(spot?.listed);
   };
-
-  //   useEffect(() => {
-  //     setListed(spot?.listed);
-  //   }, [listed]);
 
   const handleListedChange = (e) => {
     const { name } = e.target;

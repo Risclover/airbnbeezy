@@ -5,7 +5,6 @@ import "./CreateSpot.css";
 
 export default function CreateSpotTitle({ title, setTitle, category }) {
   const history = useHistory();
-  const [step1, setStep1] = useState("");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
@@ -20,6 +19,7 @@ export default function CreateSpotTitle({ title, setTitle, category }) {
     e.preventDefault();
     history.push("/create-spot/description");
   };
+
   return (
     <div className="create-spot-title-page">
       <Helmet>

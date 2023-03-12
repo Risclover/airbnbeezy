@@ -182,6 +182,10 @@
   color: #ddd;
 }
 
+.bookings-table-head-btn:active {
+  transform: none !important;
+}
+
 .table-sort-head {
   display: flex;
   width: 100%;

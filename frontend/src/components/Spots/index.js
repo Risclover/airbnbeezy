@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
-import { getUsers } from "../../store/users";
-import SpotCategories from "./SpotCategories";
-import "./Spots.css";
-import moment from "moment";
-import Spot from "./Spot/Spot";
 import { AiFillStar } from "react-icons/ai";
+import Spot from "./Spot/Spot";
+import SpotCategories from "./SpotCategories";
+import moment from "moment";
+import "./Spots.css";
 
-export default function Spots() {
+export default function Spots({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const dispatch = useDispatch();
 
-  const [showCreateSpotForm, setShowCreateSpotForm] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
+  const [loader, setLoader] = useState(true);
   const [activeCategory, setActiveCategory] = useState("Ne");
 
   const usersList = useSelector((state) => state.users);
@@ -21,10 +22,7 @@ export default function Spots() {
 
   useEffect(() => {
     dispatch(getAllSpots());
-    dispatch(getUsers());
   }, [dispatch]);
-
-  let content = null;
 
   const nav = document.querySelector(".nav");
   nav.style.position = "fixed";
@@ -58,100 +56,60 @@ export default function Spots() {
     return bSpot - aSpot;
   });
 
+  setTimeout(() => {
+    setLoader(false);
+  }, 800);
+
   return (
-    <div className="spots-body">
-      <div
-        className={
-          showBorder
-            ? "spots-categories-bar bottom-border"
-            : "spots-categories-bar"
-        }
-      >
-        <SpotCategories
-          activeCategory={activeCategory}
-          setActiveCategory={setActiveCategory}
-        />
-      </div>
-      <div className="spots-div">
-        <div className="spots-list">
-          {activeCategory === "Ne"
-            ? spotsList.map(
-                (spot) =>
-                  spot.listed && (
-                    <NavLink to={`/spots/${spot.id}`}>
-                      <div className="spot-box">
-                        <Spot spot={spot} />
-                        <div className="spot-info">
-                          <ul>
-                            <li className="spotcard-location">
-                              <div className="spotcard-location-left">
-                                {spot.city}, {spot.state && spot.state + ", "}{" "}
-                                {spot.country}
-                              </div>
-                              <div className="spotcard-location-right">
-                                <AiFillStar />
-                                {spot.avgRating
-                                  ? spot?.avgRating?.toFixed(2)
-                                  : "New"}
-                              </div>
-                            </li>
-                            <li className="spotcard-subinfo">
-                              Hosted by {usersList[spot.ownerId]?.firstName}
-                            </li>
-                            <li className="spotcard-subinfo">
-                              Added {moment(spot.createdAt).fromNow()}
-                            </li>
-                            <li className="spotcard-priceline">
-                              <span className="spotcard-price">
-                                ${spot.price}
-                              </span>{" "}
-                              night
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </NavLink>
-                  )
-                // <Link to={`/spots/${spot.id}`} price={spot.price}>
-                //   <div key={spot.id} className="spot-box">
-                //     <div className="spot-img">
-                //       <img src={spot.previewImage} />
-                //     </div>
-                //     <div className="spot-info">
-                //       <ul>
-                //         <li className="spotcard-location">
-                //           {spot.city}, {spot.state}
-                //         </li>
-                //         <li className="spotcard-subinfo">
-                //           Hosted by {usersList[spot.ownerId]?.username}
-                //         </li>
-                //         <li className="spotcard-subinfo">
-                //           Added {moment(spot.createdAt).fromNow()}
-                //         </li>
-                //         <li className="spotcard-priceline">
-                //           <span className="spotcard-price">${spot.price}</span>{" "}
-                //           night
-                //         </li>
-                //       </ul>
-                //     </div>
-                //   </div>
-                // </Link>
-              )
-            : spotsList
-                .filter((spot) => spot.category === activeCategory)
-                .map(
+    <>
+      {loader && (
+        <div className="css-loader">
+          <div className="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      )}
+      <div className="spots-body">
+        <div
+          className={
+            showBorder
+              ? "spots-categories-bar bottom-border"
+              : "spots-categories-bar"
+          }
+        >
+          <SpotCategories
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
+        </div>
+        <div className="spots-div">
+          <div className="spots-list">
+            {activeCategory === "Ne"
+              ? spotsList.map(
                   (spot) =>
                     spot.listed && (
                       <NavLink to={`/spots/${spot.id}`}>
                         <div className="spot-box">
-                          <Spot spot={spot} />
+                          <Spot key={spot.id} spot={spot} />
                           <div className="spot-info">
                             <ul>
                               <li className="spotcard-location">
-                                {spot.city}, {spot.state}
+                                <div className="spotcard-location-left">
+                                  {spot.city}, {spot.state && spot.state + ", "}{" "}
+                                  {spot.country}
+                                </div>
+                                <div className="spotcard-location-right">
+                                  <AiFillStar />
+                                  {spot.avgRating
+                                    ? spot?.avgRating?.toFixed(2)
+                                    : "New"}
+                                </div>
                               </li>
                               <li className="spotcard-subinfo">
-                                Hosted by {usersList[spot.ownerId]?.username}
+                                Hosted by {usersList[spot.ownerId]?.firstName}
                               </li>
                               <li className="spotcard-subinfo">
                                 Added {moment(spot.createdAt).fromNow()}
@@ -167,35 +125,41 @@ export default function Spots() {
                         </div>
                       </NavLink>
                     )
-                  // <Link to={`/spots/${spot.id}`} price={spot.price}>
-                  //   <div key={spot.id} className="spot-box">
-                  //     <div className="spot-img">
-                  //       <img src={spot.previewImage} />
-                  //     </div>
-                  //     <div className="spot-info">
-                  //       <ul>
-                  //         <li className="spotcard-location">
-                  //           {spot.city}, {spot.state}
-                  //         </li>
-                  //         <li className="spotcard-subinfo">
-                  //           Hosted by {usersList[spot.ownerId]?.username}
-                  //         </li>
-                  //         <li className="spotcard-subinfo">
-                  //           Added {moment(spot.createdAt).fromNow()}
-                  //         </li>
-                  //         <li className="spotcard-priceline">
-                  //           <span className="spotcard-price">
-                  //             ${spot.price}
-                  //           </span>{" "}
-                  //           night
-                  //         </li>
-                  //       </ul>
-                  //     </div>
-                  //   </div>
-                  // </Link>
-                )}
+                )
+              : spotsList
+                  .filter((spot) => spot.category === activeCategory)
+                  .map(
+                    (spot) =>
+                      spot.listed && (
+                        <NavLink to={`/spots/${spot.id}`}>
+                          <div className="spot-box">
+                            <Spot key={spot.id} spot={spot} />
+                            <div className="spot-info">
+                              <ul>
+                                <li className="spotcard-location">
+                                  {spot.city}, {spot.state}
+                                </li>
+                                <li className="spotcard-subinfo">
+                                  Hosted by {usersList[spot.ownerId]?.username}
+                                </li>
+                                <li className="spotcard-subinfo">
+                                  Added {moment(spot.createdAt).fromNow()}
+                                </li>
+                                <li className="spotcard-priceline">
+                                  <span className="spotcard-price">
+                                    ${spot.price}
+                                  </span>{" "}
+                                  night
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </NavLink>
+                      )
+                  )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

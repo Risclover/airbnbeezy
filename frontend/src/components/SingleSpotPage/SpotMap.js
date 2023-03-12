@@ -1,7 +1,7 @@
 import React from "react";
 import "./SingleSpotPage.css";
 
-export default function SpotMap({ city, country, state, width, height }) {
+export default function SpotMap({ city, state, width, height }) {
   let environment = "AIzaSyBPt2nwzea1QV3CKO5z1WI0eluQbysjMLg";
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export default function EditSpotNavItem({ item }) {
   const [active, setActive] = useState("Photos");
@@ -8,7 +8,7 @@ export default function EditSpotNavItem({ item }) {
       className={
         active === item.item ? "inner-nav-selected" : "edit-spot-navitem"
       }
-      onClick={(e) => setActive(item.item)}
+      onClick={() => setActive(item.item)}
     >
       {item.item}
     </li>

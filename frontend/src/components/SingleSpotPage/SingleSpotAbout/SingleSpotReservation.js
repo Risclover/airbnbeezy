@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getAllSpots, getSpotById } from "../../../store/spots";
 import { addBooking, getBookings } from "../../../store/bookings";
-import "./SingleSpotAbout.css";
-import "react-calendar/dist/Calendar.css";
 import { getUsers } from "../../../store/users";
 import { Modal } from "../../../context/Modal";
 import AuthModal from "../../LoginFormModal/AuthModal";
 import PriceModal from "./PriceModal";
+import moment from "moment";
+import "./SingleSpotAbout.css";
+import "react-calendar/dist/Calendar.css";
 
 function getDates(startDate, stopDate) {
   var dateArray = [];
   var currentDate = moment(startDate);
   var stopDate = moment(stopDate);
+
   while (currentDate <= stopDate) {
     dateArray.push(moment(currentDate).format("M/D/YYYY"));
     currentDate = moment(currentDate).add(1, "days");
   }
+
   return dateArray;
 }
 
 export default function SingleSpotReservation({ reviewsRef }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { spotId } = useParams();
 
   const [dates, setDates] = useState([]);
   const [showPriceModal, setShowPriceModal] = useState(false);
@@ -36,16 +39,13 @@ export default function SingleSpotReservation({ reviewsRef }) {
   const [checkoutDate, setCheckoutDate] = useState();
   const [guests, setGuests] = useState(1);
   const [guestList, setGuestlist] = useState([]);
-  const { spotId } = useParams();
+
   const spot = useSelector(getSpotById(spotId));
   const currentUser = useSelector((state) => state.session.user);
   const bookings = useSelector((state) => Object.values(state.bookings));
-  moment().format();
 
   useEffect(() => {
     dispatch(getBookings());
-    dispatch(getAllSpots());
-    dispatch(getUsers());
   }, []);
 
   useEffect(() => {
@@ -125,7 +125,6 @@ export default function SingleSpotReservation({ reviewsRef }) {
   return (
     <div className="single-spot-reservation">
       <div className="single-spot-reservation-box">
-        {/* <Calendar /> */}
         <div className="reservation-head">
           <div className="reservation-head-left">
             <span className="reservation-head-left-price">
@@ -243,7 +242,6 @@ export default function SingleSpotReservation({ reviewsRef }) {
               />
             </Modal>
           )}
-          {/* <p className="no-charge">Feature coming soon.</p> */}
           <div className="reservation-fees">
             <div className="fee">
               <div

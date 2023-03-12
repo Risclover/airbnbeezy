@@ -4,9 +4,12 @@ import { NavLink } from "react-router-dom";
 import { getBookings } from "../../store/bookings";
 import { getAllSpots } from "../../store/spots";
 import { getUsers } from "../../store/users";
+import moment from "moment";
 import "./ManageBookings.css";
 
-export default function ManageBookings() {
+export default function ManageBookings({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const dispatch = useDispatch();
 
   const [list, setList] = useState([]);
@@ -52,6 +55,7 @@ export default function ManageBookings() {
                 guests: booking.guests,
                 owner: user.firstName,
                 spotId: spot.id,
+                price: spot.price,
               });
             }
           }
@@ -65,6 +69,7 @@ export default function ManageBookings() {
 
   const clearModifieds = () => {
     setNameModified(false);
+    setPriceModified(false);
     setGuestsModified(false);
     setCheckinModified(false);
     setCheckoutModified(false);
@@ -82,6 +87,20 @@ export default function ManageBookings() {
     clearModifieds();
     setGuestsModified(true);
     setGuestsSort(!guestsSort);
+  };
+
+  const sortByPrice = () => {
+    let sorted = [...list];
+
+    sorted.sort((a, b) => {
+      if (priceSort) return b.price - a.price;
+      if (!priceSort) return a.price - b.price;
+    });
+
+    setSorted(sorted);
+    clearModifieds();
+    setPriceModified(true);
+    setPriceSort(!priceSort);
   };
 
   const sortByName = () => {
@@ -184,20 +203,20 @@ export default function ManageBookings() {
               <th className="column-type-1">
                 <button
                   className="bookings-table-head-btn"
-                  onClick={sortByName}
+                  onClick={sortByPrice}
                 >
                   Price
-                  {!nameModified && (
+                  {!priceModified && (
                     <div className="sort-icons">
                       <i className="fa-solid fa-sort"></i>
                     </div>
                   )}
-                  {nameModified && nameSort && (
+                  {priceModified && priceSort && (
                     <div className="sort-icons icon-black">
                       <i className="fa-solid fa-sort-up"></i>
                     </div>
                   )}
-                  {nameModified && !nameSort && (
+                  {priceModified && !priceSort && (
                     <div className="sort-icons icon-black">
                       <i className="fa-solid fa-sort-down"></i>
                     </div>
@@ -291,9 +310,10 @@ export default function ManageBookings() {
                         </div>
                       </NavLink>
                     </td>
+                    <td>${booking.price}</td>
                     <td>{booking.guests}</td>
-                    <td>{booking.startDate}</td>
-                    <td>{booking.endDate}</td>
+                    <td>{moment(booking.startDate).format("MM/DD/YYYY")}</td>
+                    <td>{moment(booking.endDate).format("MM/DD/YYYY")}</td>
                     <td className="contact-host-col">
                       <button className="contact-host-btn">
                         <i className="fa-solid fa-envelope"></i> Contact{" "}
@@ -315,9 +335,10 @@ export default function ManageBookings() {
                         </div>
                       </NavLink>
                     </td>
+                    <td>${booking.price}</td>
                     <td>{booking.guests}</td>
-                    <td>{booking.startDate}</td>
-                    <td>{booking.endDate}</td>
+                    <td>{moment(booking.startDate).format("MM/DD/YYYY")}</td>
+                    <td>{moment(booking.endDate).format("MM/DD/YYYY")}</td>
                     <td className="contact-host-col">
                       <button className="contact-host-btn">
                         <i className="fa-solid fa-envelope"></i> Contact{" "}

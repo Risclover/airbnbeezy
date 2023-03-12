@@ -1,15 +1,16 @@
 .site-footer {
   width: 100%;
-  position: absolute;
+  position: fixed;
+  font-size: 16px;
   bottom: 0;
   z-index: 5000;
   /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
-  background: #f7f7f7;
-  border-top: #ddd;
+  border-top: 1px solid #ddd;
+  padding: 13px 80px 14px;
+  background: white;
 }
 
 .site-footer-right {
@@ -32,7 +33,7 @@
 .developer-link {
   background: none;
   cursor: pointer;
-  color: #222;
+  color: #717171;
 
   border: 0;
   outline: 0;
@@ -40,7 +41,8 @@
 }
 
 .developer-link:hover {
-  color: #454545;
+  /* color: #454545; */
+  color: #222;
 }
 
 .developer-link:active {
@@ -65,7 +67,7 @@
   padding: 5px 10px;
   position: absolute;
   z-index: 1;
-  bottom: 40px;
+  bottom: 35px;
   font-family: "Figtree", sans-serif;
   font-size: 13px;
   font-weight: 500;

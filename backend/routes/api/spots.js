@@ -481,6 +481,7 @@ router.post("/:spotId/reviews", validateReview, async (req, res, next) => {
   const createdReview = await Review.create({
     userId: req.user.id,
     spotId: spotId,
+    spotName: spot.name,
     review: review,
     stars: stars,
     hasResponse: false,
@@ -492,7 +493,7 @@ router.post("/:spotId/reviews", validateReview, async (req, res, next) => {
 // Create a booking from a spot based on the spot's id
 router.post("/:spotId/bookings", async (req, res) => {
   const { spotId } = req.params;
-  const { startDate, endDate, guests } = req.body;
+  const { startDate, endDate, guests, price } = req.body;
 
   const spot = await Spot.findByPk(spotId);
 
@@ -547,6 +548,8 @@ router.post("/:spotId/bookings", async (req, res) => {
     guests: guests,
   });
 
+  newBooking.price = spot.price;
+
   newBooking.spot = spot;
 
   res.json(newBooking);
@@ -570,7 +573,7 @@ router.get("/:spotId/bookings", async (req, res) => {
       where: {
         spotId: spotId,
       },
-      attributes: ["spotId", "startDate", "endDate"],
+      attributes: ["spotId", "startDate", "endDate", "price"],
     });
 
     res.json({ Bookings: allBookings });

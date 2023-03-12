@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-import { Modal } from "../../context/Modal";
+import React from "react";
 
 export default function AboutModal({ setShowAboutModal }) {
   return (

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Countries from "../../../APIs/countries.json";
-import "./CreateSpot.css";
-import { addSpot } from "../../../store/spots";
 import SpotMap from "../../SingleSpotPage/SpotMap";
+import "./CreateSpot.css";
 
 export default function CreateSpotLocation({
   address,
@@ -20,16 +18,21 @@ export default function CreateSpotLocation({
   setCity,
   setState,
   setCountry,
-  category,
 }) {
-  const dispatch = useDispatch();
   const history = useHistory();
-  const [step1, setStep1] = useState("part2");
+
+  const [step1, setStep1] = useState("");
   const [done, setDone] = useState(false);
+
   const countries = [];
+
   for (let i = 0; i < Countries.length; i++) {
     countries.push(`${Countries[i].name} - ${Countries[i].iso2}`);
   }
+
+  useEffect(() => {
+    setStep1("part2");
+  }, [step1]);
 
   useEffect(() => {
     if (address && city && country) {

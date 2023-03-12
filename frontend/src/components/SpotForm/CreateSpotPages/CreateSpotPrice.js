@@ -3,10 +3,11 @@ import { useHistory } from "react-router-dom";
 import { BiMinus } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { Helmet } from "react-helmet";
-export default function CreateSpotPrice({ price, setPrice, category }) {
+
+export default function CreateSpotPrice({ price, setPrice }) {
   const history = useHistory();
+
   const [done, setDone] = useState(false);
-  const [step1, setStep1] = useState("");
 
   useEffect(() => {
     if (price) {

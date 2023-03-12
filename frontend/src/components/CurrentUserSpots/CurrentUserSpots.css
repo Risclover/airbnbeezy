@@ -47,6 +47,10 @@
   font-weight: 500;
 }
 
+.user-img-input {
+  display: none;
+}
+
 .user-bullets li {
   font-family: "Figtree", sans-serif;
   display: flex;
@@ -743,6 +747,45 @@
   font-size: 15px;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.update-image-modal {
+  overflow: hidden;
+  width: 450px;
+  height: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.update-image-content {
+  text-align: center;
+  padding: 20px;
+  /* max-height: 300px; */
+  overflow-y: auto;
+}
+
+.user-preview-box {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 127px;
+  height: 128px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.update-image-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.update-image-btns {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media (min-width: 1940px) {

@@ -1,11 +1,11 @@
 import React from "react";
-import "./SiteFooter.css";
 import { RiGitRepositoryFill } from "react-icons/ri";
+import "./SiteFooter.css";
 
 export default function SiteFooter() {
   return (
     <div className="site-footer">
-      <div className="site-footer-left">© 2023 Airbnbeezy</div>
+      <div className="site-footer-left">© 2023 Sara Dunlop</div>
       <div className="site-footer-right">
         <ul className="developer-links">
           <li className="tooltip">

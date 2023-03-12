@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { addReview, getSpotReviews } from "../../store/reviews";
 import "./ReviewPage.css";
 
-import { addReview, getSpotReviews } from "../../store/reviews";
-import { getAllSpots } from "../../store/spots";
-
 export default function ReviewPage({ spot, setShowReviewModal }) {
-  const { spotId } = useParams();
+  const dispatch = useDispatch();
+
   const [errorValidators, setErrorValidators] = useState([]);
   const [stars, setStars] = useState(1);
   const [review, setReview] = useState("");
-  const [errors, setErrors] = useState([]);
   const [hasResponse, setHasResponse] = useState();
-  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.session.user);
   let reviews = useSelector((state) => Object.values(state.reviews));
+
   reviews = reviews.filter((review) => review.spotId === spot.id);
 
   let count = 0;
+
   reviews.forEach((review) => {
     if (review.userId === user.id) {
       count += 1;
@@ -45,23 +44,21 @@ export default function ReviewPage({ spot, setShowReviewModal }) {
     }
 
     setErrorValidators(errors);
-    dispatch(getAllSpots());
-    dispatch(getSpotReviews(spotId));
-  }, [dispatch, stars]);
+  }, [stars]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setHasResponse(false);
-    setErrors([]);
+
     const payload = {
       review,
       stars,
       hasResponse,
     };
+
     await dispatch(addReview(payload, user, spot));
-
     await dispatch(getSpotReviews(spot.id));
-
     setShowReviewModal(false);
   };
 

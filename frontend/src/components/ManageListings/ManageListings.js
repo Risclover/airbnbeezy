@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
-import { getSpots, getAllSpots } from "../../store/spots";
+import { getAllSpots } from "../../store/spots";
 import { BsPlusLg, BsCircleFill } from "react-icons/bs";
 import moment from "moment";
 import "./ManageListings.css";
-import { Helmet } from "react-helmet";
 
-export default function ManageListings() {
+export default function ManageListings({ setIsCreatePage }) {
+  setIsCreatePage(false);
+
   const history = useHistory();
   const dispatch = useDispatch();
 

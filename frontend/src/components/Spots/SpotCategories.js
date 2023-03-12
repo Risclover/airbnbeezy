@@ -1,11 +1,4 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import "swiper/css";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-
 import Home from "../../images/places/home.png";
 import Apartment from "../../images/places/apartment.png";
 import Barn from "../../images/places/barn.png";
@@ -37,8 +30,11 @@ import Treehouse from "../../images/places/treehouse.png";
 import Trullo from "../../images/places/trullo.jpg";
 import Windmill from "../../images/places/windmill.png";
 import Yurt from "../../images/places/yurt.png";
-import "./Spots.css";
 import CategoryBtn from "./CategoryBtn";
+import "./Spots.css";
+import "swiper/css";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const categories = [
   {
@@ -83,8 +79,9 @@ export default function SpotCategories({ activeCategory, setActiveCategory }) {
 
   return (
     <div className="spot-categories">
-      {categories.map((category) => (
+      {categories.map((category, idx) => (
         <CategoryBtn
+          key={idx}
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
           activeBtn={activeBtn}

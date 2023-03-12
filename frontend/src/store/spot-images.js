@@ -67,7 +67,6 @@ export const editSpotImg = (image, imageId) => async (dispatch) => {
     }),
   });
 
-  console.log("RESPONSE:", response);
   if (response.ok) {
     const data = await response.json();
     dispatch(loadSingle(data));

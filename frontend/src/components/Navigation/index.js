@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Modal } from "../../context/Modal";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
-import "./Navigation.css";
 import smallLogo from "../../images/small_logo.png";
 import Logo from "../../images/airbnbeezy_logo3.png";
-import SearchBar from "./SearchBar";
-import { Modal } from "../../context/Modal";
 import AuthModal from "../LoginFormModal/AuthModal";
+import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
-  const [showModal, setShowModal] = useState(false);
-
-  const [login, setLogin] = useState(true);
-  const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
+
+  const [showModal, setShowModal] = useState(false);
+  const [login, setLogin] = useState(true);
+
+  const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = (
-      <>
-        <ProfileButton user={sessionUser} />
-      </>
-    );
+    sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
       <>
@@ -42,9 +38,6 @@ function Navigation({ isLoaded }) {
             <img className="site-logo" alt="Site logo" src={Logo} />
           </Link>
         </div>
-        {/* <div className="nav-center">
-          <SearchBar />
-        </div> */}
         <div className="nav-right">
           {sessionUser !== null ? (
             <button

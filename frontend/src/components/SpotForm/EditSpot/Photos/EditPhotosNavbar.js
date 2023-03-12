@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { RxChevronLeft } from "react-icons/rx";
-
 import "./EditPhotos.css";
 
 export default function EditPhotosNavbar({

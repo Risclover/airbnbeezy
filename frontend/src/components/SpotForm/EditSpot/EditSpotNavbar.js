@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./EditSpot.css";
-import EditSpotNavItem from "./EditSpotNavItem";
 
 export default function EditSpotNavbar({
   pricingRef,

@@ -3,13 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./CreateSpot.css";
 
-export default function CreateSpotDescription({
-  description,
-  setDescription,
-  category,
-}) {
+export default function CreateSpotDescription({ description, setDescription }) {
   const history = useHistory();
-  const [step1, setStep1] = useState("");
   const [done, setDone] = useState(false);
 
   useEffect(() => {

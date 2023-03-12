@@ -8,10 +8,8 @@ export default function SearchBar() {
   const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState([]);
 
   const usersList = useSelector((state) => Object.values(state.users));
-  const spotsList = useSelector((state) => Object.values(state.spots));
 
   useEffect(() => {
     dispatch(getUsers());
@@ -25,15 +23,14 @@ export default function SearchBar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    let results = [];
+    let searchResults = [];
     for (let username of usernames) {
       if (searchQuery.toLowerCase().includes(username.username.toLowerCase())) {
-        results.push(username);
+        searchResults.push(username);
       }
     }
   };
 
-  console.log("results:", results);
   return (
     <div className="nav-searchbar">
       <input

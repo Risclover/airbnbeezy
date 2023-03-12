@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { addSpot, addImage, getAllSpots, getSpots } from "../../../store/spots";
-import { addSpotImg } from "../../../store/spot-images";
+import { addSpot, addImage, getAllSpots } from "../../../store/spots";
 
 export default function CreateSpotReceipt({
   imgUrl,

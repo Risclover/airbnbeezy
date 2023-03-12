@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
@@ -29,7 +28,6 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import EditSpot from "./components/SpotForm/EditSpot/EditSpot";
 import ManageBookings from "./components/ManageBookings/ManageBookings";
 import SiteFooter from "./components/SiteFooter.js/SiteFooter";
-import Messages from "./components/Messages/Messages";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,7 +70,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Spots isLoaded={isLoaded} />
+            <Spots isLoaded={isLoaded} setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/create-spot">
             <CreateSpotOverview
@@ -96,6 +94,7 @@ function App() {
           <Route exact path="/create-spot/about-your-place"></Route>
           <Route exact path="/create-spot">
             <CreateSpotOverview
+              setIsCreatePage={setIsCreatePage}
               step={step}
               part={part}
               setStep={setStep}
@@ -103,13 +102,22 @@ function App() {
             />
           </Route>
           <Route exact path="/create-spot/category">
-            <CreateSpot category={category} setCategory={setCategory} />
+            <CreateSpot
+              category={category}
+              setIsCreatePage={setIsCreatePage}
+              setCategory={setCategory}
+            />
           </Route>
           <Route exact path="/create-spot/access">
-            <CreateSpotAccess access={access} setAccess={setAccess} />
+            <CreateSpotAccess
+              setIsCreatePage={setIsCreatePage}
+              access={access}
+              setAccess={setAccess}
+            />
           </Route>
           <Route exact path="/create-spot/location">
             <CreateSpotLocation
+              setIsCreatePage={setIsCreatePage}
               address={address}
               category={category}
               aptsuite={aptsuite}
@@ -127,6 +135,7 @@ function App() {
           </Route>
           <Route exact path="/create-spot/floorplan">
             <CreateSpotFloorplan
+              setIsCreatePage={setIsCreatePage}
               guests={guests}
               beds={beds}
               bedrooms={bedrooms}
@@ -139,10 +148,11 @@ function App() {
             />
           </Route>
           <Route exact path="/create-spot/standout">
-            <CreateSpotStandout />
+            <CreateSpotStandout setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/create-spot/photos">
             <CreateSpotPhotos
+              setIsCreatePage={setIsCreatePage}
               category={category}
               imgUrl={imgUrl}
               setImgUrl={setImgUrl}
@@ -158,6 +168,7 @@ function App() {
           </Route>
           <Route exact path="/create-spot/title">
             <CreateSpotTitle
+              setIsCreatePage={setIsCreatePage}
               category={category}
               title={title}
               setTitle={setTitle}
@@ -165,16 +176,18 @@ function App() {
           </Route>
           <Route exact path="/create-spot/description">
             <CreateSpotDescription
+              setIsCreatePage={setIsCreatePage}
               category={category}
               description={description}
               setDescription={setDescription}
             />
           </Route>
           <Route exact path="/create-spot/finish">
-            <CreateSpotFinish />
+            <CreateSpotFinish setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/create-spot/price">
             <CreateSpotPrice
+              setIsCreatePage={setIsCreatePage}
               price={price}
               category={category}
               setPrice={setPrice}
@@ -215,31 +228,28 @@ function App() {
             />
           </Route>
           <Route exact path="/spots/:spotId/edit">
-            <EditSpot />
+            <EditSpot setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/my-listings">
-            <ManageListings />
+            <ManageListings setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/my-bookings">
-            <ManageBookings />
+            <ManageBookings setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/users/:userId/profile">
-            <CurrentUserSpots />
+            <CurrentUserSpots setIsCreatePage={setIsCreatePage} />
           </Route>
-          <Route exact path="/users/:userId/reviews">
-            <CurrentUserReviews />
+          <Route exact path="/my-reviews">
+            <CurrentUserReviews setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route exact path="/spots/:spotId">
-            <SingleSpotPage />
-          </Route>
-          <Route exact path="/my-messages">
-            <Messages />
+            <SingleSpotPage setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route path="/signup">
-            <SignupFormPage />
+            <SignupFormPage setIsCreatePage={setIsCreatePage} />
           </Route>
           <Route path="/spots/:spotId/create-review">
-            <ReviewPage />
+            <ReviewPage setIsCreatePage={setIsCreatePage} />
           </Route>
         </Switch>
       )}

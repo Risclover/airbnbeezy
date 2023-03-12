@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteSpot, getAllSpots } from "../../store/spots";
-import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
 import { Modal } from "../../context/Modal";
-
+import EditSpot from "../SpotForm/EditSpot/EditSpotOld";
 import "./CurrentUserSpots.css";
 
 export default function Listing({ spot }) {
@@ -13,10 +12,6 @@ export default function Listing({ spot }) {
 
   const [style, setStyle] = useState({ display: "none" });
   const [showEditModal, setShowEditModal] = useState(false);
-
-  useEffect(() => {
-    dispatch(getAllSpots());
-  }, []);
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -31,10 +26,10 @@ export default function Listing({ spot }) {
   return (
     <div
       className="outer-listing"
-      onMouseEnter={(e) => {
+      onMouseEnter={() => {
         setStyle({ display: "flex" });
       }}
-      onMouseLeave={(e) => {
+      onMouseLeave={() => {
         setStyle({ display: "none" });
       }}
     >

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./CreateSpot.css";
 import { Helmet } from "react-helmet";
+import "./CreateSpot.css";
 
 export default function CreateSpotOverview({ setIsCreatePage }) {
   useEffect(() => {

@@ -1,10 +1,5 @@
 const express = require("express");
-const {
-  multiplePublicFileUpload,
-  singlePublicFileUpload,
-  singleMulterUpload,
-} = require("../../awsS3");
-const { multipleMulterUpload } = require("../../awsS3");
+const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 const { SpotImage } = require("../../db/models");
 const router = express.Router();
 
@@ -23,8 +18,7 @@ router.post("/", singleMulterUpload("image"), async (req, res) => {
   return res.json({ createdImg });
 });
 
-// get all spot images
-
+// Get all spot images
 router.get("/", async (req, res) => {
   const spotImgs = await SpotImage.findAll();
 

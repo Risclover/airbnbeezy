@@ -76,7 +76,7 @@
   color: #c59b08;
 }
 
-.loginform-header {
+.review-page .loginform-header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -84,6 +84,7 @@
   font-weight: 700;
   font-family: "Figtree", sans-serif;
   font-size: 16px;
+  width: 500px;
 }
 
 .loginform-header svg {

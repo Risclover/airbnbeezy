@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
-import * as sessionActions from "../../store/session";
 import { getUsers } from "../../store/users";
-import "./Navigation.css";
 import { MdMenu } from "react-icons/md";
+import * as sessionActions from "../../store/session";
 import LoggedIn from "../../images/logged-in-user2.png";
 import LoggedOut from "../../images/logged-out-user.png";
+import "./Navigation.css";
 
 export default function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
   const [showMenu, setShowMenu] = useState(false);
 
   const usersList = useSelector((state) => state.users);
+  const currentUser = useSelector((state) => state.session.user);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -39,8 +40,6 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
     dispatch(sessionActions.logout());
     history.replace("/");
   };
-
-  const currentUser = useSelector((state) => state.session.user);
 
   return (
     <>
@@ -132,8 +131,6 @@ export default function ProfileButton({ user, setLogin, setShowModal }) {
                 >
                   Airbnbeezy your home
                 </li>
-                <li>Host an experience</li>
-                <li>Help</li>
               </ul>
             </div>
           </div>
