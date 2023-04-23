@@ -60,7 +60,7 @@ module.exports = {
         firstName: "John",
         lastName: "Ervin",
         profileImageUrl:
-          "https://scontent.fsac1-2.fna.fbcdn.net/v/t1.18169-9/970699_690761850950378_1578849464_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=XSOrucdfnysAX_Hgd-2&_nc_ht=scontent.fsac1-2.fna&oh=00_AfBGb3i5Trzv70v9qZ0VTmaWWAxaSjPhgAcPNNm9Tg7Jjg&oe=64225F99",
+          "https://scontent.fsac1-2.fna.fbcdn.net/v/t1.18169-9/970699_690761850950378_1578849464_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=SiUg3-WqG9EAX8g-MwP&_nc_ht=scontent.fsac1-2.fna&oh=00_AfB8tblB4y_GITpzoeHI0f91r2ZhBdDSQ2hN1Di1lbRS1w&oe=646C3399",
         hashedPassword: bcrypt.hashSync("password"),
       },
       {
@@ -86,7 +86,7 @@ module.exports = {
         firstName: "Jeremy",
         lastName: "Ervin",
         profileImageUrl:
-          "https://scontent.fsac1-2.fna.fbcdn.net/v/t1.6435-9/134421989_400802391188670_7593452170124796361_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=174925&_nc_ohc=GK8tSrU4e2oAX_Lfqgi&_nc_ht=scontent.fsac1-2.fna&oh=00_AfCRlbVeUSyo70NA0N2OOS7oNjI0JCOSXRF3LEj_D7JD-g&oe=64226E6D",
+          "https://scontent.fsac1-2.fna.fbcdn.net/v/t1.18169-9/534998_10201633422628172_1738461989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_ohc=cEmlNpxItzgAX8XSzNI&_nc_ht=scontent.fsac1-2.fna&oh=00_AfA1BNu25N6Sv5cbEBFOyAn1urobGmyvvPyNMdloyyr8Sw&oe=646C2B99",
         hashedPassword: bcrypt.hashSync("password"),
       },
     ]);
